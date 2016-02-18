@@ -16,6 +16,7 @@ public class PlayerControllerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		Time.timeScale = 1f;
 		anim = GetComponent<Animator> ();
 	}
 
