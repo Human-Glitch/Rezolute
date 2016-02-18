@@ -31,13 +31,11 @@ public class PlayerControllerScript : MonoBehaviour {
 	{
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("Grounded", grounded);
-
 		anim.SetFloat ("vSpeed", GetComponent<Rigidbody2D>().velocity.y);
 
 		float move = Input.GetAxis ("Horizontal");
 
 		anim.SetFloat ("speed", Mathf.Abs (move)); //sets the controller to the animation
-
 		GetComponent<Rigidbody2D>().velocity = new Vector2 (move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 	
 		if (move > 0 && !facingRight)
@@ -46,9 +44,9 @@ public class PlayerControllerScript : MonoBehaviour {
 			Flip ();
 	}
 
-	void Flip()
+	void Flip ()
 	{
-	
+		
 		facingRight = !facingRight;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
