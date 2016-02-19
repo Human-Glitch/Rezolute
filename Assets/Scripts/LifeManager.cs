@@ -10,10 +10,10 @@ public class LifeManager : MonoBehaviour {
 	public float fadeTime = .5f;
 
 	public GameObject gameOverScreen;
+	public GameObject outOfLives;
 	//public AudioSource lifeLostSound;
 
 	private int lifeCounter;
-	private bool activated = false;
 	private Text theText;
 
 
@@ -27,11 +27,12 @@ public class LifeManager : MonoBehaviour {
 	}
 
 	void Update(){
-		if (lifeCounter < 1) 
+		if (lifeCounter < 1 ) 
 		{
 			gameOverScreen.SetActive (true);
+			outOfLives.SetActive (true);
 
-			Time.timeScale = 0;
+			Time.timeScale = 0f;
 		}
 
 		theText.text = "x " + lifeCounter;

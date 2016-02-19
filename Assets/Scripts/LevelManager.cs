@@ -9,12 +9,16 @@ public class LevelManager : MonoBehaviour {
 
 	public float respawnDelay;
 
+	private LifeManager lifeManager;
 	private PlayerControllerScript player;
 	private bool notDead = true;
+
+
 
 	// Use this for initialization
 	void Start () {
 		player = FindObjectOfType<PlayerControllerScript> ();
+		lifeManager = FindObjectOfType<LifeManager> ();
 	}
 	
 	// Update is called once per frame
@@ -34,6 +38,7 @@ public class LevelManager : MonoBehaviour {
 
 			Instantiate (deathParticle, player.transform.position, player.transform.rotation);
 			notDead = false;
+			lifeManager.takeLife ();
 
 			player.enabled = false;
 			player.GetComponent<Renderer> ().enabled = false;

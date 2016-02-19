@@ -4,9 +4,13 @@ using System.Collections;
 
 public class takeCoin : MonoBehaviour {
 	public Text coinCounter;
+	public GameObject gameOverScreen;
+	public GameObject allCoins;
+
 	private AudioSource coinChing;
 
 	private int score = 0;
+	private int totalCoins = 17;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +19,13 @@ public class takeCoin : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (score == totalCoins ) 
+		{
+			allCoins.SetActive (true);
+			gameOverScreen.SetActive (true);
+
+			Time.timeScale = 0;
+		}
 
 	}
 
