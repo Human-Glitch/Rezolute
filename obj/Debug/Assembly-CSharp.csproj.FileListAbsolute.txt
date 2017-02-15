@@ -40,3 +40,11 @@ C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Tem
 C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\obj\Debug\Assembly-CSharp.dll
 C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.Analytics.dll
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.HoloLens.dll
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.dll
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.VR.dll
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.xml
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.Analytics.xml
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.HoloLens.xml
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.VR.xml
