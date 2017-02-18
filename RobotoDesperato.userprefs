@@ -1,13 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\FollowPlayer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Action Scripts\ClampedRotation.cs">
     <Files>
-      <File FileName="Assets\Scripts\BackgroundFollow.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\KillPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\movingBackground.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\movingBackgroundVertical.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\FollowPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Action Scripts\RotateObject.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Action Scripts\ClampedRotation.cs" Line="30" Column="45" />
+      <File FileName="Assets\Scripts\Action Scripts\PlayerControllerScript.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\NPCs\KillPlayer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Systems\Checkpoint.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Systems\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Action Scripts\IntervalRotate.cs" Line="29" Column="5" />
+      <File FileName="Assets\Scripts\Action Scripts\IntervalTranslate.cs" Line="40" Column="14" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
