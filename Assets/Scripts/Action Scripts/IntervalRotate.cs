@@ -30,10 +30,8 @@ public class IntervalRotate : MonoBehaviour
 		else
 		{
 			Debug.Log ("Else reached");
-
 			if(hasStopped == false)
 			{
-				targetRotation = 90.0f;
 				delayRotation ();
 			}
 		}
@@ -50,7 +48,7 @@ public class IntervalRotate : MonoBehaviour
 		rotation = 0;
 		rotationAmt = 0;
 
-		yield return new WaitForSeconds (rotationDelay);
+		yield return new WaitForSecondsRealtime (rotationDelay);
 		Debug.Log ("Block Stopped");
 
 		hasStopped = false;

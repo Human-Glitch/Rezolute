@@ -21,15 +21,17 @@ public class PlayerControllerScript : MonoBehaviour {
 	}
 
 	void Update(){
-		if (grounded && Input.GetKey(KeyCode.Space)){
-			anim.SetBool("Grounded", false);
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
-		}
+		
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
+		if (grounded && Input.GetKey(KeyCode.Space)){
+			anim.SetBool("Grounded", false);
+			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+		}
+
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
 		anim.SetBool ("Grounded", grounded);
 		anim.SetFloat ("vSpeed", GetComponent<Rigidbody2D>().velocity.y);

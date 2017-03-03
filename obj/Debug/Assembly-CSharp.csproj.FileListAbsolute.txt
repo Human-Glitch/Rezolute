@@ -48,3 +48,4 @@ C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Tem
 C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.Analytics.xml
 C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.HoloLens.xml
 C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\UnityEngine.VR.xml
+C:\Users\Kody\Documents\Programming Directory\Unity Projects\RobotoDesperato\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb

@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour {
 
 		if (notDead) {
 
-			Instantiate (deathParticle, player.transform.position, player.transform.rotation);
+			GameObject deathEffect = Instantiate (deathParticle, player.transform.position, player.transform.rotation);
 			notDead = false;
 			lifeManager.takeLife ();
 
@@ -45,12 +45,17 @@ public class LevelManager : MonoBehaviour {
 
 			yield return new WaitForSeconds (respawnDelay);
 
+			Destroy (deathEffect);
+
 			player.transform.position = currentCheckpoint.transform.position;
 			player.enabled = enabled;
 			player.GetComponent<Renderer> ().enabled = enabled;
 
-			Instantiate (respawnParticle, currentCheckpoint.transform.position, currentCheckpoint.transform.rotation);
+			GameObject respawnEffect = Instantiate (respawnParticle, currentCheckpoint.transform.position, currentCheckpoint.transform.rotation);
 			notDead = true;
+			yield return new WaitForSeconds(1);
+			Destroy (respawnEffect);
+
 		}
 	}
 }

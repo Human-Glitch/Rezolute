@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotoDesperato", "Assembly-CSharp-firstpass.csproj", "{6CBC99CC-9D36-65AC-B652-7A88B39E822F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotoDesperato", "Assembly-CSharp.csproj", "{17B3216F-C3A8-8A37-1017-8C0D436E66A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotoDesperato", "Assembly-CSharp-Editor-firstpass.csproj", "{E218BEC1-59EC-430B-BC2A-E59D56467136}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +13,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6CBC99CC-9D36-65AC-B652-7A88B39E822F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CBC99CC-9D36-65AC-B652-7A88B39E822F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CBC99CC-9D36-65AC-B652-7A88B39E822F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CBC99CC-9D36-65AC-B652-7A88B39E822F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17B3216F-C3A8-8A37-1017-8C0D436E66A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17B3216F-C3A8-8A37-1017-8C0D436E66A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17B3216F-C3A8-8A37-1017-8C0D436E66A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17B3216F-C3A8-8A37-1017-8C0D436E66A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E218BEC1-59EC-430B-BC2A-E59D56467136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E218BEC1-59EC-430B-BC2A-E59D56467136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E218BEC1-59EC-430B-BC2A-E59D56467136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E218BEC1-59EC-430B-BC2A-E59D56467136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
