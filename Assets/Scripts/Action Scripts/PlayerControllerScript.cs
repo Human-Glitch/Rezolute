@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerControllerScript : MonoBehaviour {
 	public float maxSpeed = 10f;
+	public float maxHeight = 10f;
 	bool facingRight = true;
 
 	Animator anim;
@@ -39,7 +40,7 @@ public class PlayerControllerScript : MonoBehaviour {
 		float move = Input.GetAxis ("Horizontal");
 
 		anim.SetFloat ("speed", Mathf.Abs (move)); //sets the controller to the animation
-		GetComponent<Rigidbody2D>().velocity = new Vector2 (move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+		GetComponent<Rigidbody2D>().velocity = new Vector2 (move * maxSpeed, GetComponent<Rigidbody2D>().velocity.y % maxHeight);
 	
 		if (move > 0 && !facingRight)
 			Flip ();

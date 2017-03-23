@@ -25,7 +25,7 @@ public class IntervalTranslate : MonoBehaviour
 
 		if (Mathf.Abs (translation) < targetTranslation) 
 		{
-			Debug.Log ("Entered Normal");
+			//Debug.Log ("Entered Normal");
 			transform.Translate (0, translationAmt, 0);
 			translation += translationAmt;
 		} 
@@ -36,10 +36,10 @@ public class IntervalTranslate : MonoBehaviour
 			{
 				if (targetTranslation == 0) 
 				{
-					Debug.Log ("Entered reverse");
+					//Debug.Log ("Entered reverse");
 					transform.Translate (0, -translationAmt, 0);
 					translation -= translationAmt;
-					Debug.Log (translation);
+					//Debug.Log (translation);
 
 					if(translation < targetTranslation)
 					{
@@ -47,7 +47,7 @@ public class IntervalTranslate : MonoBehaviour
 						delayTranslation ();
 					}
 				} else {
-					Debug.Log ("false reached");
+					//Debug.Log ("false reached");
 					targetTranslation = Mathf.Round (targetTranslation);
 					delayTranslation ();
 				}

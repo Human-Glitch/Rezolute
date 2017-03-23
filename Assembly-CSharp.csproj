@@ -48,10 +48,12 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Action Scripts\ClampedRotation.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\FoldMe.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\IncrementCheckpoint.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\IntervalRotate.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\IntervalTranslate.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\PlayerControllerScript.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\RotateObject.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\TracePath.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\destroyCoin.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\takeCoin.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\testFold.cs" />
@@ -61,8 +63,10 @@
      <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\movingBackground.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" />
+     <Compile Include="Assets\Scripts\LightSpeedBackground.cs" />
      <Compile Include="Assets\Scripts\NPCs\EnemyPatrol.cs" />
      <Compile Include="Assets\Scripts\NPCs\KillPlayer.cs" />
+     <Compile Include="Assets\Scripts\Signal2Tracer.cs" />
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Systems\LifeManager.cs" />

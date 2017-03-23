@@ -21,15 +21,16 @@ public class IntervalRotate : MonoBehaviour
 	{
 		rotationAmt = rotateSpeed * Time.deltaTime;
 
-		if (Mathf.Abs(rotation) < targetRotation) 
+		if ((Mathf.Abs(rotation)) < targetRotation) 
 		{
-			Debug.Log ("Entered Normal");
-			transform.Rotate (0, 0, rotationAmt);
+			//Debug.Log ("Entered Normal");
+			transform.Rotate(0, 0, rotationAmt, Space.Self); 
 			rotation += rotationAmt;
 		} 
 		else
 		{
-			Debug.Log ("Else reached");
+			//Debug.Log ("Else reached");
+
 			if(hasStopped == false)
 			{
 				delayRotation ();
@@ -45,11 +46,12 @@ public class IntervalRotate : MonoBehaviour
 	public IEnumerator delayRotationCo(){
 
 		hasStopped = true;
+
 		rotation = 0;
 		rotationAmt = 0;
 
 		yield return new WaitForSecondsRealtime (rotationDelay);
-		Debug.Log ("Block Stopped");
+		//Debug.Log ("Block Stopped");
 
 		hasStopped = false;
 	}

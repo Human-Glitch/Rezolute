@@ -1,18 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Action Scripts\IntervalRotate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Action Scripts\PlayerControllerScript.cs">
     <Files>
-      <File FileName="Assets\Scripts\Action Scripts\RotateObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Action Scripts\ClampedRotation.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Action Scripts\PlayerControllerScript.cs" Line="34" Column="3" />
-      <File FileName="Assets\Scripts\NPCs\KillPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Systems\Checkpoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Systems\LevelManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Action Scripts\IntervalRotate.cs" Line="44" Column="2" />
-      <File FileName="Assets\Scripts\Action Scripts\IntervalTranslate.cs" Line="71" Column="3" />
-      <File FileName="Assets\Scripts\Systems\LifeManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Action Scripts\takeCoin.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Action Scripts\FoldMe.cs" Line="11" Column="36" />
+      <File FileName="Assets\Scripts\Action Scripts\TracePath.cs" Line="29" Column="5" />
+      <File FileName="Assets\Scripts\Action Scripts\FoldMe.cs" Line="23" Column="44" />
+      <File FileName="Assets\Scripts\Signal2Tracer.cs" Line="58" Column="16" />
+      <File FileName="Assets\Scripts\LightSpeedBackground.cs" Line="22" Column="27" />
+      <File FileName="Assets\Scripts\Action Scripts\PlayerControllerScript.cs" Line="44" Column="2" />
+      <File FileName="Assets\Scripts\NPCs\EnemyPatrol.cs" Line="13" Column="9" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

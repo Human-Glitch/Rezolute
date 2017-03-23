@@ -9,10 +9,11 @@ using System.Collections;
 public class movingBackgroundVertical: MonoBehaviour 
 {
 	private float currentOffset = 0;
-	public float speed = .1f;
+	public static float speed;
 
 	void Start() {
 		currentOffset += Time.deltaTime * speed; 
+		speed = .1f;
 	}
 
 	// Update is called once per frame

@@ -20,18 +20,11 @@ public class FoldMe : MonoBehaviour
 	{
 		rotationAmt = velocity * Time.deltaTime;
 
-		if (Mathf.Abs(rotation) < targetRotation) 
+		if (Mathf.RoundToInt(Mathf.Abs(rotation)) < targetRotation) 
 		{
-			Debug.Log ("Entered Normal");
+			//Debug.Log ("Entered Normal");
 			transform.Rotate (0, 0, rotationAmt);
 			rotation += rotationAmt;
 		} 
-		else
-		{
-			if(hasStopped == false)
-			{
-				Debug.Log ("TEST Has Stopped");
-			}
-		}
 	}
 }
