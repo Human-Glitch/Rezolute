@@ -1,13 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Action Scripts\PlayerControllerScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NPCs\KillPlayer.cs">
     <Files>
-      <File FileName="Assets\Scripts\Action Scripts\TracePath.cs" Line="29" Column="5" />
-      <File FileName="Assets\Scripts\Action Scripts\FoldMe.cs" Line="23" Column="44" />
-      <File FileName="Assets\Scripts\Signal2Tracer.cs" Line="58" Column="16" />
-      <File FileName="Assets\Scripts\LightSpeedBackground.cs" Line="22" Column="27" />
-      <File FileName="Assets\Scripts\Action Scripts\PlayerControllerScript.cs" Line="44" Column="2" />
-      <File FileName="Assets\Scripts\NPCs\EnemyPatrol.cs" Line="13" Column="9" />
+      <File FileName="Assets\Scripts\NPCs\FauxGravityAttractor.cs" Line="17" Column="5" />
+      <File FileName="Assets\Scripts\NPCs\EnemyPatrol.cs" Line="49" Column="84" />
+      <File FileName="Assets\Scripts\NPCs\FauxGravityBody.cs" Line="15" Column="27" />
+      <File FileName="Assets\Scripts\NPCs\KillPlayer.cs" Line="28" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

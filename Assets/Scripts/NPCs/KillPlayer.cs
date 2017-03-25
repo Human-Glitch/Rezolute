@@ -25,7 +25,7 @@ public class KillPlayer : MonoBehaviour {
 		if (other.gameObject.tag == "Player") {
 			
 			//dyingSound.Play ();
-			levelManager.RespawnPlayer ();
+			//levelManager.RespawnPlayer ();
 
 		}
 	}

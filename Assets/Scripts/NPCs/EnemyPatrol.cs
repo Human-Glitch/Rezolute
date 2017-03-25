@@ -14,11 +14,12 @@ public class EnemyPatrol : MonoBehaviour {
 	private bool hittingWall;
 
 	private bool notAtEdge;
+	private Vector2 movDir;
 	public Transform edgeCheck;
 
 	// Use this for initialization
 	void Start () {
-	
+		movDir = GetComponent<Rigidbody2D> ().velocity;
 	}
 	
 	// Update is called once per frame
@@ -33,11 +34,19 @@ public class EnemyPatrol : MonoBehaviour {
 
 		if (moveRight) {
 			transform.localScale = new Vector3 (-1f, 1f, 1f);
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
+			//var movDir = GetComponent<Rigidbody2D> ().velocity;
+			movDir = new Vector2 (moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 		} else {
 			transform.localScale = new Vector3 (1f, 1f, 1f);
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (-moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
+			//var movDir = GetComponent<Rigidbody2D> ().velocity;
+			movDir = new Vector2 (-moveSpeed, GetComponent<Rigidbody2D> ().velocity.y);
 		}
+	}
+
+	void FixedUpdate()
+	{
+		GetComponent<Rigidbody2D> ().MovePosition ((Vector2)(GetComponent<Rigidbody2D> ().position) 
+			+ (Vector2)(transform.TransformDirection (movDir) * moveSpeed * Time.deltaTime));	
 	}
 
 }
