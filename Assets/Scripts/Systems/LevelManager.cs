@@ -14,7 +14,6 @@ public class LevelManager : MonoBehaviour {
 	private bool notDead = true;
 
 
-
 	// Use this for initialization
 	void Start () {
 		player = FindObjectOfType<PlayerControllerScript> ();
@@ -26,23 +25,24 @@ public class LevelManager : MonoBehaviour {
 	
 	}
 
-	public void RespawnPlayer (){
+	public void RespawnPlayer ()
+	{
 		StartCoroutine ("RespawnPlayerCo");
-		
 	}
 
-	public IEnumerator RespawnPlayerCo(){
+	public IEnumerator RespawnPlayerCo()
+	{
 		Debug.Log ("Player Respawn");
 
-		if (notDead) {
-
+		if (notDead) 
+		{
 			GameObject deathEffect = Instantiate (deathParticle, player.transform.position, player.transform.rotation);
 			notDead = false;
 			lifeManager.takeLife ();
 
 			player.enabled = false;
 			player.GetComponent<Renderer> ().enabled = false;
-
+	
 			yield return new WaitForSeconds (respawnDelay);
 
 			Destroy (deathEffect);
@@ -50,10 +50,11 @@ public class LevelManager : MonoBehaviour {
 			player.transform.position = currentCheckpoint.transform.position;
 			player.enabled = enabled;
 			player.GetComponent<Renderer> ().enabled = enabled;
-
+		
 			GameObject respawnEffect = Instantiate (respawnParticle, currentCheckpoint.transform.position, currentCheckpoint.transform.rotation);
+
+			yield return new WaitForSecondsRealtime(respawnDelay);
 			notDead = true;
-			yield return new WaitForSeconds(1);
 			Destroy (respawnEffect);
 
 		}

@@ -46,30 +46,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Action Scripts\ClampedRotation.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\FoldMe.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\IncrementCheckpoint.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\IntervalRotate.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\IntervalTranslate.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\PlayerControllerScript.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\RotateObject.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\StickToWall.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\TracePath.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\destroyCoin.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\CubeTrapOperations.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\FoldMe.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\IncrementCheckpoint.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\LightSpeedBackground.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\TracePath.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\TriggerAnEvent.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\ClampedRotation.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\IntervalRotate.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\IntervalTranslate.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\RotateObject.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\destroyCoin.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\makeChildOnTouch.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\takeCoin.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\testFold.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\BackgroundFollow.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\Parallax.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\movingBackground.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" />
-     <Compile Include="Assets\Scripts\LightSpeedBackground.cs" />
+     <Compile Include="Assets\Scripts\Fade.cs" />
      <Compile Include="Assets\Scripts\NPCs\EnemyPatrol.cs" />
      <Compile Include="Assets\Scripts\NPCs\FauxGravityAttractor.cs" />
      <Compile Include="Assets\Scripts\NPCs\FauxGravityBody.cs" />
      <Compile Include="Assets\Scripts\NPCs\KillPlayer.cs" />
-     <Compile Include="Assets\Scripts\Signal2Tracer.cs" />
+     <Compile Include="Assets\Scripts\NPCs\PlayerControllerScript.cs" />
+     <Compile Include="Assets\Scripts\NPCs\StickToWall.cs" />
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Systems\LifeManager.cs" />

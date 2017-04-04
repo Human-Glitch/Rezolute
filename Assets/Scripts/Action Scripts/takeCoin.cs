@@ -8,12 +8,14 @@ public class takeCoin : MonoBehaviour {
 	public GameObject allCoins;
 
 	private AudioSource coinChing;
-
-	private int score = 0;
-	private int totalCoins = 17;
+	private int score;
+	private int totalCoins;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+		score = 0;
+		totalCoins = GameObject.Find ("Coins").transform.childCount;
 		coinChing = GetComponent<AudioSource> ();
 	}
 	
@@ -29,7 +31,8 @@ public class takeCoin : MonoBehaviour {
 
 	}
 
-	public void IncrementCounter(){
+	public void IncrementCounter()
+	{
 		coinCounter.text = string.Format("Coin: {0}", ++score);
 		coinChing.Play ();
 	}
