@@ -9,18 +9,24 @@ public class TriggerBossType : MonoBehaviour
 	public float hashTime;
 	public float hashDelay;
 
-	public GameObject redBoss;
-	public GameObject blueBoss;
+	//Holds the prefabs
+	public GameObject redScanner;
+	public GameObject blueScanner;
 	public GameObject spawnPoint;
 
-	private GameObject plantedBoss;
-	private GameObject activeBoss;
+	//GameObjects for the prefabs to go into
+	private GameObject plantedScanner;
+	private GameObject activeScanner;
+
+	//keep a list of scanners for each trigger
+	private List<GameObject> lvl2Scanner;
 
 	private bool startUpdate;
 
 	// Use this for initialization
 	void Start () 
 	{ 
+		lvl2Scanner = new List<GameObject> ();
 		startUpdate = false;
 	}
 	
@@ -32,7 +38,7 @@ public class TriggerBossType : MonoBehaviour
 			//plantedBoss.transform.Translate (0, .01f , 0);
 
 			if (isPlantedType == true) {
-				iTween.MoveUpdate (plantedBoss, 
+				iTween.MoveUpdate (plantedScanner, 
 					iTween.Hash ("x", (transform.position.x + 20), 
 						"y", transform.position.y + 5, 
 						"time", hashTime,
@@ -45,7 +51,7 @@ public class TriggerBossType : MonoBehaviour
 			}// end planted type
 
 			if (isActiveType == true) {
-				iTween.MoveUpdate (activeBoss, 
+				iTween.MoveUpdate (activeScanner, 
 					iTween.Hash ("x", (transform.position.x - 40), 
 						"y", transform.position.y + 5, 
 						"time", hashTime,
@@ -67,28 +73,41 @@ public class TriggerBossType : MonoBehaviour
 		{
 			if(isPlantedType == true)
 			{
-				plantedBoss = Instantiate (redBoss, 
+				plantedScanner = Instantiate (redScanner, 
 					new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
 					transform.rotation) as GameObject;
+				addScanner2List (plantedScanner);
 				startUpdate = true;
 			}
 
 			if (isActiveType == true) 
 			{
-				activeBoss = Instantiate (blueBoss, 
+				activeScanner = Instantiate (blueScanner, 
 					new Vector3(transform.position.x + 20, transform.position.y + 5, transform.position.z), 
 					transform.rotation) as GameObject;
+				addScanner2List (activeScanner);
+				
 				startUpdate = true;
 			}
 		}
+	}
+
+	private void addScanner2List(GameObject scanner)
+	{
+			lvl2Scanner.Add(scanner);
+	}
+
+	private GameObject returnNewestScannerPrefab()
+	{
+		return lvl2Scanner [lvl2Scanner.Count - 1];
 	}
 
 	void Destroy()
 	{
 		Debug.Log ("Destroyed");
 		if (isPlantedType == true)
-			Destroy (plantedBoss);
+			Destroy (plantedScanner);
 		if (isActiveType == true)
-			Destroy (activeBoss);
+			Destroy (activeScanner);
 	}
 }

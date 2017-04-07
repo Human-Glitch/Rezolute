@@ -67,4 +67,9 @@ public class PlayerControllerScript : MonoBehaviour
 	{
 		return isMoving;
 	}
+
+	public bool detectIfGrounded()
+	{
+		return grounded;
+	}
 }//end class

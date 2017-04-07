@@ -10,6 +10,7 @@ public class IntervalTranslate : MonoBehaviour
 	private float originalTarget = 0;
 
 	public bool goUpFirst;
+	public bool goSidewaysFirst;
 	public float targetTranslation = 0f;
 	public float translationDelay = 0f;
 	public float translateSpeed = 1f;
@@ -33,7 +34,7 @@ public class IntervalTranslate : MonoBehaviour
 		{
 			//Debug.Log ("Entered Normal");
 			if (goUpFirst == true) {transform.Translate (0, translationAmt, 0);}
-			//else if(!goUpFirst == false){transform.Translate (0, -translationAmt, 0);}
+			else if (goSidewaysFirst == true){transform.Translate (translationAmt, 0, 0);}
 			translation += translationAmt;
 		} 
 
@@ -46,7 +47,7 @@ public class IntervalTranslate : MonoBehaviour
 				{
 					//Debug.Log ("Entered reverse");
 					if (goUpFirst == true) {transform.Translate (0, -translationAmt, 0);}
-					//else if(!goUpFirst == false){transform.Translate (0, translationAmt, 0);}
+					else if (goSidewaysFirst == true){transform.Translate (-translationAmt, 0, 0);}
 
 					translation -= translationAmt;
 					//Debug.Log (translation);
@@ -81,7 +82,6 @@ public class IntervalTranslate : MonoBehaviour
 		{
 			//Debug.Log ("Target now 0");
 			targetTranslation = 0f;
-			;
 		} else {
 			//Debug.Log ("Target back to original");
 			targetTranslation = originalTarget;
