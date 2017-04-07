@@ -1,12 +1,72 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FollowPlayer : MonoBehaviour {
+public class FollowPlayer : MonoBehaviour 
+{
 	public Transform Target;
 
-	// Update is called once per frame
-	void LateUpdate () {
-		transform.position = new Vector3 (Target.position.x, Target.position.y, Target.position.z);
-		//transform.localRotation = new Quaternion (Target.rotation.x, Target.rotation.y, Target.rotation.z , Target.rotation.w);
+	public bool willTargetX;
+	public bool willTargetY;
+
+	public int cameraYoffset;
+	public bool allowXreturn;
+
+	private float furthestXpositon;
+	private float posX;
+	private float posY;
+
+	void Start()
+	{
+		furthestXpositon = Target.position.x;
+		transform.position = Target.transform.position;
 	}
-}
+
+	// Update is called once per frame
+	void LateUpdate () 
+	{
+		switch (willTargetX) 
+		{
+			case(true):
+				updateCameraPositionOnXReturn ();
+				break;
+			
+			case(false):
+				posX = 0;
+				break;
+		}//end switch
+
+		//Want Y axis to move with player
+		if(willTargetY == true){ posY = Target.position.y; }
+		else if (willTargetX == false){ posY = 0; }
+
+		//Move camera to settings
+		transform.position = new Vector3 (posX, posY + cameraYoffset, Target.position.z);
+	}//end late update
+
+	void updateCameraPositionOnXReturn()
+	{
+		switch(allowXreturn)
+		{
+			case (true):
+				posX = Target.position.x;
+				furthestXpositon = posX;
+				break;
+
+			case (false):
+				//Track furthest x position of the player and update camera
+				if (Target.position.x > furthestXpositon) 
+				{
+					furthestXpositon = Target.position.x;
+					posX = furthestXpositon;
+				}
+				break;
+		}//end switch
+	}//end function
+
+	public void resetCameraPosition()
+	{
+		furthestXpositon = Target.position.x;
+		posX = furthestXpositon;
+	}
+
+}//end script

@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\CubeTrapOperations.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\Fade.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\FoldMe.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\IncrementCheckpoint.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\LightSpeedBackground.cs" />
@@ -66,18 +67,18 @@
      <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\movingBackground.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" />
-     <Compile Include="Assets\Scripts\Fade.cs" />
      <Compile Include="Assets\Scripts\NPCs\EnemyPatrol.cs" />
      <Compile Include="Assets\Scripts\NPCs\FauxGravityAttractor.cs" />
      <Compile Include="Assets\Scripts\NPCs\FauxGravityBody.cs" />
      <Compile Include="Assets\Scripts\NPCs\KillPlayer.cs" />
      <Compile Include="Assets\Scripts\NPCs\PlayerControllerScript.cs" />
      <Compile Include="Assets\Scripts\NPCs\StickToWall.cs" />
+     <Compile Include="Assets\Scripts\NPCs\TriggerBossType.cs" />
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Systems\LifeManager.cs" />
      <Compile Include="Assets\Scripts\Systems\Timer.cs" />
-     <None Include="Assets\Scifi Art Demo Pack\Demo Readme.txt" />
+     <None Include="Assets\Art&amp;Materials\Scifi Art Demo Pack\Demo Readme.txt" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />
      <None Include="Assets\Standard Assets\ParticleSystems\ParticleSystemsGuidelines.txt" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

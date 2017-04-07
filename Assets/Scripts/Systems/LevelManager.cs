@@ -11,11 +11,13 @@ public class LevelManager : MonoBehaviour {
 
 	private LifeManager lifeManager;
 	private PlayerControllerScript player;
+	private GameObject mainCamera;
 	private bool notDead = true;
 
 
 	// Use this for initialization
 	void Start () {
+		mainCamera = GameObject.Find ("Main Camera");
 		player = FindObjectOfType<PlayerControllerScript> ();
 		lifeManager = FindObjectOfType<LifeManager> ();
 	}
@@ -52,6 +54,7 @@ public class LevelManager : MonoBehaviour {
 			player.GetComponent<Renderer> ().enabled = enabled;
 		
 			GameObject respawnEffect = Instantiate (respawnParticle, currentCheckpoint.transform.position, currentCheckpoint.transform.rotation);
+			mainCamera.GetComponent<FollowPlayer>().resetCameraPosition ();
 
 			yield return new WaitForSecondsRealtime(respawnDelay);
 			notDead = true;

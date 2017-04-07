@@ -10,7 +10,6 @@ public class KillPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		dyingSound = GetComponent<AudioSource> ();
-
 		//lifeManager = FindObjectOfType<LifeManager> ();
 		levelManager = FindObjectOfType<LevelManager> ();// finds an object with level manager attacthed
 
@@ -24,8 +23,9 @@ public class KillPlayer : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.gameObject.tag == "Player") {
 			
-			dyingSound.Play ();
+			//dyingSound.Play ();
 			levelManager.RespawnPlayer ();
+
 
 		}
 	}

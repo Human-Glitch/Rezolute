@@ -6,17 +6,21 @@ public class takeCoin : MonoBehaviour {
 	public Text coinCounter;
 	public GameObject gameOverScreen;
 	public GameObject allCoins;
+	public bool areCoins;
 
 	private AudioSource coinChing;
 	private int score;
-	private int totalCoins;
+	public int totalCoins;
 
 	// Use this for initialization
 	void Start () 
 	{
 		score = 0;
-		totalCoins = GameObject.Find ("Coins").transform.childCount;
-		coinChing = GetComponent<AudioSource> ();
+
+		if (areCoins == true) {
+			totalCoins = GameObject.Find ("Coins").transform.childCount;
+			coinChing = GetComponent<AudioSource> ();
+		} else{ totalCoins = 100; }
 	}
 	
 	// Update is called once per frame
