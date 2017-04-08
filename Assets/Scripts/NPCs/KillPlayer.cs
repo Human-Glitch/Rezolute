@@ -26,34 +26,58 @@ public class KillPlayer : MonoBehaviour {
 		
 	private void methods2Kill(Collider2D other)
 	{
-		var otherIsMoving = other.GetComponent<PlayerControllerScript> ().detectPlayerMovement (); //Store player movement data for later checks
-		var otherIsGrounded = other.GetComponent<PlayerControllerScript> ().detectIfGrounded ();
+		
+		if (Application.loadedLevelName == "Level 2" 
+			&& gameObject.transform.parent.tag != "Boss" 
+			&& gameObject.transform.tag != "Fall Detector")
+				scannerDeath (other);
 
-		//Die if moving through Blue Scanner
-		//var newestScanner = TriggerBossType.returnNewestScannerPrefab();
-
-		Debug.Log(this.gameObject.transform.parent.tag);
-		Debug.Log (otherIsMoving);
-		if (this.gameObject.transform.parent.tag == "Blue Scanner" && otherIsMoving == true) 
-		{
-			Debug.Log ("Blue Death");
-			dyingSound.Play ();
-			levelManager.RespawnPlayer ();
-
-			gameObject.transform.parent.gameObject.SetActive(false); // hide Scanner after player death
-		}
-			
-		//Die if not moving through Red Scanner
-		else if (gameObject.transform.parent.tag == "Red Scanner" && otherIsGrounded == true) {
-			Debug.Log ("Red Death");
-			dyingSound.Play ();
-			levelManager.RespawnPlayer ();
-			gameObject.transform.parent.gameObject.SetActive(false); // hide Scanner after player death
-		} else if(gameObject.transform.parent.tag != "Red Scanner" && gameObject.transform.parent.tag != "Blue Scanner" )
+		else
 		{
 			Debug.Log ("Normal Death");
 			dyingSound.Play ();
 			levelManager.RespawnPlayer ();
 		}
+	}
+
+	void scannerDeath(Collider2D other)
+	{
+		var otherIsMoving = other.GetComponent<PlayerControllerScript> ().detectPlayerMovement (); //Store player movement data for later checks
+		var otherIsGrounded = other.GetComponent<PlayerControllerScript> ().detectIfGrounded ();
+
+		if (this.gameObject.transform.parent.tag == "Blue Scanner" && otherIsMoving == true) 
+		{
+			Debug.Log ("Blue Death");
+			dyingSound = GameObject.FindGameObjectWithTag ("Audio").GetComponent<AudioSource>();
+			dyingSound.Play ();
+			levelManager.RespawnPlayer ();
+
+			gameObject.transform.parent.gameObject.SetActive(false); // hide Scanner after player death
+		}
+
+		//Die if not moving through Red Scanner
+		if (gameObject.transform.parent.tag == "Red Scanner" && otherIsGrounded == true) 
+		{
+			Debug.Log ("Red Death");
+			dyingSound = GameObject.FindGameObjectWithTag ("Audio").GetComponent<AudioSource>();
+			dyingSound.Play ();
+			levelManager.RespawnPlayer ();
+			//gameObject.transform.parent.gameObject.SetActive(false); // hide Scanner after player death
+		}
+
+		//	Debug.Log(this.gameObject.transform.parent.tag);
+		//Debug.Log (otherIsMoving);
+	}
+
+	private void timedDeathCo ()
+	{
+		StartCoroutine ("timedDeath");
+	}
+
+	private IEnumerator timedDeath()
+	{
+		yield return new WaitForSecondsRealtime(3);
+		Debug.Log ("Destroyed scanner");
+		Destroy (this.gameObject);
 	}
 }

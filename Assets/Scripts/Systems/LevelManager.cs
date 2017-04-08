@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LevelManager : MonoBehaviour {
-	
+public class LevelManager : MonoBehaviour 
+{
 	public GameObject currentCheckpoint;
 	public GameObject deathParticle;
 	public GameObject respawnParticle;
@@ -13,19 +13,23 @@ public class LevelManager : MonoBehaviour {
 	private PlayerControllerScript player;
 	private GameObject mainCamera;
 	private bool notDead = true;
-
+	private bool isLevel2;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		mainCamera = GameObject.Find ("Main Camera");
 		player = FindObjectOfType<PlayerControllerScript> ();
 		lifeManager = FindObjectOfType<LifeManager> ();
+
+		if (Application.loadedLevelName == "Level 2")
+		{
+			isLevel2 = true;
+		}else{ 
+			isLevel2 = false; 
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 
 	public void RespawnPlayer ()
 	{
@@ -54,7 +58,9 @@ public class LevelManager : MonoBehaviour {
 			player.GetComponent<Renderer> ().enabled = enabled;
 		
 			GameObject respawnEffect = Instantiate (respawnParticle, currentCheckpoint.transform.position, currentCheckpoint.transform.rotation);
-			mainCamera.GetComponent<FollowPlayer>().resetCameraPosition ();
+
+			if(isLevel2)
+				mainCamera.GetComponent<FollowPlayer>().resetCameraPosition ();
 
 			yield return new WaitForSecondsRealtime(respawnDelay);
 			notDead = true;

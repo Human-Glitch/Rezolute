@@ -38,7 +38,7 @@ public class takeCoin : MonoBehaviour {
 	public void IncrementCounter()
 	{
 		coinCounter.text = string.Format("Coin: {0}", ++score);
-		coinChing.Play ();
+		//coinChing.Play ();
 	}
 		
 }

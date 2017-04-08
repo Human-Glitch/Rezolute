@@ -72,8 +72,8 @@
      <Compile Include="Assets\Scripts\NPCs\EnemyScripts\FauxGravityBody.cs" />
      <Compile Include="Assets\Scripts\NPCs\EnemyScripts\StickToWall.cs" />
      <Compile Include="Assets\Scripts\NPCs\KillPlayer.cs" />
+     <Compile Include="Assets\Scripts\NPCs\ScannerScripts\CreateScannerType.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs" />
-     <Compile Include="Assets\Scripts\NPCs\ScannerScripts\TriggerBossType.cs" />
      <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
