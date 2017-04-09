@@ -74,10 +74,10 @@
      <Compile Include="Assets\Scripts\NPCs\KillPlayer.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\CreateScannerType.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs" />
-     <Compile Include="Assets\Scripts\PlayerControllerScript.cs" />
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Systems\LifeManager.cs" />
+     <Compile Include="Assets\Scripts\Systems\PlayerControllerScript.cs" />
      <Compile Include="Assets\Scripts\Systems\Timer.cs" />
      <None Include="Assets\Art&amp;Materials\Scifi Art Demo Pack\Demo Readme.txt" />
      <None Include="Assets\Standard Assets\ParticleSystems\Shaders\PriorityParticleAlpha.shader" />

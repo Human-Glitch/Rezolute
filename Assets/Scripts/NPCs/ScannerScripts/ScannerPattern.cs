@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class ScannerPattern : MonoBehaviour {
 
-	private bool isPlantedType;
-	private bool isActiveType;
+
+
+	private bool isPlantedPattern;
+	private bool isActivePattern;
+	private bool isRedScanner;
+	private bool isBlueScanner;
+
 	private float hashTime;
 	private float hashDelay;
 	private Vector3 spawnPoint;
@@ -13,7 +18,8 @@ public class ScannerPattern : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (isPlantedType == true) {
+		if (isPlantedPattern == true) 
+		{
 			iTween.MoveUpdate (gameObject, 
 				iTween.Hash ("x", (spawnPoint.x + 20), 
 					"y", spawnPoint.y + 5, 
@@ -26,7 +32,7 @@ public class ScannerPattern : MonoBehaviour {
 			);	
 		}// end plantedType
 
-		if (isActiveType == true) {
+		if (isActivePattern == true) {
 			iTween.MoveUpdate (gameObject, 
 				iTween.Hash ("x", (spawnPoint.x - 40), 
 					"y", spawnPoint.y + 5, 
@@ -42,11 +48,11 @@ public class ScannerPattern : MonoBehaviour {
 
 	}
 
-	public void Initialize(Vector3 spawnPoint, bool isPlantedType, bool isActiveType, float hashTime, float hashDelay)
+	public void Initialize(Vector3 spawnPoint, bool isPlantedPattern, bool isActivePattern, float hashTime, float hashDelay)
 	{
 		this.spawnPoint = spawnPoint;
-		this.isPlantedType = isPlantedType;
-		this.isActiveType = isActiveType;
+		this.isPlantedPattern = isPlantedPattern;
+		this.isActivePattern = isActivePattern;
 		this.hashTime = hashTime;
 		this.hashDelay = hashDelay;
 	}

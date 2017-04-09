@@ -4,8 +4,27 @@ using UnityEngine;
 
 public class CreateScannerType : MonoBehaviour 
 {
-	public bool isPlantedType;
-	public bool isActiveType;
+	private bool isPlantedPattern;
+	private bool isActivePattern;
+
+	public enum MovementPattern
+	{
+		isPlantedPattern,
+		isActivePattern
+	}
+
+
+	private bool isRedScanner;
+	private bool isBlueScanner;
+	public enum ScannerType
+	{
+		isRedScanner,
+		isBlueScanner
+	}
+
+	public MovementPattern movementPattern;
+	public ScannerType scannerType;
+
 	public float hashTime;
 	public float hashDelay;
 
@@ -26,9 +45,10 @@ public class CreateScannerType : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{ 
+		setEnumSettings ();
+
 		xTriggered = 0;
 		spawnPoint = gameObject.transform.position;
-		//lvl2Scanner = new List<GameObject> ();
 	}
 	
 	// Update is called once per frame
@@ -74,40 +94,73 @@ public class CreateScannerType : MonoBehaviour
 	{
 		if(collider.tag == "Player")
 		{
-			if(isPlantedType == true && xTriggered < 1)
-			{
-				plantedScanner = Instantiate (redScanner, 
-					new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
-					transform.rotation) as GameObject;
-				plantedScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedType, isActiveType, hashTime, hashDelay);
+			spawnScannerWithSettings ();
+		} // end Enter2DTrigger
+	} //end class
 
-				xTriggered++;
-				//addScanner2List (plantedScanner);
-				//startUpdate = true;
-			}
+	private void spawnScannerWithSettings()
+	{
+		if(isPlantedPattern == true && xTriggered < 1 && isRedScanner)
+		{
+			plantedScanner = Instantiate (redScanner, 
+				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
+				transform.rotation) as GameObject;
+			plantedScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedPattern, isActivePattern, hashTime, hashDelay);
 
-			if (isActiveType == true) 
-			{
-				activeScanner = Instantiate (blueScanner, 
-					new Vector3(transform.position.x + 20, transform.position.y + 5, transform.position.z), 
-					transform.rotation) as GameObject;
-				activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedType, isActiveType, hashTime, hashDelay);
+			xTriggered++;
+			//addScanner2List (plantedScanner);
+			//startUpdate = true;
+		}
 
-				//addScanner2List (activeScanner);
-			}
+		if(isPlantedPattern == true && xTriggered < 1 && isBlueScanner)
+		{
+			plantedScanner = Instantiate (blueScanner, 
+				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
+				transform.rotation) as GameObject;
+			plantedScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedPattern, isActivePattern, hashTime, hashDelay);
+
+			xTriggered++;
+		}
+
+		if (isActivePattern == true && isBlueScanner) 
+		{
+			activeScanner = Instantiate (blueScanner, 
+				new Vector3(transform.position.x + 20, transform.position.y + 5, transform.position.z), 
+				transform.rotation) as GameObject;
+			activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedPattern, isActivePattern, hashTime, hashDelay);
+		}
+
+		if (isActivePattern == true && isRedScanner) 
+		{
+			activeScanner = Instantiate (redScanner, 
+				new Vector3(transform.position.x + 20, transform.position.y + 5, transform.position.z), 
+				transform.rotation) as GameObject;
+			activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedPattern, isActivePattern, hashTime, hashDelay);
+
 		}
 	}
 
-	/*
-	private void addScanner2List(GameObject scanner)
+	private void setEnumSettings()
 	{
-			lvl2Scanner.Add(scanner);
-	}
+		if(movementPattern == MovementPattern.isPlantedPattern)
+		{
+			isPlantedPattern = true;
+			isActivePattern = false;
+		}else if (movementPattern == MovementPattern.isActivePattern)
+		{
+			isPlantedPattern = false;
+			isActivePattern = true;
+		}
 
-	private GameObject returnNewestScannerPrefab()
-	{
-		return lvl2Scanner [lvl2Scanner.Count - 1];
-	}
-	*/
+		if(scannerType == ScannerType.isRedScanner)
+		{
+			isRedScanner = true;
+			isBlueScanner = false;
+		}else if (scannerType == ScannerType.isBlueScanner)
+		{
+			isRedScanner = false;
+			isBlueScanner = true;
+		}
+	}//end function
 
 }

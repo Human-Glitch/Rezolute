@@ -35,7 +35,7 @@ public class LifeManager : MonoBehaviour {
 			Time.timeScale = 0f;
 		}
 
-		theText.text = "x " + lifeCounter;
+		theText.text = (lifeCounter * 10).ToString () + " %";
 	}
 
 	public void takeLife()
