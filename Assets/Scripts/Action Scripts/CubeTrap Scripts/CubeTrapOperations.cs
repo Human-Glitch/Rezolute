@@ -28,7 +28,7 @@ public class CubeTrapOperations : MonoBehaviour {
 		FoldingCubeTrap.GetComponent<TracePath>().enabled = true;
 
 		//Change background speed once cube starts folding
-		movingBackgroundVertical.speed = 1;
+		backgroundLayer.GetComponent<movingBackgroundVertical>().speed = 1;
 
 		//Start Coroutine
 		newDelay ();
@@ -41,17 +41,18 @@ public class CubeTrapOperations : MonoBehaviour {
 		{
 			aScript.enabled = true;
 		}
+		revertBackgroundChanges ();
 		delayDestruction ();
 	}
 
-	public void triggerBackgroundScriptChanges()
+	private void triggerBackgroundScriptChanges()
 	{
 		var script = backgroundLayer.GetComponent<LightSpeedBackground> ();
 		script.enabled = true;
-		script.rotate90Degrees ();
+		//script.rotate90Degrees ();
 	}
 
-	public void revertBackgroundChanges()
+	private void revertBackgroundChanges()
 	{
 		var script = backgroundLayer.GetComponent<LightSpeedBackground> ();
 		script.rotateReverse ();

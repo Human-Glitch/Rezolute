@@ -6,7 +6,7 @@ public class takeCoin : MonoBehaviour {
 	public Text coinCounter;
 	public GameObject gameOverScreen;
 	public GameObject allCoins;
-	public bool areCoins;
+	public bool coinsExist;
 
 	private AudioSource coinChing;
 	private int score;
@@ -17,9 +17,9 @@ public class takeCoin : MonoBehaviour {
 	{
 		score = 0;
 
-		if (areCoins == true) {
+		if (coinsExist == true) {
 			totalCoins = GameObject.Find ("Coins").transform.childCount;
-			coinChing = GetComponent<AudioSource> ();
+			coinChing = gameObject.GetComponent<AudioSource> ();
 		} else{ totalCoins = 100; }
 	}
 	
@@ -27,18 +27,18 @@ public class takeCoin : MonoBehaviour {
 	void Update () {
 		if (score == totalCoins ) 
 		{
-			allCoins.SetActive (true);
-			gameOverScreen.SetActive (true);
+			//allCoins.SetActive (true);
+			//gameOverScreen.SetActive (true);
 
-			Time.timeScale = 0;
+			//Time.timeScale = 0;
 		}
 
 	}
 
 	public void IncrementCounter()
 	{
-		coinCounter.text = string.Format("Coin: {0}", ++score);
-		//coinChing.Play ();
+		coinCounter.text = string.Format("Data Fragments {0}", ++score);
+		coinChing.Play ();
 	}
 		
 }

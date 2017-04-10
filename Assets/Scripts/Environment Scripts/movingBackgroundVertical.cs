@@ -9,7 +9,7 @@ using System.Collections;
 public class movingBackgroundVertical: MonoBehaviour 
 {
 	private float currentOffset = 0;
-	public static float speed;
+	public float speed;
 
 	void Start() {
 		currentOffset += Time.deltaTime * speed; 
@@ -27,4 +27,6 @@ public class movingBackgroundVertical: MonoBehaviour
 
 		GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0, currentOffset); 
 	}
+
+
 }
