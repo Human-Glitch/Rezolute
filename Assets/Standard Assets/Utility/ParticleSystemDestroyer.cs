@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Utility
         public float minDuration = 8;
         public float maxDuration = 10;
 
-        private float m_MaxLifetime;
+		public float m_MaxLifetime;
         private bool m_EarlyStop;
 
 
@@ -47,7 +47,7 @@ namespace UnityStandardAssets.Utility
             BroadcastMessage("Extinguish", SendMessageOptions.DontRequireReceiver);
 
             // wait for any remaining particles to expire
-            yield return new WaitForSeconds(m_MaxLifetime);
+            yield return new WaitForSeconds(m_MaxLifetime -2.3f);
 
             Destroy(gameObject);
         }

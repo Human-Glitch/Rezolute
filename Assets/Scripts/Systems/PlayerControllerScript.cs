@@ -9,7 +9,7 @@ public class PlayerControllerScript : MonoBehaviour
 
 	private Vector2 movDir;
 	private bool facingRight = true;
-	private bool grounded = false;
+	public bool grounded = false;
 	private float groundRadius = .2f;
 	public bool isMoving;
 

@@ -51,14 +51,13 @@
      <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\FoldMe.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\IncrementCheckpoint.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\LightSpeedBackground.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\NewBehaviourScript.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\TracePath.cs" />
-     <Compile Include="Assets\Scripts\Action Scripts\CubeTrap Scripts\TriggerAnEvent.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\ClampedRotation.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\IntervalRotate.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\IntervalTranslate.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\RotateObject.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\destroyCoin.cs" />
+     <Compile Include="Assets\Scripts\Action Scripts\Rotation Scripts\handleMusic.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\makeChildOnTouch.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\takeCoin.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\BackgroundFollow.cs" />
@@ -74,6 +73,8 @@
      <Compile Include="Assets\Scripts\NPCs\KillPlayer.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\CreateScannerType.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs" />
+     <Compile Include="Assets\Scripts\ParticleScaler.cs" />
+     <Compile Include="Assets\Scripts\Systems\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Systems\LifeManager.cs" />

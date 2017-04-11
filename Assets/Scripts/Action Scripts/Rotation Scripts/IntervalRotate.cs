@@ -11,9 +11,11 @@ public class IntervalRotate : MonoBehaviour
 	public float targetRotation = 90f;
 	public float rotationDelay = 0f;
 	public float rotateSpeed = 1f;
+	private int rotationCount;
 
 	void Start()
 	{
+		rotationCount = 0;
 		hasStopped = false;
 	}
 
@@ -33,6 +35,7 @@ public class IntervalRotate : MonoBehaviour
 
 			if(hasStopped == false)
 			{
+				rotationCount++;
 				delayRotation ();
 			}
 		}
@@ -55,5 +58,7 @@ public class IntervalRotate : MonoBehaviour
 
 		hasStopped = false;
 	}
+
+	public int getRotationCount(){ return rotationCount; }
 
 }

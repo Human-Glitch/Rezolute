@@ -2,23 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeTrapOperations : MonoBehaviour {
+public class CubeTrapOperations : MonoBehaviour 
+{
 	public GameObject FoldingCubeTrap;
-	public GameObject player;
-	private Fade [] myScripts;
-
+	public List<GameObject> bugList;
 	public GameObject backgroundLayer;
-	Transform transformPlayer;
+	public GameObject enemySpawnBeam;
+
+	private Fade [] fadeScripts;
+
+	private int cubeRotationCount = 0;
+	private bool isInitialized = false;
+	private int initialSpawnOffset;
+	private int count = 0;
+
+	public int activeQueue;
+	public int newestSpawnOffset;
 
 	// Use this for initialization
 	void Start () 
 	{
-		transformPlayer = player.transform;
+		//gameObject.transform.GetChild (0).localScale = gameObject.transform.GetChild (0).localScale / 100f;
+		initialSpawnOffset = newestSpawnOffset;
+		activeQueue = 0;
 	}
 
-	//FUNCTIONS
+	void Update()
+	{
+		/*Badly Written Code needed to solve problem*/
+		if (bugList != null && !isInitialized)
+		{
+			foreach (var bug in bugList) 
+			{
+				Debug.Log ("Bug deactivated");
+				bug.SetActive (false);
+			}
+			isInitialized = true;
+		}//end bad code
+
+		setActiveEnemies ();
+	}
+
+//FUNCTIONS
+//==============================================================
 	public void activateTrap()
 	{
+		//Change to more intense music
+		GameObject.FindWithTag ("Player").GetComponent<AudioManager> ().playNextSong ();
 		
 		FoldingCubeTrap.transform.Find("Cube Trap").transform.Find("Vertex1").GetComponent<FoldMe> ().enabled = true;
 		FoldingCubeTrap.transform.Find("Cube Trap").transform.Find ("Vertex2").GetComponent<FoldMe> ().enabled = true;
@@ -36,20 +66,20 @@ public class CubeTrapOperations : MonoBehaviour {
 
 	public void deactivateTrap()
 	{
-		myScripts = FoldingCubeTrap.GetComponentsInChildren<Fade>();
-		foreach (Fade aScript in myScripts) 
+		fadeScripts = FoldingCubeTrap.GetComponentsInChildren<Fade>();
+		foreach (Fade aScript in fadeScripts) 
 		{
 			aScript.enabled = true;
 		}
 		revertBackgroundChanges ();
 		delayDestruction ();
 	}
-
+	//==============================================================
 	private void triggerBackgroundScriptChanges()
 	{
 		var script = backgroundLayer.GetComponent<LightSpeedBackground> ();
 		script.enabled = true;
-		//script.rotate90Degrees ();
+		script.rotate90Degrees ();
 	}
 
 	private void revertBackgroundChanges()
@@ -57,18 +87,47 @@ public class CubeTrapOperations : MonoBehaviour {
 		var script = backgroundLayer.GetComponent<LightSpeedBackground> ();
 		script.rotateReverse ();
 	}
+	//==============================================================
+	private void setActiveEnemies()
+	{
+		if (activeQueue < ((bugList.Count)) && isInitialized) 
+		{
+			cubeRotationCount = FoldingCubeTrap.GetComponent<IntervalRotate> ().getRotationCount ();
+		
+			if (cubeRotationCount > 0 && (cubeRotationCount % newestSpawnOffset == 0) 
+				&& bugList [activeQueue].activeSelf == false)
+			{
+				bugList [activeQueue].SetActive (true);
 
-	//TRIGGERS
+
+				var newEnemyBeam = Instantiate (enemySpawnBeam, new Vector3 (bugList [activeQueue].transform.position.x,
+					bugList [activeQueue].transform.position.y, 
+					bugList [activeQueue].transform.position.z), 
+					bugList [activeQueue].transform.rotation) as GameObject;
+				newEnemyBeam.transform.SetParent (bugList [activeQueue].transform);
+				//gameObject.transform.SetParent (newEnemyBeam.transform);
+
+				newestSpawnOffset += initialSpawnOffset;
+				activeQueue++;
+			}//end if
+		}//end if
+	}//end function
+
+//TRIGGERS
+//==============================================================
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		//Debug.Log ("Trigger Detected");
-		if (other.gameObject.tag == "Player") 
+		
+		if (other.gameObject.tag == "Player" && count < 1) 
 		{
+			Debug.Log ("Trap Started");
 			activateTrap ();
+			count++;
 		}
 	}
 
-	//COROUTINES
+//COROUTINES
+//==============================================================
 	private void newDelay () {StartCoroutine ("newDelayCo");}
 	private void delayDestruction(){StartCoroutine ("delayDestructionCo");}
 

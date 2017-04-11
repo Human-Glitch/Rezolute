@@ -8,15 +8,12 @@ public class LightSpeedBackground : MonoBehaviour
 	public float targetSpeed;
 	public int targetTime;
 
-	private GameObject backgroundLayer;
-
 	private bool startReverse;
 
 	// Use this for initialization
 	void Start () 
 	{
 		startReverse = false;
-		backgroundLayer = this.gameObject;
 		newDelay ();
 	}
 	
@@ -30,7 +27,7 @@ public class LightSpeedBackground : MonoBehaviour
 				"onUpdate", "UpdateSize",
 				"easeType", iTween.EaseType.easeOutSine
 			));
-		} else if (startReverse == true) {
+		} else if (startReverse) {
 			iTween.RotateTo (gameObject, iTween.Hash (
 				"rotation", new Vector3 (0, 0, targetRotation),
 				"time", targetTime,
@@ -43,14 +40,14 @@ public class LightSpeedBackground : MonoBehaviour
 	//FUNCTIONS
 	public void rotate90Degrees()
 	{
-		backgroundLayer.GetComponent<movingBackgroundVertical>().speed = 3f;
+		gameObject.GetComponent<movingBackgroundVertical>().speed = 3f;
 		//targetRotation = -90;
 	}
 
 	public void rotateReverse()
 	{
 
-		backgroundLayer.GetComponent<movingBackgroundVertical>().speed = .1f;
+		gameObject.GetComponent<movingBackgroundVertical>().speed = .1f;
 		targetRotation = 0;
 
 		startReverse = true;

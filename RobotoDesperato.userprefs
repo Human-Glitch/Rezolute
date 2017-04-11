@@ -1,16 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Action Scripts\Rotation Scripts\destroyCoin.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Utility\ParticleSystemDestroyer.cs">
     <Files>
-      <File FileName="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NPCs\ScannerScripts\CreateScannerType.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Systems\LifeManager.cs" Line="30" Column="25" />
-      <File FileName="Assets\Scripts\Action Scripts\Rotation Scripts\destroyCoin.cs" Line="21" Column="1" />
-      <File FileName="Assets\Scripts\Action Scripts\takeCoin.cs" Line="41" Column="1" />
-      <File FileName="Assets\Scripts\Action Scripts\CubeTrap Scripts\LightSpeedBackground.cs" Line="39" Column="7" />
-      <File FileName="Assets\Scripts\Action Scripts\CubeTrap Scripts\CubeTrapOperations.cs" Line="52" Column="5" />
-      <File FileName="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" Line="31" Column="2" />
-      <File FileName="Assets\Scripts\Systems\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Action Scripts\CubeTrap Scripts\CubeTrapOperations.cs" Line="104" Column="49" />
+      <File FileName="Assets\Scripts\NPCs\EnemyScripts\EnemyPatrol.cs" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\Pixelplacement\iTween\iTween.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ParticleScaler.cs" Line="42" Column="2" />
+      <File FileName="Assets\Standard Assets\Utility\ParticleSystemDestroyer.cs" Line="48" Column="4" />
+      <File FileName="Assets\Scripts\Environment Scripts\FollowPlayer.cs" Line="44" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

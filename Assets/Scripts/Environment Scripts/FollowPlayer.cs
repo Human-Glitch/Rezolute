@@ -7,6 +7,7 @@ public class FollowPlayer : MonoBehaviour
 
 	public bool willTargetX;
 	public bool willTargetY;
+	public bool willTargetZ;
 
 	public int cameraYoffset;
 	public bool allowXreturn;
@@ -14,9 +15,13 @@ public class FollowPlayer : MonoBehaviour
 	private float furthestXpositon;
 	private float posX;
 	private float posY;
+	private float posZ;
 
 	void Start()
 	{
+		if (Target == null)
+			Target = gameObject.transform;
+		
 		furthestXpositon = Target.position.x;
 		transform.position = Target.transform.position;
 	}
@@ -38,6 +43,10 @@ public class FollowPlayer : MonoBehaviour
 		//Want Y axis to move with player
 		if(willTargetY == true){ posY = Target.position.y; }
 		else if (willTargetX == false){ posY = 0; }
+
+		//Want Z axis to move with player
+		if(willTargetZ == true){ posZ = Target.position.z; }
+		else if (willTargetZ == false){ posZ = 0; }
 
 		//Move camera to settings
 		transform.position = new Vector3 (posX, posY + cameraYoffset, Target.position.z);
