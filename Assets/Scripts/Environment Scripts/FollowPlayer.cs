@@ -21,6 +21,8 @@ public class FollowPlayer : MonoBehaviour
 	{
 		if (Target == null)
 			Target = gameObject.transform;
+
+		resetCameraPosition ();
 		
 		furthestXpositon = Target.position.x;
 		transform.position = Target.transform.position;

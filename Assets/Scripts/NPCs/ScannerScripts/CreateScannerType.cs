@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class CreateScannerType : MonoBehaviour 
 {
-	private bool isPlantedPattern;
-	private bool isActivePattern;
+	private float time;
 
+	private bool isPatrolPattern;
+	private bool isActivePattern;
 	public enum MovementPattern
 	{
-		isPlantedPattern,
+		isPatrolPattern,
 		isActivePattern
 	}
 
+	private bool goUpFirst;
+	private bool goSidewaysFirst;
+	public enum TranslationPattern
+	{
+		goUpFirst,
+		goSidewaysFirst
+	}
+	public TranslationPattern translationPattern;
 
 	private bool isRedScanner;
 	private bool isBlueScanner;
@@ -36,7 +45,7 @@ public class CreateScannerType : MonoBehaviour
 	private int xTriggered;
 
 	//GameObjects for the prefabs to go into
-	private GameObject plantedScanner;
+	private GameObject patrolScanner;
 	private GameObject activeScanner;
 
 	//keep a list of scanners for each trigger
@@ -45,51 +54,17 @@ public class CreateScannerType : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{ 
+		time += Time.deltaTime;
 		setEnumSettings ();
 
 		xTriggered = 0;
 		spawnPoint = gameObject.transform.position;
 	}
-	
-	// Update is called once per frame
-	void Update ()
+
+	void Update()
 	{
-		/*
-		if (startUpdate == true) {
-			//var position = plantedBoss.transform.position.y;
-			//plantedBoss.transform.Translate (0, .01f , 0);
-
-			if (isPlantedType == true) {
-				iTween.MoveUpdate (plantedScanner, 
-					iTween.Hash ("x", (transform.position.x + 20), 
-						"y", transform.position.y + 5, 
-						"time", hashTime,
-						"delay", hashDelay, 
-						"onupdate", " myUpdateFunction",
-						"oncomplete", "Destroy"//, 
-						//"looptype", iTween.LoopType.loop
-					)
-				);	
-			}// end planted type
-
-			if (isActiveType == true) {
-				iTween.MoveUpdate (activeScanner, 
-					iTween.Hash ("x", (transform.position.x - 40), 
-						"y", transform.position.y + 5, 
-						"time", hashTime,
-						"delay", hashDelay, 
-						"onupdate", " myUpdateFunction",
-						"oncomplete", "Destroy"//, 
-						//"looptype", iTween.LoopType.loop
-					)
-				);	
-			}//end activetype
-
-
-		}//end start update
-		*/
-	}//end update
-
+		time += Time.deltaTime;
+	}
 	void OnTriggerEnter2D(Collider2D collider)
 	{
 		if(collider.tag == "Player")
@@ -100,24 +75,22 @@ public class CreateScannerType : MonoBehaviour
 
 	private void spawnScannerWithSettings()
 	{
-		if(isPlantedPattern == true && xTriggered < 1 && isRedScanner)
+		if (isPatrolPattern == true && xTriggered < 1 && isRedScanner)
 		{
-			plantedScanner = Instantiate (redScanner, 
+			patrolScanner = Instantiate (redScanner, 
 				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
 				transform.rotation) as GameObject;
-			plantedScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedPattern, isActivePattern, hashTime, hashDelay);
+			patrolScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPatrolPattern, isActivePattern, hashTime, hashDelay);
 
 			xTriggered++;
-			//addScanner2List (plantedScanner);
-			//startUpdate = true;
 		}
 
-		if(isPlantedPattern == true && xTriggered < 1 && isBlueScanner)
+		if(isPatrolPattern == true && xTriggered < 1 && isBlueScanner)
 		{
-			plantedScanner = Instantiate (blueScanner, 
+			patrolScanner = Instantiate (blueScanner, 
 				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
 				transform.rotation) as GameObject;
-			plantedScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedPattern, isActivePattern, hashTime, hashDelay);
+			patrolScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPatrolPattern, isActivePattern, hashTime, hashDelay);
 
 			xTriggered++;
 		}
@@ -125,33 +98,35 @@ public class CreateScannerType : MonoBehaviour
 		if (isActivePattern == true && isBlueScanner) 
 		{
 			activeScanner = Instantiate (blueScanner, 
-				new Vector3(transform.position.x + 20, transform.position.y + 5, transform.position.z), 
+				new Vector3(transform.position.x + 20, transform.position.y + 6, transform.position.z), 
 				transform.rotation) as GameObject;
-			activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedPattern, isActivePattern, hashTime, hashDelay);
+			activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPatrolPattern, isActivePattern, hashTime, hashDelay);
 		}
 
 		if (isActivePattern == true && isRedScanner) 
 		{
 			activeScanner = Instantiate (redScanner, 
-				new Vector3(transform.position.x + 20, transform.position.y + 5, transform.position.z), 
+				new Vector3(transform.position.x + 20, transform.position.y + 6, transform.position.z), 
 				transform.rotation) as GameObject;
-			activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPlantedPattern, isActivePattern, hashTime, hashDelay);
+			activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPatrolPattern, isActivePattern, hashTime, hashDelay);
 
 		}
 	}
 
 	private void setEnumSettings()
 	{
-		if(movementPattern == MovementPattern.isPlantedPattern)
+		//MOVEMENT PATTERN
+		if(movementPattern == MovementPattern.isPatrolPattern)
 		{
-			isPlantedPattern = true;
+			isPatrolPattern = true;
 			isActivePattern = false;
 		}else if (movementPattern == MovementPattern.isActivePattern)
 		{
-			isPlantedPattern = false;
+			isPatrolPattern = false;
 			isActivePattern = true;
 		}
 
+		//SCANNER TYPE
 		if(scannerType == ScannerType.isRedScanner)
 		{
 			isRedScanner = true;

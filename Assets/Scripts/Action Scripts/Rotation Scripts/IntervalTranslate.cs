@@ -11,6 +11,7 @@ public class IntervalTranslate : MonoBehaviour
 
 	public bool goUpFirst;
 	public bool goSidewaysFirst;
+
 	public float targetTranslation = 0f;
 	public float translationDelay = 0f;
 	public float translateSpeed = 1f;
@@ -94,5 +95,25 @@ public class IntervalTranslate : MonoBehaviour
 		hasStopped = false;
 	}
 
+	/*
+	private void initializeSettings()
+	{
+		if(translationPattern == TranslationPattern.goUpFirst)
+		{
+			goUpFirst = true;
+			goSidewaysFirst = false;
+		}else if (translationPattern == TranslationPattern.goSidewaysFirst)
+		{
+			goUpFirst = false;
+			goSidewaysFirst = true;
+		}
+	}//end function
 
-}
+
+	public void initializePattern(bool goUpFirst, bool goSidewaysFirst)
+	{
+		this.goUpFirst = goUpFirst;
+		this.goSidewaysFirst = goSidewaysFirst;
+	}//end function
+	*/
+}//end class
