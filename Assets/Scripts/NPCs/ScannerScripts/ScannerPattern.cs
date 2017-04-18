@@ -12,6 +12,8 @@ public class ScannerPattern : MonoBehaviour
 	private bool goUpFirst;
 	private bool goSidewaysFirst;
 
+	public bool reachedTarget = false;
+
 	private float hashTime;
 	private float hashDelay;
 	private Vector3 spawnPoint;
@@ -19,7 +21,7 @@ public class ScannerPattern : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
 
-		if (isPatrolPattern == true) 
+		if (isPatrolPattern == true && !reachedTarget) 
 		{
 			iTween.MoveUpdate (gameObject, 
 				iTween.Hash ("x", (spawnPoint.x + 20), 
@@ -27,10 +29,10 @@ public class ScannerPattern : MonoBehaviour
 					"time", hashTime,
 					"delay", hashDelay, 
 					"onupdate", " myUpdateFunction"
-					//"oncomplete", "timedDeathCo"
 					//"looptype", iTween.LoopType.loop
 				)
 			);	
+			completeITweenCo ();
 		}// end plantedType
 
 		if (isActivePattern == true) 
@@ -48,7 +50,8 @@ public class ScannerPattern : MonoBehaviour
 		}//end activetype
 	}
 
-	public void Initialize(Vector3 spawnPoint, bool isPatrolPattern, bool isActivePattern, float hashTime, float hashDelay)
+	public void Initialize(Vector3 spawnPoint, bool isPatrolPattern, bool isActivePattern, bool goUpFirst,  bool goSidewaysFirst,
+		float targetTranslation, float translationSpeed, float translationDelay, float hashTime, float hashDelay)
 	{
 		this.spawnPoint = spawnPoint;
 		this.isPatrolPattern = isPatrolPattern;
@@ -56,15 +59,17 @@ public class ScannerPattern : MonoBehaviour
 		this.hashTime = hashTime;
 		this.hashDelay = hashDelay;
 
-		//gameObject.GetComponent<IntervalTranslate> ().initializePattern (this.goUpFirst, this.goSidewaysFirst);
-
-
+		//initialize translation variables in Interval translate
+		gameObject.GetComponent<IntervalTranslate> ().initScannerTranslationPattern (goUpFirst, 
+			goSidewaysFirst, targetTranslation, translationSpeed, translationDelay);
 	}
 
-	void Destroy()
+	private void Destroy()
 	{
 		Destroy (this.gameObject);
 	}
+
+	private void stopITween(){ reachedTarget = true; }
 
 	private void timedDeathCo ()
 	{
@@ -76,5 +81,16 @@ public class ScannerPattern : MonoBehaviour
 		yield return new WaitForSecondsRealtime(8);
 		Debug.Log ("Destroyed scanner");
 		Destroy (this.gameObject);
+	}
+
+	private void completeITweenCo ()
+	{
+		StartCoroutine ("completeITween");
+	}
+
+	private IEnumerator completeITween()
+	{
+		yield return new WaitForSecondsRealtime(hashTime - .5f);
+		stopITween ();
 	}
 }

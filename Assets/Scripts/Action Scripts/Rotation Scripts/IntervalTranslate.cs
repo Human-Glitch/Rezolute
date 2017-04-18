@@ -9,22 +9,29 @@ public class IntervalTranslate : MonoBehaviour
 	private float translationAmt = 0;
 	private float originalTarget = 0;
 
-	public bool goUpFirst;
-	public bool goSidewaysFirst;
+	private bool goUpFirst;
+	private bool goSidewaysFirst;
+	public enum TranslationPattern
+	{
+		goUpFirst,
+		goSidewaysFirst
+	}
+	public TranslationPattern translationPattern;
 
 	public float targetTranslation = 0f;
 	public float translationDelay = 0f;
-	public float translateSpeed = 1f;
+	public float translationSpeed = 1f;
 
 	void Start()
 	{
+		initializeSettings ();
 		hasStopped = false;
 		originalTarget = targetTranslation;
 	}
 
 	void Update ()
 	{
-		translationAmt = translateSpeed * Time.deltaTime;
+		translationAmt = translationSpeed * Time.deltaTime;
 		upDownPattern ();
 	}
 
@@ -74,8 +81,8 @@ public class IntervalTranslate : MonoBehaviour
 		StartCoroutine ("delayTranslationCo");
 	}
 
-	private IEnumerator delayTranslationCo(){
-		
+	private IEnumerator delayTranslationCo()
+	{
 		hasStopped = true;
 		yield return new WaitForSeconds (translationDelay);
 
@@ -87,15 +94,12 @@ public class IntervalTranslate : MonoBehaviour
 			//Debug.Log ("Target back to original");
 			targetTranslation = originalTarget;
 			translation = 0;
-		
 		}
-
 		//Debug.Log ("Block Stopped");
-
 		hasStopped = false;
 	}
 
-	/*
+	//Initialize this script
 	private void initializeSettings()
 	{
 		if(translationPattern == TranslationPattern.goUpFirst)
@@ -109,11 +113,22 @@ public class IntervalTranslate : MonoBehaviour
 		}
 	}//end function
 
-
-	public void initializePattern(bool goUpFirst, bool goSidewaysFirst)
+	//Passes in initialized values from <CreateScannerType> 
+	public void initScannerTranslationPattern(bool goUpFirst, bool goSidewaysFirst, 
+		float targetTranslation, float translationSpeed, float translationDelay)
 	{
-		this.goUpFirst = goUpFirst;
-		this.goSidewaysFirst = goSidewaysFirst;
+		this.targetTranslation = targetTranslation;
+		this.translationSpeed = translationSpeed;
+		this.translationDelay = translationDelay;
+
+		if (goUpFirst == true)
+		{
+			translationPattern = TranslationPattern.goUpFirst;
+		}
+		else if(goSidewaysFirst == true)
+		{
+			translationPattern = TranslationPattern.goSidewaysFirst;
+		}
 	}//end function
-	*/
+
 }//end class

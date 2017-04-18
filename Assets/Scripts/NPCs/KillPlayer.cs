@@ -31,7 +31,7 @@ public class KillPlayer : MonoBehaviour {
 			&& gameObject.transform.parent.tag != "Boss" 
 			&& gameObject.transform.tag != "Fall Detector")
 				scannerDeath (other);
-
+		
 		else
 		{
 			Debug.Log ("Normal Death");
@@ -51,8 +51,6 @@ public class KillPlayer : MonoBehaviour {
 			dyingSound = GameObject.FindGameObjectWithTag ("Audio").GetComponent<AudioSource>();
 			dyingSound.Play ();
 			levelManager.RespawnPlayer ();
-
-			gameObject.transform.parent.gameObject.SetActive(false); // hide Scanner after player death
 		}
 
 		//Die if not moving through Red Scanner
@@ -62,22 +60,11 @@ public class KillPlayer : MonoBehaviour {
 			dyingSound = GameObject.FindGameObjectWithTag ("Audio").GetComponent<AudioSource>();
 			dyingSound.Play ();
 			levelManager.RespawnPlayer ();
+
 			//gameObject.transform.parent.gameObject.SetActive(false); // hide Scanner after player death
 		}
 
 		//	Debug.Log(this.gameObject.transform.parent.tag);
 		//Debug.Log (otherIsMoving);
-	}
-
-	private void timedDeathCo ()
-	{
-		StartCoroutine ("timedDeath");
-	}
-
-	private IEnumerator timedDeath()
-	{
-		yield return new WaitForSecondsRealtime(3);
-		Debug.Log ("Destroyed scanner");
-		Destroy (this.gameObject);
 	}
 }
