@@ -4,9 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClampedRotation : MonoBehaviour {
-	float delay = 3f;
-
+public class ClampedRotation : MonoBehaviour 
+{
 	// Specify how many degrees you want to rotate from the initial orientation.
 	public Vector3 amplitude = new Vector3(30, 0, 0);
 
@@ -17,7 +16,8 @@ public class ClampedRotation : MonoBehaviour {
 	Quaternion _initialOrientation;
 
 	// Perform caching on Start.
-	void Start() {
+	void Start() 
+	{
 		_initialOrientation = transform.localRotation;
 	}
 

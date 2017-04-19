@@ -28,6 +28,7 @@ public class KillPlayer : MonoBehaviour {
 	{
 		
 		if (Application.loadedLevelName == "Level 2" 
+			&& gameObject.transform.tag != "Enemy"
 			&& gameObject.transform.parent.tag != "Boss" 
 			&& gameObject.transform.tag != "Fall Detector")
 				scannerDeath (other);
