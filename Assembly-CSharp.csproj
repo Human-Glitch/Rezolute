@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\CreateScannerType.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\TriggerBossSettings.cs" />
+     <Compile Include="Assets\Scripts\ObstacleTranslation.cs" />
      <Compile Include="Assets\Scripts\Systems\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
