@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\movingBackground.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" />
+     <Compile Include="Assets\Scripts\KillBoss.cs" />
      <Compile Include="Assets\Scripts\NPCs\EnemyScripts\EnemyPatrol.cs" />
      <Compile Include="Assets\Scripts\NPCs\EnemyScripts\FauxGravityAttractor.cs" />
      <Compile Include="Assets\Scripts\NPCs\EnemyScripts\FauxGravityBody.cs" />

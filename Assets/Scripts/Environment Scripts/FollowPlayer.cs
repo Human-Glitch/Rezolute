@@ -119,6 +119,24 @@ public class FollowPlayer : MonoBehaviour
 	}
 
 	//MUTATOR METHODS
+
+	//SET AXIS
+	public void setWillTargetX(bool willTargetX)
+	{
+		this.willTargetX = willTargetX;
+	}
+
+	public void setWillTargetY(bool willTargetY)
+	{
+		this.willTargetY = willTargetY;
+	}
+
+	public void setWillTargetZ(bool willTargetZ)
+	{
+		this.willTargetZ = willTargetZ;
+	}
+
+	//SET SCROLLING
 	public void setForceXScrolling(bool forceXscrolling)
 	{
 		this.forceXscrolling = forceXscrolling;

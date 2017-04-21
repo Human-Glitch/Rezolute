@@ -62,7 +62,7 @@ public class LevelManager : MonoBehaviour
 			if(isLevel2)
 				mainCamera.GetComponent<FollowPlayer>().resetCameraPosition ();
 
-			yield return new WaitForSecondsRealtime(respawnDelay);
+			yield return new WaitForSecondsRealtime(.9f);
 			notDead = true;
 			Destroy (respawnEffect);
 

@@ -12,6 +12,7 @@ public class Fade : MonoBehaviour
 
 	//private Transform transform;
 	private SpriteRenderer spriteRenderer;
+	private AudioSource bossAudioSource;
 
 
 	// Use this for initialization
@@ -30,6 +31,13 @@ public class Fade : MonoBehaviour
 			deathEffect = Instantiate (deathParticle, transform.parent.position, Quaternion.identity, transform.parent) as GameObject;
 			gameObject.SetActive (false);
 		}
+
+		if(gameObject.tag == "Boss")
+		{
+			deathEffect = Instantiate (deathParticle, transform.position, Quaternion.identity, transform.parent) as GameObject;
+			bossAudioSource = gameObject.GetComponent<AudioSource> ();
+			bossAudioSource.Play ();
+		}
 	}
 
 	// Update is called once per frame
@@ -39,13 +47,19 @@ public class Fade : MonoBehaviour
 		float fade = Mathf.SmoothDamp (spriteRenderer.color.a, 0f, ref fadeSpeed, fadeTime); //ref means value is passed in and will change over time to fade out
 		spriteRenderer.color = new Color (1f, 1f, 1f, fade);	
 
-		if (timeActive > 50000) 
+		if (timeActive > 1000) 
 		{
 			//Debug.Log ("Object destroyed");
-			if(gameObject.tag == "enemy")
+			if(gameObject.tag == "enemy" || gameObject.tag == "Boss")
 			{
+				if(gameObject.tag == "Boss")
+				{
+					Destroy (gameObject);
+				}
+
 				Destroy (deathEffect);
-			}else{gameObject.SetActive (false);}
+			}else{ gameObject.SetActive (false); }
+
 		}
 	}
 }
