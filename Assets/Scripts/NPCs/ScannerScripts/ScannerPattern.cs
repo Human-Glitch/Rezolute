@@ -78,9 +78,10 @@ public class ScannerPattern : MonoBehaviour
 
 	private IEnumerator timedDeath()
 	{
-		yield return new WaitForSecondsRealtime(8);
+		Destroy (this.gameObject, 5);
+		yield return new WaitForSecondsRealtime(4f);
 		Debug.Log ("Destroyed scanner");
-		Destroy (this.gameObject);
+		gameObject.GetComponent<Fade> ().enabled = true;
 	}
 
 	private void completeITweenCo ()

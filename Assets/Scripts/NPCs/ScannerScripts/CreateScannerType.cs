@@ -6,6 +6,9 @@ public class CreateScannerType : MonoBehaviour
 {
 	private float time;
 	private int xTriggered;
+	private bool timeStarted = false;
+
+	public float waitTime = 0;
 
 	//ENUMS
 	private bool isPatrolPattern;
@@ -62,7 +65,7 @@ public class CreateScannerType : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{ 
-		time += Time.deltaTime;
+		time = 0;
 		setEnumSettings ();
 
 		xTriggered = 0;
@@ -71,13 +74,28 @@ public class CreateScannerType : MonoBehaviour
 
 	void Update()
 	{
-		time += Time.deltaTime;
+		if (timeStarted) 
+		{
+			time += Time.deltaTime;
+		}
 	}
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		if(collider.tag == "Player")
+		if (collider.tag == "Player")
 		{
-			spawnScannerWithSettings ();
+			//Do this once
+			if (time <= waitTime && timeStarted == false) 
+			{
+				timeStarted = true; 
+				spawnScannerWithSettings ();
+			}
+
+			//Only do this once wait time has passed;
+			if (time > waitTime) 
+			{
+				spawnScannerWithSettings ();
+				time = 0;
+			}
 		} // end Enter2DTrigger
 	} //end class
 
