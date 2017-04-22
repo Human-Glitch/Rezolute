@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
 	
 			yield return new WaitForSeconds (respawnDelay);
 
-			Destroy (deathEffect);
+			//Destroy (deathEffect);
 
 			player.transform.position = currentCheckpoint.transform.position;
 			player.enabled = enabled;

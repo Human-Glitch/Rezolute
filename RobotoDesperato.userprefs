@@ -1,10 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Environment Scripts\UI Scripts\WordCloud.cs">
     <Files>
       <File FileName="Assets\Scripts\Environment Scripts\FollowPlayer.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs" Line="9" Column="31" />
-      <File FileName="Assets\Scripts\Action Scripts\CubeTrap Scripts\Fade.cs" Line="54" Column="5" />
+      <File FileName="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Action Scripts\CubeTrap Scripts\Fade.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Systems\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Environment Scripts\UI Scripts\WordCloud.cs" Line="66" Column="52" />
+      <File FileName="Assets\Scripts\Action Scripts\Obstacle Scripts\ObstacleTranslation.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Action Scripts\CubeTrap Scripts\wordCloudFade.cs" Line="69" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

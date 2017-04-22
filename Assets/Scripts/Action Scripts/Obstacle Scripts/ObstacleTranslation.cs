@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿//This script creates an internval translation without rounding errors 
+//of my the Interval Translation Script. This script was modified from this website:
+
+//https://chicounity3d.wordpress.com/2014/05/23/how-to-lerp-like-a-pro/
+//by Robert Utter
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
