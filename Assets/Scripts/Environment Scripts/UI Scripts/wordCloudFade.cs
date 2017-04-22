@@ -4,21 +4,18 @@ using UnityEngine;
 
 public class wordCloudFade : MonoBehaviour 
 {
-	public float fadeSpeed = 0f;
-	public float fadeLength;
-
+	public float fadeSpeed;
+	public float fadePeriod;
 	public float timeActive;
 
 	public bool transparencyGoingUp ;
 	public bool transparencyGoingDown;
 
-
 	private bool startedDelay;
-	//private Transform transform;
-	private MeshRenderer meshRenderer;
 
-	Color col;
-	Color originalCol;
+	private MeshRenderer meshRenderer;
+	private Color col;
+	private Color originalCol;
 
 	// Use this for initialization
 	void Start () 
@@ -28,7 +25,6 @@ public class wordCloudFade : MonoBehaviour
 		meshRenderer = GetComponent<MeshRenderer> ();
 		col = meshRenderer.material.color;
 		originalCol = col;
-		
 	}
 
 	// Update is called once per frame
@@ -41,7 +37,7 @@ public class wordCloudFade : MonoBehaviour
 			col.a = Mathf.Lerp (col.a, 0f, fadeSpeed * timeActive);
 			meshRenderer.material.color = col;
 
-			if(timeActive > fadeLength && !startedDelay)
+			if(timeActive > fadePeriod && !startedDelay)
 				delayNewDirectionCo ();
 
 		} else if (transparencyGoingDown) 
@@ -51,7 +47,7 @@ public class wordCloudFade : MonoBehaviour
 			col.a = Mathf.Lerp (originalCol.a, 1f, fadeSpeed * timeActive);
 			meshRenderer.material.color = col;
 
-			if(timeActive > fadeLength && !startedDelay)
+			if(timeActive > fadePeriod && !startedDelay)
 				delayNewDirectionCo ();
 		}
 	}
@@ -64,9 +60,7 @@ public class wordCloudFade : MonoBehaviour
 	private IEnumerator delayNewDirection()
 	{
 		startedDelay = true;
-
-
-		yield return new WaitForSecondsRealtime (1.2f);
+		yield return new WaitForSecondsRealtime (1.1f);
 
 		if(transparencyGoingUp == true)
 		{
@@ -80,7 +74,6 @@ public class wordCloudFade : MonoBehaviour
 		}
 
 		timeActive = 0;
-
 		startedDelay = false;
 	}
 }
