@@ -13,6 +13,8 @@ public class wordCloudFade : MonoBehaviour
 
 	private bool startedDelay;
 
+	private GameObject wordCloud;
+
 	private MeshRenderer meshRenderer;
 	private Color col;
 	private Color originalCol;
@@ -20,6 +22,12 @@ public class wordCloudFade : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		if (this.transform.parent != null && this.transform.parent.tag == "PlayerCloud")
+			wordCloud = this.transform.parent.gameObject;
+			//wordCloud = GameObject.FindWithTag ("PlayerCloud");
+		else if(this.transform.parent != null && this.transform.parent.tag == "EnemyCloud")
+			wordCloud = this.transform.parent.gameObject;
+			//wordCloud = GameObject.FindWithTag ("EnemyCloud");
 		//transform = transform;
 		timeActive = 0;
 		meshRenderer = GetComponent<MeshRenderer> ();
@@ -37,8 +45,11 @@ public class wordCloudFade : MonoBehaviour
 			col.a = Mathf.Lerp (col.a, 0f, fadeSpeed * timeActive);
 			meshRenderer.material.color = col;
 
-			if(timeActive > fadePeriod && !startedDelay)
-				delayNewDirectionCo ();
+			if (timeActive > fadePeriod && !startedDelay)
+			{
+				wordCloud.GetComponent<WordCloud> ().setHasFaded (false);
+				delayFadeCo ();
+			}
 
 		} else if (transparencyGoingDown) 
 		{
@@ -47,20 +58,23 @@ public class wordCloudFade : MonoBehaviour
 			col.a = Mathf.Lerp (originalCol.a, 1f, fadeSpeed * timeActive);
 			meshRenderer.material.color = col;
 
-			if(timeActive > fadePeriod && !startedDelay)
-				delayNewDirectionCo ();
+			if (timeActive > fadePeriod && !startedDelay) 
+			{
+				wordCloud.GetComponent<WordCloud> ().setHasFaded (true);
+				delayFadeCo ();
+			}
 		}
 	}
 
-	private void delayNewDirectionCo ()
+	private void delayFadeCo ()
 	{
-		StartCoroutine ("delayNewDirection");
+		StartCoroutine (delayFade());
 	}
 
-	private IEnumerator delayNewDirection()
+	private IEnumerator delayFade()
 	{
 		startedDelay = true;
-		yield return new WaitForSecondsRealtime (1.1f);
+		yield return new WaitForSecondsRealtime (1f);
 
 		if(transparencyGoingUp == true)
 		{
