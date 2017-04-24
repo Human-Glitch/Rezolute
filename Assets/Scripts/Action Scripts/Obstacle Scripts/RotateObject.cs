@@ -8,6 +8,8 @@ public class RotateObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		transform.Rotate(0, 0, speed);
+		if (GetComponent<Renderer> ().IsVisibleFrom (Camera.main)) {
+			transform.Rotate (0, 0, speed);
+		}
 	}
 }

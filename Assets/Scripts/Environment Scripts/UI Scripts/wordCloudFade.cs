@@ -14,7 +14,7 @@ public class wordCloudFade : MonoBehaviour
 	private bool startedDelay;
 
 	private GameObject wordCloud;
-
+	private GameObject mainCamera;
 	private MeshRenderer meshRenderer;
 	private Color col;
 	private Color originalCol;
@@ -22,6 +22,8 @@ public class wordCloudFade : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		mainCamera = GameObject.FindWithTag ("MainCamera");
+
 		if (this.transform.parent != null && this.transform.parent.tag == "PlayerCloud")
 			wordCloud = this.transform.parent.gameObject;
 			//wordCloud = GameObject.FindWithTag ("PlayerCloud");
@@ -38,33 +40,32 @@ public class wordCloudFade : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (transparencyGoingUp) 
+		if (GetComponent<Renderer>().IsVisibleFrom(Camera.main)) 
 		{
-			timeActive += Time.deltaTime;
-			col = meshRenderer.material.color;
-			col.a = Mathf.Lerp (col.a, 0f, fadeSpeed * timeActive);
-			meshRenderer.material.color = col;
+			if (transparencyGoingUp) {
+				timeActive += Time.deltaTime;
+				col = meshRenderer.material.color;
+				col.a = Mathf.Lerp (col.a, 0f, fadeSpeed * timeActive);
+				meshRenderer.material.color = col;
 
-			if (timeActive > fadePeriod && !startedDelay)
-			{
-				wordCloud.GetComponent<WordCloud> ().setHasFaded (false);
-				delayFadeCo ();
-			}
+				if (timeActive > fadePeriod && !startedDelay) {
+					wordCloud.GetComponent<WordCloud> ().setHasFaded (false);
+					delayFadeCo ();
+				}
 
-		} else if (transparencyGoingDown) 
-		{
-			timeActive += Time.deltaTime;
-			col = meshRenderer.material.color;
-			col.a = Mathf.Lerp (originalCol.a, 1f, fadeSpeed * timeActive);
-			meshRenderer.material.color = col;
+			} else if (transparencyGoingDown) {
+				timeActive += Time.deltaTime;
+				col = meshRenderer.material.color;
+				col.a = Mathf.Lerp (originalCol.a, 1f, fadeSpeed * timeActive);
+				meshRenderer.material.color = col;
 
-			if (timeActive > fadePeriod && !startedDelay) 
-			{
-				wordCloud.GetComponent<WordCloud> ().setHasFaded (true);
-				delayFadeCo ();
-			}
-		}
-	}
+				if (timeActive > fadePeriod && !startedDelay) {
+					wordCloud.GetComponent<WordCloud> ().setHasFaded (true);
+					delayFadeCo ();
+				}
+			}//end else
+		}//end renderer
+	}//end update
 
 	private void delayFadeCo ()
 	{

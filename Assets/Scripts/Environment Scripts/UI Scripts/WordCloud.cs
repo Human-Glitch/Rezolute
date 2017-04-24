@@ -22,7 +22,11 @@ public class WordCloud : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		calculateMessageMovement ();
+		if(GetComponent<Renderer>().IsVisibleFrom(Camera.main))
+		{
+			calculateMessageMovement ();
+		}
+
 
 	}//end update
 
