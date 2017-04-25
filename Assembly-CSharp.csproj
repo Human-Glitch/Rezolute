@@ -59,7 +59,6 @@
      <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\RotateObject.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\destroyCoin.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\makeChildOnTouch.cs" />
-     <Compile Include="Assets\Scripts\AnimatedGifDrawer.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\BackgroundFollow.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\Parallax.cs" />
@@ -79,12 +78,14 @@
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\CreateScannerType.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\ScannerPattern.cs" />
      <Compile Include="Assets\Scripts\NPCs\ScannerScripts\TriggerBossSettings.cs" />
+     <Compile Include="Assets\Scripts\Systems\AnimatedGifDrawer.cs" />
      <Compile Include="Assets\Scripts\Systems\AudioManager.cs" />
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Systems\LifeManager.cs" />
      <Compile Include="Assets\Scripts\Systems\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Systems\PlayerControllerScript.cs" />
+     <Compile Include="Assets\Scripts\Systems\RollingCredits.cs" />
      <Compile Include="Assets\Scripts\Systems\Timer.cs" />
      <Compile Include="Assets\Scripts\Systems\TriggerLevelTransition.cs" />
      <Compile Include="Assets\Scripts\Systems\handleMusic.cs" />

@@ -1,19 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\AnimatedGifDrawer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Systems\RollingCredits.cs">
     <Files>
       <File FileName="Assets\Scripts\Environment Scripts\UI Scripts\WordCloud.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Environment Scripts\UI Scripts\WordCloudInput.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Environment Scripts\UI Scripts\wordCloudFade.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\NPCs\ScannerScripts\TriggerBossSettings.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Systems\TriggerLevelTransition.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Environment Scripts\UI Scripts\MainMenu.cs" Line="72" Column="17" />
-      <File FileName="Assets\Scripts\Systems\PauseMenu.cs" Line="27" Column="13" />
-      <File FileName="Assets\Scripts\Environment Scripts\UI Scripts\takeCoin.cs" Line="42" Column="22" />
+      <File FileName="Assets\Scripts\Environment Scripts\UI Scripts\MainMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Systems\PauseMenu.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Environment Scripts\UI Scripts\takeCoin.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Action Scripts\Obstacle Scripts\destroyCoin.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\AnimatedGifDrawer.cs" Line="8" Column="2" />
-      <File FileName="Assets\Scripts\Systems\LevelManager.cs" Line="47" Column="20" />
-      <File FileName="Assets\Scripts\Systems\LifeManager.cs" Line="58" Column="21" />
+      <File FileName="Assets\Scripts\Systems\LevelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Systems\LifeManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Systems\RollingCredits.cs" Line="30" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
