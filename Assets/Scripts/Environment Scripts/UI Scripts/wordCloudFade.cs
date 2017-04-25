@@ -14,7 +14,7 @@ public class wordCloudFade : MonoBehaviour
 	private bool startedDelay;
 
 	private GameObject wordCloud;
-	private GameObject mainCamera;
+	//private GameObject mainCamera;
 	private MeshRenderer meshRenderer;
 	private Color col;
 	private Color originalCol;
@@ -22,7 +22,7 @@ public class wordCloudFade : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		mainCamera = GameObject.FindWithTag ("MainCamera");
+		//mainCamera = GameObject.FindWithTag ("MainCamera");
 
 		if (this.transform.parent != null && this.transform.parent.tag == "PlayerCloud")
 			wordCloud = this.transform.parent.gameObject;

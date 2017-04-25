@@ -15,7 +15,8 @@ public class IncrementCheckpoint : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		//Debug.Log ("Trigger Detected");
-		if (other.gameObject.tag == "CubeTrap") 
+		if (other.gameObject.tag != "Player" && 
+				other.gameObject.tag == "CubeTrap") 
 		{
 			if (isWaiting == false) 
 			{

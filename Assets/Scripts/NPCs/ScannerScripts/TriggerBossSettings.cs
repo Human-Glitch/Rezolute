@@ -8,10 +8,13 @@ public class TriggerBossSettings : MonoBehaviour
 	private GameObject mainCamera;
 	private bool shouldScroll = false;
 
+	[Header("Scrolling Settings")]
 	public bool shouldXscroll = false;
 	public bool shouldYscroll = false;
 
+	[Header("Rotation Settings")]
 	public bool shouldRotateBoss = false;
+	public bool shouldRotatePlayerCloud = false;
 
 	void Start()
 	{
@@ -40,8 +43,18 @@ public class TriggerBossSettings : MonoBehaviour
 					script.setScrollSpeed (.04f);
 
 					boss = GameObject.FindWithTag ("Boss");
+					var bossCloud = boss.transform.FindChild ("messageCloud");
+
+					bossCloud.GetComponent<LightSpeedBackground> ().enabled = true;
 					boss.GetComponent<LightSpeedBackground> ().enabled = true;
+
 					boss.transform.Translate (0, -15, 0);
+				}
+
+				if(shouldRotatePlayerCloud)
+				{
+					var player = GameObject.FindWithTag ("Player");
+					player.transform.GetComponentInChildren<LightSpeedBackground> ().enabled = true;
 				}
 
 				shouldScroll = true;

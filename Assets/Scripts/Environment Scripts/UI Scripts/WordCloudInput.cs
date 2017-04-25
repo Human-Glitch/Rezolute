@@ -16,7 +16,7 @@ public class WordCloudInput : MonoBehaviour
 
 	void Start()
 	{
-		if(transform.tag == "Enemy")
+		if(transform.tag == "Enemy" || transform.tag == "Boss" || transform.tag == "Blue Scanner" || transform.tag == "Red Scanner")
 		{
 			messageCloud = transform.FindChild("messageCloud").gameObject; //cbecks from parent object to find the message cloud
 

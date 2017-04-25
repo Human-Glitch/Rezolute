@@ -9,6 +9,7 @@ public class PlayerControllerScript : MonoBehaviour
 
 	private Vector2 movDir;
 	private bool facingRight = true;
+
 	public bool grounded = false;
 	private float groundRadius = .2f;
 	public bool isMoving;
@@ -29,10 +30,11 @@ public class PlayerControllerScript : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-		if (grounded && Input.GetKey(KeyCode.Space))
+		
+		if (grounded && Input.GetKey(KeyCode.Space) )
 		{
-			anim.SetBool("Grounded", false);
-			GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce));
+				anim.SetBool ("Grounded", false);
+				GetComponent<Rigidbody2D> ().AddRelativeForce (new Vector2 (0, jumpForce));
 		}
 
 		//Detect grounded and set animation bool based on raycast results

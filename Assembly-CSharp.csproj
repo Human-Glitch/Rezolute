@@ -82,6 +82,7 @@
      <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
      <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
      <Compile Include="Assets\Scripts\Systems\LifeManager.cs" />
+     <Compile Include="Assets\Scripts\Systems\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Systems\PlayerControllerScript.cs" />
      <Compile Include="Assets\Scripts\Systems\Timer.cs" />
      <Compile Include="Assets\Scripts\Systems\TriggerLevelTransition.cs" />

@@ -15,9 +15,11 @@ public class MainMenu : MonoBehaviour {
 
 	public void BeginNextLevel()
 	{
-		Debug.Log ("Next Level Started");
-		Application.LoadLevel (nextLevel);
-
+		if (nextLevel != null) 
+		{
+			Debug.Log ("Next Level Started");
+			Application.LoadLevel (nextLevel);
+		}
 	}
 
 	public void ExitGame()
