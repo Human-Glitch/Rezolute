@@ -8,9 +8,10 @@ public class LifeManager : MonoBehaviour {
 	public string mainMenu;
 	public float fadeSpeed = 0f;
 	public float fadeTime = .5f;
+	public float maxLives;
 
 	public GameObject gameOverScreen;
-	public GameObject outOfLives;
+	public GameObject [] outOfLives;
 	//public AudioSource lifeLostSound;
 
 	private int lifeCounter;
@@ -26,11 +27,15 @@ public class LifeManager : MonoBehaviour {
 		lifeCounter = startingLives;
 	}
 
-	void Update(){
+	void Update()
+	{
 		if (lifeCounter < 1 ) 
 		{
 			gameOverScreen.SetActive (true);
-			outOfLives.SetActive (true);
+			gameObject.GetComponentInParent<PauseMenu> ().setIsGameOver (true);
+
+			foreach(var text in outOfLives)
+				text.SetActive (true);
 
 			Time.timeScale = 0f;
 		}
@@ -47,7 +52,13 @@ public class LifeManager : MonoBehaviour {
 			//lifeLostSound.Play ();
 		}
 	}
-		
 
-
+	public void gainLife()
+	{
+		if (lifeCounter <= maxLives ) //max life
+		{
+			Debug.Log ("Life Gained");
+			lifeCounter++;
+		}
+	}
 }

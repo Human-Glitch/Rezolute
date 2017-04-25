@@ -59,6 +59,7 @@
      <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\RotateObject.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\destroyCoin.cs" />
      <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\makeChildOnTouch.cs" />
+     <Compile Include="Assets\Scripts\AnimatedGifDrawer.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\BackgroundFollow.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\Environment Scripts\Parallax.cs" />
