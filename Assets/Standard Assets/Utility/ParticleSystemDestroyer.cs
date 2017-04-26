@@ -1,3 +1,5 @@
+//Not my script
+
 using System;
 using System.Collections;
 using UnityEngine;
