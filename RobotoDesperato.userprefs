@@ -1,18 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Prefabs\Scripts\Systems\RollingCredits.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Systems\RollingCredits.cs">
     <Files>
-      <File FileName="Assets\Prefabs\Scripts\Systems\ExposeLayerOrder.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Action Scripts\CubeTrap Scripts\IncrementCheckpoint.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Environment Scripts\UI Scripts\RendererExtensions.cs.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Action Scripts\CubeTrap Scripts\TracePath.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Environment Scripts\UI Scripts\WordCloud.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Environment Scripts\UI Scripts\WordCloudInput.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Systems\AudioManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Systems\TriggerLevelTransition.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Environment Scripts\UI Scripts\MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets\Prefabs\Scripts\Systems\RollingCredits.cs" Line="33" Column="46" />
-      <File FileName="Assets\Prefabs\Scripts\Environment Scripts\Parallax.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Systems\RollingCredits.cs" Line="23" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
