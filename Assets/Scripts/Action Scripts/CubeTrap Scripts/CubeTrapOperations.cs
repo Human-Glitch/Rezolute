@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿//This script manages the operations of the cube trap 
+//These include: When to fold, When to manipulate the infinitely scrolling background, When to rotate,
+//When to activate each enemy over time, when to trace the path, and when to deactivate
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,8 +22,9 @@ public class CubeTrapOperations : MonoBehaviour
 
 	public int activeQueue;
 	public int newestSpawnOffset;
+	//==============================================================
 
-	// Use this for initialization
+	// INITIALIZATION
 	void Start () 
 	{
 		//gameObject.transform.GetChild (0).localScale = gameObject.transform.GetChild (0).localScale / 100f;
@@ -27,9 +32,9 @@ public class CubeTrapOperations : MonoBehaviour
 		activeQueue = 0;
 	}
 
+	//UPDATE ONCE PER FRAME
 	void Update()
 	{
-		/*Badly Written Code needed to solve problem*/
 		if (bugList != null && !isInitialized)
 		{
 			foreach (var bug in bugList) 
@@ -49,7 +54,8 @@ public class CubeTrapOperations : MonoBehaviour
 	{
 		//Change to more intense music
 		GameObject.FindWithTag ("Player").GetComponent<AudioManager> ().playNextSong ();
-		
+
+		//Find objects along the vertexes of this object and activate the <FoldMe> Scripts
 		FoldingCubeTrap.transform.Find("Cube Trap").transform.Find("Vertex1").GetComponent<FoldMe> ().enabled = true;
 		FoldingCubeTrap.transform.Find("Cube Trap").transform.Find ("Vertex2").GetComponent<FoldMe> ().enabled = true;
 		FoldingCubeTrap.transform.Find("Cube Trap").transform.Find ("Vertex2").transform.Find("Vertex3").GetComponent<FoldMe> ().enabled = true;
@@ -99,7 +105,7 @@ public class CubeTrapOperations : MonoBehaviour
 			{
 				bugList [activeQueue].SetActive (true);
 
-
+				//Create a spawn beam where an enemy is created
 				var newEnemyBeam = Instantiate (enemySpawnBeam, new Vector3 
 					(bugList [activeQueue].transform.position.x,
 					bugList [activeQueue].transform.position.y, 
@@ -118,7 +124,6 @@ public class CubeTrapOperations : MonoBehaviour
 //==============================================================
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		
 		if (other.gameObject.tag == "Player" && count < 1) 
 		{
 			Debug.Log ("Trap Started");

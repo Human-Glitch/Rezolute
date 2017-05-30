@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//This controls the movement of the text in order to look like rolling credits
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +10,9 @@ public class RollingCredits : MonoBehaviour
 	public bool crawling = false;
 
 	public MainMenu menu;
-
 	public RectTransform text;
+	//==============================================================
+
 	// Use this for initialization
 	void Start () 
 	{

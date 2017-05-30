@@ -18,8 +18,9 @@ public class wordCloudFade : MonoBehaviour
 	private MeshRenderer meshRenderer;
 	private Color col;
 	private Color originalCol;
+	//==============================================================
 
-	// Use this for initialization
+	// INITIALIZATION
 	void Start () 
 	{
 		//mainCamera = GameObject.FindWithTag ("MainCamera");
@@ -67,6 +68,8 @@ public class wordCloudFade : MonoBehaviour
 		}//end renderer
 	}//end update
 
+	//COROUTINES
+	//=======================================================
 	private void delayFadeCo ()
 	{
 		StartCoroutine (delayFade());

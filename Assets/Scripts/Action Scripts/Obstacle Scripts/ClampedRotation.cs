@@ -1,4 +1,6 @@
-﻿//http://gamedev.stackexchange.com/questions/130635/how-to-rotate-within-a-fixed-interval-in-unity
+﻿//This script does not belong to me
+//This script performs a limited degree rotation and reverses back into position repeatedly over time
+//http://gamedev.stackexchange.com/questions/130635/how-to-rotate-within-a-fixed-interval-in-unity
 
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +16,7 @@ public class ClampedRotation : MonoBehaviour
 
 	// Cache initial orientation so we can rotate relative to that pose.
 	Quaternion _initialOrientation;
+	//==============================================================
 
 	// Perform caching on Start.
 	void Start() 

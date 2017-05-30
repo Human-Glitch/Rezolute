@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//This will fade an object over time and then destroy it
+
+using UnityEngine;
 using System.Collections;
 
 public class Fade : MonoBehaviour 
@@ -10,20 +12,16 @@ public class Fade : MonoBehaviour
 
 	public float timeActive;
 
-	//private Transform transform;
 	private SpriteRenderer spriteRenderer;
 	private AudioSource bossAudioSource;
+	//==============================================================
 
-
-	// Use this for initialization
+	// INITIALIZATION
 	void Start () 
 	{
-		//transform = transform;
 		timeActive = 0;
 		spriteRenderer = GetComponent<SpriteRenderer> ();
 
-		//transform.localPosition = new Vector3 (7.3f, 0f, 0f); //distance from the barrel
-		//transform.rotation = cannon.rotation; //keep rotation the same as parent class
 		spriteRenderer.color = new Color (1f, 1f, 1f, 1f);
 
 		if(gameObject.tag == "Enemy")

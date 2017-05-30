@@ -1,33 +1,27 @@
-﻿using System.Collections;
+﻿//This scripts moves the Cubetrap along a traced path  and performs specific actions at certain checkpoints
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TracePath : MonoBehaviour {
-
+public class TracePath : MonoBehaviour
+{
 	public GameObject [] checkpoint;
 	public GameObject IntervalRotateCube;
 	public int hashTime;
 	public int nextHashTime;
 	public int hashDelay;
 
-	//Make private later
-	public int counter = 0;
-
-	//private int maxSize;
-
- 
-	// Use this for initialization
-	void Start () 
-	{
-		//maxSize = checkpoint.Length;
-	}
+	private int counter = 0;
+	//==============================================================
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		//
+		//What actions should be performed every frame at each checkpoint array position
 		if (counter >= 0) 
 		{
+			//change the time it takes to get to the next checkpoint
 			if (counter == 1) {
 				hashTime = nextHashTime;
 
@@ -35,14 +29,14 @@ public class TracePath : MonoBehaviour {
 					IntervalRotateCube.GetComponent<IntervalRotate> ().enabled = true;
 			}
 
+			//Deactivate trap after a delay
 			if (counter == 2 && gameObject.tag == "CubeTrapContainer") 
 			{
-				
-				//movingBackgroundVertical.speed = .1f;
 				newDelay ();
 				
 			}
 
+			//Move while not at the destination
 			if (counter >= 0 && counter < checkpoint.Length) 
 			{
 				iTween.MoveUpdate (gameObject, 
@@ -59,6 +53,7 @@ public class TracePath : MonoBehaviour {
 	}//end update
 		
 	//FUNCTIONS
+	//==============================================================
 	public void incrementCounter() {counter += 1;}
 
 	void destroy(){
@@ -66,6 +61,7 @@ public class TracePath : MonoBehaviour {
 	}
 
 	//COROUTINES
+	//==============================================================
 	public void newDelay () {StartCoroutine ("newDelayCo");}
 
 	public IEnumerator newDelayCo()

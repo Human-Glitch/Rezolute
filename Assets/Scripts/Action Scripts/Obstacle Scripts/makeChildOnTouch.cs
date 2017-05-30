@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿//This script is used to add the moving platforms speed to the player's speed
+//by making the platform the player's parent on touch and undoing that when the player isn't touching
+
+//This script belongs on a moving object that isnt the player
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

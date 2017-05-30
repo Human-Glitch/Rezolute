@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//This script translates an object at an interval with a periodic delay between translations
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,7 +23,9 @@ public class IntervalTranslate : MonoBehaviour
 	public float targetTranslation = 0f;
 	public float translationDelay = 0f;
 	public float translationSpeed = 1f;
+	//==============================================================
 
+	//INITIALIZATION
 	void Start()
 	{
 		initializeSettings ();
@@ -29,12 +33,15 @@ public class IntervalTranslate : MonoBehaviour
 		originalTarget = targetTranslation;
 	}
 
+	//UPDATE once per frame
 	void Update ()
 	{
 		translationAmt = translationSpeed * Time.deltaTime;
 		upDownPattern ();
 	}
 
+	//PATTERNS
+	//==============================================================
 	private void upDownPattern()
 	{
 		//increment translation until it passes target
@@ -76,6 +83,9 @@ public class IntervalTranslate : MonoBehaviour
 		}
 	}//end upDownPattern()
 
+
+	//COROUTINES
+	//=======================================================
 	private void delayTranslation()
 	{
 		StartCoroutine ("delayTranslationCo");
@@ -99,7 +109,10 @@ public class IntervalTranslate : MonoBehaviour
 		hasStopped = false;
 	}
 
-	//Initialize this script
+
+	//FUNCTIONS
+	//==============================================================
+	//Initialize inspector settings into the script
 	private void initializeSettings()
 	{
 		if(translationPattern == TranslationPattern.goUpFirst)

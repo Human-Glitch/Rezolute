@@ -1,13 +1,17 @@
-﻿using System.Collections;
+﻿//This script is given to the object you want to have fake gravity
+//This works by telling the object that it's local position is the world position as well
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FauxGravityBody : MonoBehaviour {
-
+public class FauxGravityBody : MonoBehaviour 
+{
 	public FauxGravityAttractor attractor;
 	private Transform myTransform;
+	//==============================================================
 
-	// Use this for initialization
+	// INITIALIZATION
 	void Start () 
 	{
 		GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -20,6 +24,5 @@ public class FauxGravityBody : MonoBehaviour {
 	{
 		if(attractor != null)
 			attractor.Attract (myTransform);
-		
 	}
 }

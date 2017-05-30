@@ -11,9 +11,9 @@ public class WordCloudInput : MonoBehaviour
 	public List<string> messages;
 
 	private bool doneOnce;
+	//==============================================================
 
-	public List<string> getMessages(){ return messages; }
-
+	//INITIALIZATION
 	void Start()
 	{
 		if(transform.tag == "Enemy" || transform.tag == "Boss" || transform.tag == "Blue Scanner" || transform.tag == "Red Scanner")
@@ -27,6 +27,10 @@ public class WordCloudInput : MonoBehaviour
 			Debug.Log ("No need to send new messages to the cloud");
 		}
 	}
+
+	//FUNCTIONS
+	//==============================================================
+	public List<string> getMessages(){ return messages; }
 
 	//Send messages to the word cloud when player detected
 	void OnTriggerEnter2D(Collider2D other)
@@ -42,7 +46,4 @@ public class WordCloudInput : MonoBehaviour
 			Debug.Log ("No need to send new messages to the cloud");
 		}
 	}//end void
-
-
-
 }

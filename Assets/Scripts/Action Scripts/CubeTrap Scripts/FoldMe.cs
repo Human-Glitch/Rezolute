@@ -1,21 +1,19 @@
-﻿using System.Collections;
+﻿//This folds the target 90 degrees
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FoldMe : MonoBehaviour 
 {
-	//private bool hasStopped;
 	private float rotation = 0; 
 	private float rotationAmt = 0;
 
 	public float targetRotation = 90f;
 	public float velocity = 1f;
+	//==============================================================
 
-	void Start()
-	{
-		//hasStopped = false;
-	}
-
+	//Updates once per frame
 	void Update ()
 	{
 		rotationAmt = velocity * Time.deltaTime;

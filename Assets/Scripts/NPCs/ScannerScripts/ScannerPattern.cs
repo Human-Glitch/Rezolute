@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// This script determines the behavior of the spawned scanner 
+/// based off the settings initialized from <CreateScanner>.
+/// </summary>
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ScannerPattern : MonoBehaviour 
 {
-
 	private bool isPatrolPattern;
 	private bool isActivePattern;
 	private bool isRedScanner;
@@ -17,6 +21,7 @@ public class ScannerPattern : MonoBehaviour
 	private float hashTime;
 	private float hashDelay;
 	private Vector3 spawnPoint;
+	//=======================================================
 	
 	// Update is called once per frame
 	void Update () {
@@ -50,6 +55,8 @@ public class ScannerPattern : MonoBehaviour
 		}//end activetype
 	}
 
+	//Functions
+	//=======================================================
 	public void Initialize(Vector3 spawnPoint, bool isPatrolPattern, bool isActivePattern, bool goUpFirst,  bool goSidewaysFirst,
 		float targetTranslation, float translationSpeed, float translationDelay, float hashTime, float hashDelay)
 	{
@@ -71,6 +78,8 @@ public class ScannerPattern : MonoBehaviour
 
 	private void stopITween(){ reachedTarget = true; }
 
+	//COROUTINES
+	//=======================================================
 	private void timedDeathCo ()
 	{
 		StartCoroutine ("timedDeath");

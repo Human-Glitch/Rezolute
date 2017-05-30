@@ -24,26 +24,26 @@ public class ObstacleTranslation: MonoBehaviour
 
 	public Vector3 startPos;
 	public Vector3 endPos;
+	//=======================================================
 
-
+	//INITIALIZATION
 	void Start()
 	{
 		hasStopped = false;
 		originalTarget = moveDistance;
 
-		//Test
 		startPos = transform.position;
 		endPos = transform.position + transform.up 
 			* moveDistance;
 	}
 
+	//UPDATE once per frame
 	void Update ()
 	{
-		//Test
-
-//		if (Input.GetKeyDown(KeyCode.Space)) {
-//			currentLerpTime = 0f;
-//		}
+		/*Test
+     	if (Input.GetKeyDown(KeyCode.Space)) {
+		currentLerpTime = 0f;
+		}*/
 
 		//increment timer once per frame
 		currentLerpTime += Time.deltaTime;
@@ -59,6 +59,8 @@ public class ObstacleTranslation: MonoBehaviour
 			delayTranslation2 ();
 	}
 
+	//COROUTINES
+	//=======================================================
 	private void delayTranslation2()
 	{
 		StartCoroutine ("delayTranslationCo2");
@@ -75,6 +77,8 @@ public class ObstacleTranslation: MonoBehaviour
 		hasStopped = false;
 	}
 
+	//FUNCTIONS
+	//==============================================================
 	private void reverseTranslationValues()
 	{
 		if(startPos == endPos)

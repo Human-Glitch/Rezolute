@@ -1,20 +1,26 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// This script controls all the ways the player can die
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class KillPlayer : MonoBehaviour {
-
+public class KillPlayer : MonoBehaviour 
+{
 	private LevelManager levelManager;//does not work with prefabs so keep private
 	private AudioSource dyingSound;
+	//=======================================================
 
-	// Use this for initialization
+	//INITIALIZATION
 	void Start () 
 	{
-		
 		dyingSound = GetComponentInParent<AudioSource> ();
 		levelManager = FindObjectOfType<LevelManager> ();// finds an object with level manager attacthed
 	}
 
+	//TRIGGER
+	//=======================================================
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		
@@ -23,7 +29,9 @@ public class KillPlayer : MonoBehaviour {
 			methods2Kill (other);
 		}
 	}
-		
+
+	//FUNCTIONS
+	//=======================================================
 	private void methods2Kill(Collider2D other)
 	{
 		

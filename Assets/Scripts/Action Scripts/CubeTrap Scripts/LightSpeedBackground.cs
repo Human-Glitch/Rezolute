@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//Manipulates a background to make it look like it's moving at light speed
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +11,7 @@ public class LightSpeedBackground : MonoBehaviour
 	public int targetTime;
 
 	private bool startReverse;
+	//==============================================================
 
 	// Use this for initialization
 	void Start () 
@@ -38,6 +41,7 @@ public class LightSpeedBackground : MonoBehaviour
 	}
 
 	//FUNCTIONS
+	//==============================================================
 	public void rotate90Degrees()
 	{
 		gameObject.GetComponent<movingBackgroundVertical>().speed = 3f;
@@ -54,6 +58,7 @@ public class LightSpeedBackground : MonoBehaviour
 	}
 		
 	//COROUTINES
+	//==============================================================
 	void newDelay () {StartCoroutine ("newDelayCo");}
 
 	IEnumerator newDelayCo()

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿//This script rotates an object at an interval with a periodic delay between rotations
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,13 +14,16 @@ public class IntervalRotate : MonoBehaviour
 	public float rotationDelay = 0f;
 	public float rotateSpeed = 1f;
 	private int rotationCount;
+	//==============================================================
 
+	//INITIALIZATION
 	void Start()
 	{
 		rotationCount = 0;
 		hasStopped = false;
 	}
 
+	//Updates once per frame
 	void Update ()
 	{
 		rotationAmt = rotateSpeed * Time.deltaTime;
@@ -41,6 +46,8 @@ public class IntervalRotate : MonoBehaviour
 		}
 	}
 
+	//COROUTINES
+	//=======================================================
 	public void delayRotation()
 	{
 		StartCoroutine ("delayRotationCo");
@@ -59,6 +66,8 @@ public class IntervalRotate : MonoBehaviour
 		hasStopped = false;
 	}
 
+	//FUNCTIONS
+	//==============================================================
 	public int getRotationCount(){ return rotationCount; }
 
 }

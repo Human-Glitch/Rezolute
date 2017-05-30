@@ -1,10 +1,14 @@
-﻿using System.Collections;
+﻿//This is a basic script that rotates an object over time repeatedly
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateObject : MonoBehaviour {
+public class RotateObject : MonoBehaviour 
+{
 	public float speed = -1.1f;
-	
+	//=======================================================
+
 	// Update is called once per frame
 	void Update () 
 	{

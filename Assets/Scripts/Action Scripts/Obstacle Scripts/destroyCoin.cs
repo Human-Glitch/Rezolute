@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿//This script destroys a coin on touch and creates a green particle effect splash
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -6,6 +8,7 @@ public class destroyCoin : MonoBehaviour
 {
 	public takeCoin counter; //needs object in order access the script so this is workaround
 	public GameObject particleEffect;
+	//==============================================================
 
 	void OnTriggerEnter2D (Collider2D other)
 	{

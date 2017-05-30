@@ -1,12 +1,15 @@
-﻿using System.Collections;
+﻿//This script increments the checkpoints in the <Trace Path> script
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class IncrementCheckpoint : MonoBehaviour 
 {
 	private bool isWaiting;
+	//==============================================================
 
-	// Use this for initialization
+	// INITIALIZATION
 	void Start () 
 	{
 		isWaiting = false;

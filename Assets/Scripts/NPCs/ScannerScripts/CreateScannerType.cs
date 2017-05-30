@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// Create scanner type.
+/// </summary>
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -61,8 +65,9 @@ public class CreateScannerType : MonoBehaviour
 
 	//keep a list of scanners for each trigger
 	private List<GameObject> lvl2Scanner;
+	//=======================================================
 
-	// Use this for initialization
+	// INITIALIZATION
 	void Start () 
 	{ 
 		time = 0;
@@ -72,6 +77,7 @@ public class CreateScannerType : MonoBehaviour
 		spawnPoint = gameObject.transform.position;
 	}
 
+	//UPDATE once per frame
 	void Update()
 	{
 		if (timeStarted) 
@@ -79,6 +85,9 @@ public class CreateScannerType : MonoBehaviour
 			time += Time.deltaTime;
 		}
 	}
+
+	//TRIGGER
+	//=======================================================
 	void OnTriggerEnter2D(Collider2D collider)
 	{
 		if (collider.tag == "Player")
@@ -99,6 +108,8 @@ public class CreateScannerType : MonoBehaviour
 		} // end Enter2DTrigger
 	} //end class
 
+	//FUNCTIONS
+	//=======================================================
 	private void spawnScannerWithSettings()
 	{
 		if (isPatrolPattern == true && xTriggered < 1 && isRedScanner)
@@ -146,6 +157,8 @@ public class CreateScannerType : MonoBehaviour
 		}
 	}
 
+	//INITIALIZE SETTINGS
+	//=======================================================
 	private void setEnumSettings()
 	{
 		//MOVEMENT PATTERN

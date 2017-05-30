@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// This creates the effects necessary to destroy the object and kill the boss in level 2
+/// </summary>
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,7 +14,9 @@ public class KillBoss : MonoBehaviour
 	private ClampedRotation clampedScript;
 
 	private bool doneOnce = false;
+	//==============================================================
 
+	//INITIALIZATION
 	void Start()
 	{
 		camera = GameObject.FindWithTag ("MainCamera");
@@ -19,6 +25,8 @@ public class KillBoss : MonoBehaviour
 		clampedScript = boss.GetComponent <ClampedRotation> ();
 	}
 
+	//TRIGGER
+	//==============================================================
 	void OnTriggerEnter2D (Collider2D other)
 	{
 		if(other.tag == "Player" && !doneOnce)

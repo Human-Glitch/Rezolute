@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// Change the behavior of the boss when activated
+/// </summary>
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,12 +19,16 @@ public class TriggerBossSettings : MonoBehaviour
 	[Header("Rotation Settings")]
 	public bool shouldRotateBoss = false;
 	public bool shouldRotatePlayerCloud = false;
+	//=======================================================
 
+	//INITIALIZE
 	void Start()
 	{
 		mainCamera = GameObject.FindWithTag ("MainCamera");
 	}
 
+	//TRIGGER
+	//=======================================================
 	void OnTriggerEnter2D(Collider2D other)
 	{
 		if (!shouldScroll) 

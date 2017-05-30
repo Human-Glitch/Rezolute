@@ -17,6 +17,7 @@ public class WordCloud : MonoBehaviour
 
 	private bool hasFaded = false;
 	private bool stopEverything = false;
+	//==============================================================
 
 	void Start()
 	{
@@ -36,12 +37,13 @@ public class WordCloud : MonoBehaviour
 	}//end update
 
 //COROUTINES
+//=======================================================
 	//Creates the word in the cloud using info from <WordCloudInput>
 	public void generateWordInCloudCo(List<string> messages)
 	{
 		StartCoroutine (generateWordInCloud (messages));
 	}//end function
-
+		
 	private IEnumerator generateWordInCloud(List<string> messages)
 	{
 		for(int i = messages.Count -1; i >= 0; --i )

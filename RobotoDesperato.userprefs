@@ -1,8 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Systems\RollingCredits.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\NPCs\ScannerScripts\TriggerBossSettings.cs">
     <Files>
-      <File FileName="Assets\Scripts\Systems\RollingCredits.cs" Line="23" Column="3" />
+      <File FileName="Assets\Scripts\NPCs\ScannerScripts\TriggerBossSettings.cs" Line="9" Column="38" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
