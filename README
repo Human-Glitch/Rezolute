@@ -1,0 +1,24 @@
+# Rezolute
+2D platforming game capstone project
+
+Kody Buss' Capstone Project for Spring 2017. This project was developed in Unity Game Engine using C# language. 
+Features a prologue, main menu, level 1, level 2, and a rolling credits. 
+The concept is that you are a piece of data that overflowed from an array into the Heap. 
+You have to traverse your way through a computer's memory all the while survive the Garbage Collector's attempts to clean you up.
+
+Follow this link to YouTube where there is a gameplay walkthrough:
+https://youtu.be/6D8DfYcshsc
+
+All the scripts for this game can be found through this path: Assets>Scripts
+
+How to get started playing the game:
+1) Download 3 files:
+ - ProjectSettings
+ - Rezolute_Data
+ - Rezolute.exe
+ 
+ 2) Name the a new folder Rezolute
+ 3) Place these files in the same folder
+ 4) Run Rezolute.exe!
+ 
+ 
