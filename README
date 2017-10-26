@@ -6,6 +6,49 @@ Features a prologue, main menu, level 1, level 2, and a rolling credits.
 The concept is that you are a piece of data that overflowed from an array into the Heap. 
 You have to traverse your way through a computer's memory all the while survive the Garbage Collector's attempts to clean you up.
 
+==============================================================================
+Accomplishments for this project:
+==============================================================================
+Design
+==============
+-Design that is accessible, fun, and challenging
+-Designed in a way that allows for game state resets without reloading!
+-Dynamic gameplay that can shift and change unexpectedly!
+-Minimal UI to keep player immersed in the gameplay
+-Unique art design and aesthetic
+-Music dynamically changes on context using a unique sound managment system
+
+Milestones
+==============
+-Playable from start to finish without major glitches
+-Extensively playtested for fair and balanced design
+-20 minutes - 1hour of gameplay
+-No loading times
+-Achieved professional quality
+-Gameplay is seamless and delightfully surprising
+-This project has over 300 hours of development time over just one semester of school. 
+-Completion of multi-discipline project including: design, programming, art, sound design, filmmaking, and animation. 
+
+Coding
+==============
+-Animation of 4 major types of game characters
+-30 modularized scripts and over 3000 lines of code
+-Reverse programming to undo effects of executed scripts on game state failures
+-Dynamic scripts that smartly produces different behaviors depending on contexts
+-Inheritance of scripts to work in multiple contexts
+-Fully encapsulated design allow for modularized and flexible scripts depending on data fed to them
+-Major algorithm breakthroughs to create repeatably executed scripts that provide accurate results over time
+
+Time Management
+===============
+-Fully executed vision for project by sticking to a firm deadlines
+-Cut ideas that weren't practical and redesigned them for reimplementation
+-Balanced design, implementation of ideas, and design in reoccuring phases throughout development
+-Developed in three major phases: Core mechanics and obstacles, Level 1 Design and Cube Trap
+
+=======================================================================================
+How to Play
+========================================================================================
 Follow this link to YouTube where there is a gameplay walkthrough:
 https://youtu.be/6D8DfYcshsc
 
@@ -17,7 +60,7 @@ How to get started playing the game:
  - Rezolute_Data
  - Rezolute.exe
  
- 2) Name the a new folder Rezolute
+ 2) Name a new folder Rezolute
  3) Place these files in the same folder
  4) Run Rezolute.exe!
  
