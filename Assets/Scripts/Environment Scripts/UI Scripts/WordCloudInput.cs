@@ -18,7 +18,7 @@ public class WordCloudInput : MonoBehaviour
 	{
 		if(transform.tag == "Enemy" || transform.tag == "Boss" || transform.tag == "Blue Scanner" || transform.tag == "Red Scanner")
 		{
-			messageCloud = transform.FindChild("messageCloud").gameObject; //cbecks from parent object to find the message cloud
+			messageCloud = transform.Find("messageCloud").gameObject; //cbecks from parent object to find the message cloud
 		
 			messageCloud.GetComponent<WordCloud> ().generateWordInCloudCo (getMessages ());
 			doneOnce = true;

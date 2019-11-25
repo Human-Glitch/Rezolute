@@ -4,7 +4,7 @@
 
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Generic; 
 
 public class KillPlayer : MonoBehaviour 
 {
@@ -30,9 +30,10 @@ public class KillPlayer : MonoBehaviour
 		}
 	}
 
-	//FUNCTIONS
-	//=======================================================
-	private void methods2Kill(Collider2D other)
+    //FUNCTIONS
+    //=======================================================
+    [System.Obsolete]
+    private void methods2Kill(Collider2D other)
 	{
 		
 		if (Application.loadedLevelName == "Level 2" 
