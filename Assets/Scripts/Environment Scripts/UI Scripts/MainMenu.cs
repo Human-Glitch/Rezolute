@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
@@ -18,7 +19,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void MenuSelect ()
 	{
-		Application.LoadLevel ("Main Menu");
+		SceneManager.LoadScene("Main Menu");
 	}
 
 	public void LevelSelect()
@@ -52,7 +53,7 @@ public class MainMenu : MonoBehaviour {
 	{
 		Debug.Log ("Restarted Level");
 		Time.timeScale = 1f;
-		Application.LoadLevel (startLevel);
+		SceneManager.LoadScene(startLevel);
 
 	}
 
@@ -62,7 +63,7 @@ public class MainMenu : MonoBehaviour {
 		{
 			Debug.Log ("Next Level Started");
 			Time.timeScale = 1f;
-			Application.LoadLevel (nextLevel);
+			SceneManager.LoadScene(nextLevel);
 		}
 	}
 
@@ -70,12 +71,12 @@ public class MainMenu : MonoBehaviour {
 	{
 		Debug.Log ("New Game started");
 		Time.timeScale = 1f;
-		Application.LoadLevel ("Opening");
+		SceneManager.LoadScene("Opening");
 	}
 
 	public void ExitGame()
 	{
-		Debug.Log ("Game exited");
+		Debug.Log("Game exited");
 		Time.timeScale = 1f;
 		Application.Quit ();
 	}
