@@ -51,7 +51,7 @@ public class TriggerBossSettings : MonoBehaviour
 					script.setScrollSpeed (.04f);
 
 					boss = GameObject.FindWithTag ("Boss");
-					var bossCloud = boss.transform.FindChild ("messageCloud");
+					var bossCloud = boss.transform.Find ("messageCloud");
 
 					bossCloud.GetComponent<LightSpeedBackground> ().enabled = true;
 					boss.GetComponent<LightSpeedBackground> ().enabled = true;

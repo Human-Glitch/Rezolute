@@ -12,9 +12,7 @@ public class KillBoss : MonoBehaviour
 	private GameObject boss;
 	private Fade fadeScript;
 	private ClampedRotation clampedScript;
-
 	private bool doneOnce = false;
-	//==============================================================
 
 	//INITIALIZATION
 	void Start()
