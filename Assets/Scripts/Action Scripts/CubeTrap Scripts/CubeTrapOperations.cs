@@ -98,7 +98,7 @@ public class CubeTrapOperations : MonoBehaviour
 	{
 		if (activeQueue < ((bugList.Count)) && isInitialized) 
 		{
-			cubeRotationCount = FoldingCubeTrap.GetComponent<IntervalRotate> ().getRotationCount ();
+			cubeRotationCount = FoldingCubeTrap.GetComponent<IntervalRotate>().RotationCount;
 		
 			if (cubeRotationCount > 0 && (cubeRotationCount % newestSpawnOffset == 0) 
 				&& bugList [activeQueue].activeSelf == false)

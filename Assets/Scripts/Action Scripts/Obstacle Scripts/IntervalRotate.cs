@@ -1,73 +1,46 @@
-﻿//This script rotates an object at an interval with a periodic delay between rotations
-
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// This script rotates an object at an interval with a periodic delay between rotations
+/// </summary>
 public class IntervalRotate : MonoBehaviour 
 {
-	private bool hasStopped;
-	private float rotation = 0; 
-	private float rotationAmt = 0;
+    public float rotationTime = 0f;
+    public float angleOfRotation = 0f;
+    public float rotationDelay = 0f;
+    public bool isClockwise = true;
 
-	public float targetRotation = 90f;
-	public float rotationDelay = 0f;
-	public float rotateSpeed = 1f;
-	private int rotationCount;
-	//==============================================================
+    #region PROPERTIES
+    public int RotationCount { get; set; } = 0;
+    #endregion PROPERTIES
 
-	//INITIALIZATION
-	void Start()
+    void Start()
 	{
-		rotationCount = 0;
-		hasStopped = false;
+        StartCoroutine(RotateMe(Vector3.back * angleOfRotation, rotationTime));
 	}
 
-	//Updates once per frame
-	void Update ()
-	{
-		rotationAmt = rotateSpeed * Time.deltaTime;
+    #region COROUTINES
+    IEnumerator RotateMe(Vector3 byAngles, float inTime) {
+        Quaternion fromAngle = transform.rotation;
+        Quaternion toAngle = Quaternion.Euler(transform.eulerAngles + byAngles);
+        Vector3 direction = isClockwise ? Vector3.back : Vector3.forward;
+        float time = 0f;
 
-		if ((Mathf.Abs(rotation)) < targetRotation) 
-		{
-			//Debug.Log ("Entered Normal");
-			transform.Rotate(0, 0, rotationAmt, Space.Self); 
-			rotation += rotationAmt;
-		} 
-		else
-		{
-			//Debug.Log ("Else reached");
+        while(time != 1)
+        {
+            time += Time.deltaTime / inTime;
+            time = Mathf.Clamp(time, 0, 1);
 
-			if(hasStopped == false)
-			{
-				rotationCount++;
-				delayRotation ();
-			}
-		}
-	}
+            transform.rotation = Quaternion.Lerp(fromAngle, toAngle, time);
+            yield return null;
+        }
 
-	//COROUTINES
-	//=======================================================
-	public void delayRotation()
-	{
-		StartCoroutine ("delayRotationCo");
-	}
+        RotationCount++;
+        yield return new WaitForSecondsRealtime (rotationDelay);
+        StartCoroutine(RotateMe(direction * angleOfRotation, rotationTime));
+      }
 
-	public IEnumerator delayRotationCo(){
-
-		hasStopped = true;
-
-		rotation = 0;
-		rotationAmt = 0;
-
-		yield return new WaitForSecondsRealtime (rotationDelay);
-		//Debug.Log ("Block Stopped");
-
-		hasStopped = false;
-	}
-
-	//FUNCTIONS
-	//==============================================================
-	public int getRotationCount(){ return rotationCount; }
+    #endregion COROUTINES
 
 }
