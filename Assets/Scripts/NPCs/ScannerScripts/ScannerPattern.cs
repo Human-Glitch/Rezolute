@@ -67,7 +67,7 @@ public class ScannerPattern : MonoBehaviour
 		this.hashDelay = hashDelay;
 
 		//initialize translation variables in Interval translate
-		gameObject.GetComponent<IntervalTranslate> ().initScannerTranslationPattern (goUpFirst, 
+		gameObject.GetComponent<IntervalTranslate> ().InitializeScannerTranslationPattern (goUpFirst, 
 			goSidewaysFirst, targetTranslation, translationSpeed, translationDelay);
 	}
 
