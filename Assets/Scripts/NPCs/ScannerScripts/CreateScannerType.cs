@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using static TranslationEnums;
+using static Enums;
 
 /// <summary>
 /// Create scanner type.
@@ -13,33 +13,13 @@ public class CreateScannerType : MonoBehaviour
 
     public float waitTime = 0;
 
-    #region ENUMS
-
-    private bool isPatrolPattern;
-	private bool isActivePattern;
-	public enum MovementPattern
-	{
-		isPatrolPattern,
-		isActivePattern
-	}
-
-	private bool isRedScanner;
-	private bool isBlueScanner;
-	public enum ScannerType
-	{
-		isRedScanner,
-		isBlueScanner
-	}
-
-    #endregion ENUMS
-
     [Header("Scanner Prefabs")]
 	public GameObject redScanner;
 	public GameObject blueScanner;
 
 	[Header("Scanner Settings")]
-	public ScannerType scannerType;
-	public MovementPattern movementPattern;
+	public ScannerType selectedScannerType;
+	public MovementPattern selectedMovementPattern;
     public TranslationPattern selectedTranslationPattern;
 
 	[Header("Initialize Movement Attributes")]
@@ -55,7 +35,6 @@ public class CreateScannerType : MonoBehaviour
 	void Start () 
 	{ 
 		time = 0;
-		SetEnumSettings ();
 
 		xTriggered = 0;
 		spawnPoint = gameObject.transform.position;
@@ -97,72 +76,47 @@ public class CreateScannerType : MonoBehaviour
 
     private void SpawnScannerWithSettings()
 	{
-		if (isPatrolPattern == true && xTriggered < 1 && isRedScanner)
+		if (selectedMovementPattern == MovementPattern.Patrol && xTriggered < 1 && selectedScannerType == ScannerType.RedScanner)
 		{
 			patrolScanner = Instantiate (redScanner, 
 				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
 				transform.rotation) as GameObject;
 			
-			patrolScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, isPatrolPattern, isActivePattern, selectedTranslationPattern,  hashTime, hashDelay);
+			patrolScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, selectedMovementPattern, selectedTranslationPattern,  hashTime, hashDelay);
 
 			xTriggered++;
 		}
 
-		if(isPatrolPattern == true && xTriggered < 1 && isBlueScanner)
+		if(selectedMovementPattern == MovementPattern.Patrol && xTriggered < 1 && selectedScannerType == ScannerType.BlueScanner)
 		{
 			patrolScanner = Instantiate (blueScanner, 
 				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
 				transform.rotation) as GameObject;
 			
-			patrolScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, isPatrolPattern, isActivePattern, selectedTranslationPattern,
+			patrolScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, selectedMovementPattern, selectedTranslationPattern,
 				 hashTime, hashDelay);
 
 			xTriggered++;
 		}
 
-		if (isActivePattern == true && isBlueScanner) 
+		if (selectedMovementPattern == MovementPattern.Active && selectedScannerType == ScannerType.BlueScanner) 
 		{
 			activeScanner = Instantiate (blueScanner, 
 				new Vector3(transform.position.x + 20, transform.position.y + 6, transform.position.z), 
 				transform.rotation) as GameObject;
 			
-			activeScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, isPatrolPattern, isActivePattern, selectedTranslationPattern,
+			activeScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, selectedMovementPattern, selectedTranslationPattern,
 				 hashTime, hashDelay);
 		}
 
-		if (isActivePattern == true && isRedScanner) 
+		if (selectedMovementPattern == MovementPattern.Active && selectedScannerType == ScannerType.RedScanner) 
 		{
 			activeScanner = Instantiate (redScanner, 
 				new Vector3(transform.position.x + 20, transform.position.y + 6, transform.position.z), 
 				transform.rotation) as GameObject;
 			
-			activeScanner.GetComponent<ScannerPattern>().Initialize (spawnPoint, isPatrolPattern, isActivePattern, selectedTranslationPattern,
+			activeScanner.GetComponent<ScannerPattern>().Initialize (spawnPoint, selectedMovementPattern, selectedTranslationPattern,
                 hashTime, hashDelay);
-		}
-	}
-
-	private void SetEnumSettings()
-	{
-		//MOVEMENT PATTERN
-		if(movementPattern == MovementPattern.isPatrolPattern)
-		{
-			isPatrolPattern = true;
-			isActivePattern = false;
-		}else if (movementPattern == MovementPattern.isActivePattern)
-		{
-			isPatrolPattern = false;
-			isActivePattern = true;
-		}
-
-		//SCANNER TYPE
-		if(scannerType == ScannerType.isRedScanner)
-		{
-			isRedScanner = true;
-			isBlueScanner = false;
-		}else if (scannerType == ScannerType.isBlueScanner)
-		{
-			isRedScanner = false;
-			isBlueScanner = true;
 		}
 	}
 

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
-using static TranslationEnums;
+using static Enums;
 
 /// <summary>
 /// This script translates an object at an interval with a periodic delay between translations.
@@ -107,13 +107,3 @@ public static class TranslationExtensions
         return setting *= REVERSE;
     }
 };
-
-public static class TranslationEnums
-{
-    public enum TranslationPattern
-	{
-		UpDown,
-		LeftRight,
-        DoNothing
-	}
-}
