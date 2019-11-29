@@ -1,9 +1,9 @@
-﻿//This script translates an object at an interval with a periodic delay between translations
-
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// This script translates an object at an interval with a periodic delay between translations.
+/// </summary>
 public class IntervalTranslate : MonoBehaviour 
 {
 	private bool hasStopped;
@@ -11,137 +11,121 @@ public class IntervalTranslate : MonoBehaviour
 	private float translationAmt = 0;
 	private float originalTarget = 0;
 
-	private bool goUpFirst;
+    public float intervalTime = 0f;
+    public float intervalDistance = 0f;
+    public float intervalDelay = 0f;
+    public bool useStartDirection = true;
+    private bool readyToReverse = false;
+
+    private bool goUpFirst;
 	private bool goSidewaysFirst;
 	public enum TranslationPattern
 	{
-		goUpFirst,
-		goSidewaysFirst
+		UpDown,
+		LeftRight
 	}
-	public TranslationPattern translationPattern;
+    public TranslationPattern selectedTranslationPattern;
 
 	public float targetTranslation = 0f;
 	public float translationDelay = 0f;
 	public float translationSpeed = 1f;
-	//==============================================================
 
-	//INITIALIZATION
-	void Start()
+    void Start()
 	{
-		initializeSettings ();
-		hasStopped = false;
-		originalTarget = targetTranslation;
+        StartCoroutine(Translate());
 	}
 
-	//UPDATE once per frame
-	void Update ()
+    #region COROUTINES
+
+    /// <summary>
+    /// Translate an object between two points at an interval.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator Translate()
+    {
+        // Set the distance and direction for the current interval
+        Vector3 intervalDistance;
+        if(readyToReverse)
+        {
+            intervalDistance = ConfigureDistance().ReverseDirection();
+        }
+        else
+        { 
+            intervalDistance = ConfigureDistance(); 
+        }
+
+        Vector3 fromPosition = transform.position;
+        Vector3 toPosition = fromPosition + intervalDistance;
+
+        // Translate the object per frame by interpolating between two points
+        float time = 0f;
+        while (time != 1)
+        {
+            time += Time.deltaTime / intervalTime;
+            time = Mathf.Clamp(time, 0, 1);
+
+            transform.position = Vector3.Lerp(fromPosition, toPosition, time);
+            yield return null;
+        }
+
+        // Delay motion between intervals
+        yield return new WaitForSecondsRealtime(intervalDelay);
+        
+        // Set the bit to indicate to reverse direction at during the next internval.
+        readyToReverse = readyToReverse ? false : true;
+        StartCoroutine(Translate());
+    }
+    #endregion COROUTINES
+
+    #region FUNCTIONS
+    /// <summary>
+    /// Initialize inspector settings into the script.
+    /// </summary>
+    private Vector3 ConfigureDistance()
 	{
-		translationAmt = translationSpeed * Time.deltaTime;
-		upDownPattern ();
+        int direction = useStartDirection ? 1 : -1;
+        
+        switch (selectedTranslationPattern)
+        {
+            case(TranslationPattern.UpDown):
+                return new Vector3(0, direction, 0) * intervalDistance;
+
+            case(TranslationPattern.LeftRight):
+                return new Vector3(direction, 0, 0) * intervalDistance;
+
+            default:
+                return new Vector3();
+        }
 	}
 
-	//PATTERNS
-	//==============================================================
-	private void upDownPattern()
-	{
-		//increment translation until it passes target
-		if (translation < targetTranslation) 
-		{
-			//Debug.Log ("Entered Normal");
-			if (goUpFirst == true) {transform.Translate (0, translationAmt, 0);}
-			else if (goSidewaysFirst == true){transform.Translate (translationAmt, 0, 0);}
-			translation += translationAmt;
-		} 
-
-		//once translation passes target and hasn't stopped, do 
-		else if (translation > targetTranslation)
-		{
-			if (hasStopped == false) 
-			{
-				if (targetTranslation == 0) 
-				{
-					//Debug.Log ("Entered reverse");
-					if (goUpFirst == true) {transform.Translate (0, -translationAmt, 0);}
-					else if (goSidewaysFirst == true){transform.Translate (-translationAmt, 0, 0);}
-
-					translation -= translationAmt;
-					//Debug.Log (translation);
-
-					//Once decrement passes target, then go to else to delay
-					if(translation < targetTranslation)
-					{
-						//Debug.Log( "if(translation < targetTranslation)  reached");
-						targetTranslation = 0f;
-						delayTranslation ();
-					}
-					//Else block has stopped and so delay reverse until time has passed
-				} else {
-					//Debug.Log ("else reached");
-					delayTranslation ();
-				}
-			}
-		}
-	}//end upDownPattern()
-
-
-	//COROUTINES
-	//=======================================================
-	private void delayTranslation()
-	{
-		StartCoroutine ("delayTranslationCo");
-	}
-
-	private IEnumerator delayTranslationCo()
-	{
-		hasStopped = true;
-		yield return new WaitForSeconds (translationDelay);
-
-		if (Mathf.Abs(targetTranslation) > 0f) 
-		{
-			//Debug.Log ("Target now 0");
-			targetTranslation = 0f;
-		} else {
-			//Debug.Log ("Target back to original");
-			targetTranslation = originalTarget;
-			translation = 0;
-		}
-		//Debug.Log ("Block Stopped");
-		hasStopped = false;
-	}
-
-
-	//FUNCTIONS
-	//==============================================================
-	//Initialize inspector settings into the script
-	private void initializeSettings()
-	{
-		if(translationPattern == TranslationPattern.goUpFirst)
-		{
-			goUpFirst = true;
-			goSidewaysFirst = false;
-		}else if (translationPattern == TranslationPattern.goSidewaysFirst)
-		{
-			goUpFirst = false;
-			goSidewaysFirst = true;
-		}
-	}//end function
-
-	//Passes in initialized values from <CreateScannerType> 
-	public void initScannerTranslationPattern(bool goUpFirst, bool goSidewaysFirst, 
+    /// <summary>
+    /// Passes in initialized values from <CreateScannerType>.
+    /// </summary>
+    /// <param name="goUpFirst"></param>
+    /// <param name="goSidewaysFirst"></param>
+    /// <param name="targetTranslation"></param>
+    /// <param name="translationSpeed"></param>
+    /// <param name="translationDelay"></param>
+	public void InitializeScannerTranslationPattern(bool goUpFirst, bool goSidewaysFirst, 
 		float targetTranslation, float translationSpeed, float translationDelay)
 	{
 		this.targetTranslation = targetTranslation;
 		this.translationSpeed = translationSpeed;
 		this.translationDelay = translationDelay;
 
-		if (goUpFirst == true)
-		{
-			translationPattern = TranslationPattern.goUpFirst;
-		}
-		else if(goSidewaysFirst == true)
-		{
-			translationPattern = TranslationPattern.goSidewaysFirst;
-		}
-	}//end function
+        return;
+	}
+    #endregion FUNCTIONS
+}
 
-}//end class
+public static class TranslationExtensions
+{
+    /// <summary>
+    /// If the translation pattern setting is positive or negative, then reverse values.
+    /// </summary>
+    public static Vector3 ReverseDirection(this Vector3 setting)
+    {
+        const int REVERSE = -1;
+        return setting *= REVERSE;
+    }
+};
