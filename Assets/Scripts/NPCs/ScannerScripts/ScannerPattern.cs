@@ -6,24 +6,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static TranslationEnums;
 
 public class ScannerPattern : MonoBehaviour 
 {
 	private bool isPatrolPattern;
 	private bool isActivePattern;
-	private bool isRedScanner;
-	private bool isBlueScanner;
-	private bool goUpFirst;
-	private bool goSidewaysFirst;
 
-	public bool reachedTarget = false;
+	private bool reachedTarget = false;
 
 	private float hashTime;
 	private float hashDelay;
 	private Vector3 spawnPoint;
-	//=======================================================
-	
-	// Update is called once per frame
+
 	void Update () {
 
 		if (isPatrolPattern == true && !reachedTarget) 
@@ -37,8 +32,8 @@ public class ScannerPattern : MonoBehaviour
 					//"looptype", iTween.LoopType.loop
 				)
 			);	
-			completeITweenCo ();
-		}// end plantedType
+			CompleteITweenCo ();
+		}
 
 		if (isActivePattern == true) 
 		{
@@ -50,15 +45,14 @@ public class ScannerPattern : MonoBehaviour
 					"onupdate", " myUpdateFunction"
 					//"looptype", iTween.LoopType.loop
 				)
-			);	//end iTween
-			timedDeathCo ();
-		}//end activetype
+			);
+			TimedDeathCo ();
+		}
 	}
 
-	//Functions
-	//=======================================================
-	public void Initialize(Vector3 spawnPoint, bool isPatrolPattern, bool isActivePattern, bool goUpFirst,  bool goSidewaysFirst,
-		float targetTranslation, float translationSpeed, float translationDelay, float hashTime, float hashDelay)
+    #region FUNCTIONS
+    public void Initialize(Vector3 spawnPoint, bool isPatrolPattern, bool isActivePattern, TranslationPattern selectedTranslationPattern, 
+        float hashTime, float hashDelay)
 	{
 		this.spawnPoint = spawnPoint;
 		this.isPatrolPattern = isPatrolPattern;
@@ -67,25 +61,19 @@ public class ScannerPattern : MonoBehaviour
 		this.hashDelay = hashDelay;
 
 		//initialize translation variables in Interval translate
-		gameObject.GetComponent<IntervalTranslate> ().initScannerTranslationPattern (goUpFirst, 
-			goSidewaysFirst, targetTranslation, translationSpeed, translationDelay);
-	}
-
-	private void Destroy()
-	{
-		Destroy (this.gameObject);
+		gameObject.GetComponent<IntervalTranslate>().InitializeScannerTranslationPattern (selectedTranslationPattern);
 	}
 
 	private void stopITween(){ reachedTarget = true; }
+    #endregion FUNCTIONS
 
-	//COROUTINES
-	//=======================================================
-	private void timedDeathCo ()
+    #region COROUTINES
+    private void TimedDeathCo ()
 	{
 		StartCoroutine ("timedDeath");
 	}
 
-	private IEnumerator timedDeath()
+	private IEnumerator TimedDeath()
 	{
 		Destroy (this.gameObject, 5);
 		yield return new WaitForSecondsRealtime(4f);
@@ -93,14 +81,15 @@ public class ScannerPattern : MonoBehaviour
 		gameObject.GetComponent<Fade> ().enabled = true;
 	}
 
-	private void completeITweenCo ()
+	private void CompleteITweenCo ()
 	{
 		StartCoroutine ("completeITween");
 	}
 
-	private IEnumerator completeITween()
+	private IEnumerator CompleteITween()
 	{
 		yield return new WaitForSecondsRealtime(hashTime - .5f);
 		stopITween ();
 	}
+    #endregion COROUTINES
 }

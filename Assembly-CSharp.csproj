@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\ClampedRotation.cs" />
     <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\IntervalRotate.cs" />
     <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\IntervalTranslate.cs" />
-    <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\ObstacleTranslation.cs" />
     <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\RotateObject.cs" />
     <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\destroyCoin.cs" />
     <Compile Include="Assets\Scripts\Action Scripts\Obstacle Scripts\makeChildOnTouch.cs" />
