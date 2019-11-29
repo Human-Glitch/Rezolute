@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\Systems\AnimatedGifDrawer.cs" />
     <Compile Include="Assets\Scripts\Systems\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\Systems\Enums.cs" />
     <Compile Include="Assets\Scripts\Systems\ExposeLayerOrder.cs" />
     <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
     <Compile Include="Assets\Scripts\Systems\LifeManager.cs" />

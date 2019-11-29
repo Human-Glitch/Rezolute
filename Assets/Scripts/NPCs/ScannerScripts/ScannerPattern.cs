@@ -6,22 +6,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static TranslationEnums;
+using static Enums;
 
 public class ScannerPattern : MonoBehaviour 
 {
-	private bool isPatrolPattern;
-	private bool isActivePattern;
-
 	private bool reachedTarget = false;
-
 	private float hashTime;
 	private float hashDelay;
+
 	private Vector3 spawnPoint;
+    private MovementPattern selectedMovementPattern;
 
 	void Update () {
 
-		if (isPatrolPattern == true && !reachedTarget) 
+		if (selectedMovementPattern == MovementPattern.Patrol && !reachedTarget) 
 		{
 			iTween.MoveUpdate (gameObject, 
 				iTween.Hash ("x", (spawnPoint.x + 20), 
@@ -35,7 +33,7 @@ public class ScannerPattern : MonoBehaviour
 			CompleteITweenCo ();
 		}
 
-		if (isActivePattern == true) 
+		if (selectedMovementPattern == MovementPattern.Active) 
 		{
 			iTween.MoveUpdate (gameObject, 
 				iTween.Hash ("x", (spawnPoint.x - 40), 
@@ -51,12 +49,11 @@ public class ScannerPattern : MonoBehaviour
 	}
 
     #region FUNCTIONS
-    public void Initialize(Vector3 spawnPoint, bool isPatrolPattern, bool isActivePattern, TranslationPattern selectedTranslationPattern, 
+    public void Initialize(Vector3 spawnPoint, MovementPattern selectedMovementPattern, TranslationPattern selectedTranslationPattern, 
         float hashTime, float hashDelay)
 	{
 		this.spawnPoint = spawnPoint;
-		this.isPatrolPattern = isPatrolPattern;
-		this.isActivePattern = isActivePattern;
+        this.selectedMovementPattern = selectedMovementPattern;
 		this.hashTime = hashTime;
 		this.hashDelay = hashDelay;
 
