@@ -1,34 +1,26 @@
-﻿/// <summary>
+﻿using System.Collections.Generic;
+using UnityEngine;
+using static TranslationEnums;
+
+/// <summary>
 /// Create scanner type.
 /// </summary>
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class CreateScannerType : MonoBehaviour 
 {
 	private float time;
 	private int xTriggered;
 	private bool timeStarted = false;
 
-	public float waitTime = 0;
+    public float waitTime = 0;
 
-	//ENUMS
-	private bool isPatrolPattern;
+    #region ENUMS
+
+    private bool isPatrolPattern;
 	private bool isActivePattern;
 	public enum MovementPattern
 	{
 		isPatrolPattern,
 		isActivePattern
-	}
-
-	private bool goUpFirst;
-	private bool goSidewaysFirst;
-	public enum TranslationPattern
-	{
-		goUpFirst,
-		goSidewaysFirst
 	}
 
 	private bool isRedScanner;
@@ -38,24 +30,21 @@ public class CreateScannerType : MonoBehaviour
 		isRedScanner,
 		isBlueScanner
 	}
-		
-	[Header("Scanner Prefabs")]
+
+    #endregion ENUMS
+
+    [Header("Scanner Prefabs")]
 	public GameObject redScanner;
 	public GameObject blueScanner;
 
 	[Header("Scanner Settings")]
 	public ScannerType scannerType;
 	public MovementPattern movementPattern;
-	public TranslationPattern translationPattern;
+    public TranslationPattern selectedTranslationPattern;
 
 	[Header("Initialize Movement Attributes")]
 	public float hashTime;
 	public float hashDelay;
-
-	[Header("Initialize Translation Attributes")]
-	public float targetTranslation;
-	public float translationSpeed;
-	public float translationDelay;
 
 	private Vector3 spawnPoint;
 
@@ -63,21 +52,15 @@ public class CreateScannerType : MonoBehaviour
 	private GameObject patrolScanner;
 	private GameObject activeScanner;
 
-	//keep a list of scanners for each trigger
-	private List<GameObject> lvl2Scanner;
-	//=======================================================
-
-	// INITIALIZATION
 	void Start () 
 	{ 
 		time = 0;
-		setEnumSettings ();
+		SetEnumSettings ();
 
 		xTriggered = 0;
 		spawnPoint = gameObject.transform.position;
 	}
 
-	//UPDATE once per frame
 	void Update()
 	{
 		if (timeStarted) 
@@ -86,9 +69,9 @@ public class CreateScannerType : MonoBehaviour
 		}
 	}
 
-	//TRIGGER
-	//=======================================================
-	void OnTriggerEnter2D(Collider2D collider)
+    #region TRIGGERS
+
+    void OnTriggerEnter2D(Collider2D collider)
 	{
 		if (collider.tag == "Player")
 		{
@@ -96,21 +79,23 @@ public class CreateScannerType : MonoBehaviour
 			if (time <= waitTime && timeStarted == false) 
 			{
 				timeStarted = true; 
-				spawnScannerWithSettings ();
+				SpawnScannerWithSettings ();
 			}
 
 			//Only do this once wait time has passed;
 			if (time > waitTime) 
 			{
-				spawnScannerWithSettings ();
+				SpawnScannerWithSettings ();
 				time = 0;
 			}
-		} // end Enter2DTrigger
-	} //end class
+		} 
+	}
 
-	//FUNCTIONS
-	//=======================================================
-	private void spawnScannerWithSettings()
+    #endregion TRIGGERS
+
+    #region FUNCTIONS
+
+    private void SpawnScannerWithSettings()
 	{
 		if (isPatrolPattern == true && xTriggered < 1 && isRedScanner)
 		{
@@ -118,8 +103,7 @@ public class CreateScannerType : MonoBehaviour
 				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
 				transform.rotation) as GameObject;
 			
-			patrolScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPatrolPattern, isActivePattern, goUpFirst, goSidewaysFirst, 
-				targetTranslation, translationSpeed, translationDelay, hashTime, hashDelay);
+			patrolScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, isPatrolPattern, isActivePattern, selectedTranslationPattern,  hashTime, hashDelay);
 
 			xTriggered++;
 		}
@@ -130,8 +114,8 @@ public class CreateScannerType : MonoBehaviour
 				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
 				transform.rotation) as GameObject;
 			
-			patrolScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPatrolPattern, isActivePattern, goUpFirst, goSidewaysFirst,
-				targetTranslation, translationSpeed, translationDelay, hashTime, hashDelay);
+			patrolScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, isPatrolPattern, isActivePattern, selectedTranslationPattern,
+				 hashTime, hashDelay);
 
 			xTriggered++;
 		}
@@ -142,8 +126,8 @@ public class CreateScannerType : MonoBehaviour
 				new Vector3(transform.position.x + 20, transform.position.y + 6, transform.position.z), 
 				transform.rotation) as GameObject;
 			
-			activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPatrolPattern, isActivePattern, goUpFirst, goSidewaysFirst,
-				targetTranslation, translationSpeed, translationDelay, hashTime, hashDelay);
+			activeScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, isPatrolPattern, isActivePattern, selectedTranslationPattern,
+				 hashTime, hashDelay);
 		}
 
 		if (isActivePattern == true && isRedScanner) 
@@ -152,14 +136,12 @@ public class CreateScannerType : MonoBehaviour
 				new Vector3(transform.position.x + 20, transform.position.y + 6, transform.position.z), 
 				transform.rotation) as GameObject;
 			
-			activeScanner.GetComponent<ScannerPattern> ().Initialize (spawnPoint, isPatrolPattern, isActivePattern, goUpFirst, goSidewaysFirst,
-				targetTranslation, translationSpeed, translationDelay, hashTime, hashDelay);
+			activeScanner.GetComponent<ScannerPattern>().Initialize (spawnPoint, isPatrolPattern, isActivePattern, selectedTranslationPattern,
+                hashTime, hashDelay);
 		}
 	}
 
-	//INITIALIZE SETTINGS
-	//=======================================================
-	private void setEnumSettings()
+	private void SetEnumSettings()
 	{
 		//MOVEMENT PATTERN
 		if(movementPattern == MovementPattern.isPatrolPattern)
@@ -172,17 +154,6 @@ public class CreateScannerType : MonoBehaviour
 			isActivePattern = true;
 		}
 
-		//MOVEMENT DIRECTION
-		if(translationPattern == TranslationPattern.goUpFirst)
-		{
-			goUpFirst = true;
-			goSidewaysFirst = false;
-		}else if (translationPattern == TranslationPattern.goSidewaysFirst)
-		{
-			goUpFirst = false;
-			goSidewaysFirst = true;
-		}
-
 		//SCANNER TYPE
 		if(scannerType == ScannerType.isRedScanner)
 		{
@@ -193,6 +164,7 @@ public class CreateScannerType : MonoBehaviour
 			isRedScanner = false;
 			isBlueScanner = true;
 		}
-	}//end function
+	}
 
+    #endregion FUNCTIONS
 }

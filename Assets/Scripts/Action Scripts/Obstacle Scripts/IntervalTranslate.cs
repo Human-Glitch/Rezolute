@@ -1,34 +1,19 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static TranslationEnums;
 
 /// <summary>
 /// This script translates an object at an interval with a periodic delay between translations.
 /// </summary>
 public class IntervalTranslate : MonoBehaviour 
 {
-	private bool hasStopped;
-	private float translation = 0; 
-	private float translationAmt = 0;
-	private float originalTarget = 0;
-
     public float intervalTime = 0f;
     public float intervalDistance = 0f;
     public float intervalDelay = 0f;
     public bool useStartDirection = true;
-    private bool readyToReverse = false;
-
-    private bool goUpFirst;
-	private bool goSidewaysFirst;
-	public enum TranslationPattern
-	{
-		UpDown,
-		LeftRight
-	}
     public TranslationPattern selectedTranslationPattern;
 
-	public float targetTranslation = 0f;
-	public float translationDelay = 0f;
-	public float translationSpeed = 1f;
+    private bool readyToReverse = false;
 
     void Start()
 	{
@@ -45,20 +30,18 @@ public class IntervalTranslate : MonoBehaviour
     {
         // Set the distance and direction for the current interval
         Vector3 intervalDistance;
-        if(readyToReverse)
-        {
-            intervalDistance = ConfigureDistance().ReverseDirection();
-        }
-        else
-        { 
-            intervalDistance = ConfigureDistance(); 
-        }
+        intervalDistance = ConfigureDistance();
 
-        Vector3 fromPosition = transform.position;
-        Vector3 toPosition = fromPosition + intervalDistance;
+        if(readyToReverse && selectedTranslationPattern != TranslationPattern.DoNothing)
+        {
+            intervalDistance = intervalDistance.ReverseDirection();
+        }
 
         // Translate the object per frame by interpolating between two points
+        Vector3 fromPosition = transform.position;
+        Vector3 toPosition = fromPosition + intervalDistance;
         float time = 0f;
+
         while (time != 1)
         {
             time += Time.deltaTime / intervalTime;
@@ -94,7 +77,7 @@ public class IntervalTranslate : MonoBehaviour
                 return new Vector3(direction, 0, 0) * intervalDistance;
 
             default:
-                return new Vector3();
+                return new Vector3(1, 1, 1);
         }
 	}
 
@@ -103,17 +86,12 @@ public class IntervalTranslate : MonoBehaviour
     /// </summary>
     /// <param name="goUpFirst"></param>
     /// <param name="goSidewaysFirst"></param>
-    /// <param name="targetTranslation"></param>
-    /// <param name="translationSpeed"></param>
-    /// <param name="translationDelay"></param>
-	public void InitializeScannerTranslationPattern(bool goUpFirst, bool goSidewaysFirst, 
-		float targetTranslation, float translationSpeed, float translationDelay)
+    /// <param name="intervalDistance"></param>
+    /// <param name="intervalTime"></param>
+    /// <param name="intervalDelay"></param>
+	public void InitializeScannerTranslationPattern(TranslationPattern selectedTranslationPattern)
 	{
-		this.targetTranslation = targetTranslation;
-		this.translationSpeed = translationSpeed;
-		this.translationDelay = translationDelay;
-
-        return;
+		this.selectedTranslationPattern = selectedTranslationPattern;
 	}
     #endregion FUNCTIONS
 }
@@ -129,3 +107,13 @@ public static class TranslationExtensions
         return setting *= REVERSE;
     }
 };
+
+public static class TranslationEnums
+{
+    public enum TranslationPattern
+	{
+		UpDown,
+		LeftRight,
+        DoNothing
+	}
+}
