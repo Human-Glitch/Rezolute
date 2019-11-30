@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using static Enums;
 
 /// <summary>
@@ -8,8 +7,10 @@ using static Enums;
 public class CreateScannerType : MonoBehaviour 
 {
 	private float time;
-	private int xTriggered;
+	private bool stopSpawns = false;
 	private bool timeStarted = false;
+    private readonly Vector3 ActivePositionOffSet = new Vector3(20f, 6f, 0);
+    private readonly Vector3 PatrolPositionOffSet = new Vector3(20f, 20f, 0);
 
     public float waitTime = 0;
 
@@ -21,22 +22,18 @@ public class CreateScannerType : MonoBehaviour
 	public ScannerType selectedScannerType;
 	public MovementPattern selectedMovementPattern;
     public TranslationPattern selectedTranslationPattern;
+    public bool isOneWay = false;
 
 	[Header("Initialize Movement Attributes")]
 	public float hashTime;
 	public float hashDelay;
 
 	private Vector3 spawnPoint;
-
-	//GameObjects for the prefabs to go into
-	private GameObject patrolScanner;
-	private GameObject activeScanner;
+    private GameObject scanner;
 
 	void Start () 
 	{ 
 		time = 0;
-
-		xTriggered = 0;
 		spawnPoint = gameObject.transform.position;
 	}
 
@@ -52,22 +49,21 @@ public class CreateScannerType : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider)
 	{
-		if (collider.tag == "Player")
+		if (collider.tag != "Player") return;
+		
+		//Do this once
+		if (time <= waitTime && timeStarted == false) 
 		{
-			//Do this once
-			if (time <= waitTime && timeStarted == false) 
-			{
-				timeStarted = true; 
-				SpawnScannerWithSettings ();
-			}
+			timeStarted = true; 
+			SpawnScannerWithSettings();
+		}
 
-			//Only do this once wait time has passed;
-			if (time > waitTime) 
-			{
-				SpawnScannerWithSettings ();
-				time = 0;
-			}
-		} 
+		//Only do this once wait time has passed;
+		if (time > waitTime) 
+		{
+			SpawnScannerWithSettings();
+			time = 0;
+		}
 	}
 
     #endregion TRIGGERS
@@ -76,48 +72,53 @@ public class CreateScannerType : MonoBehaviour
 
     private void SpawnScannerWithSettings()
 	{
-		if (selectedMovementPattern == MovementPattern.Patrol && xTriggered < 1 && selectedScannerType == ScannerType.RedScanner)
-		{
-			patrolScanner = Instantiate (redScanner, 
-				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
-				transform.rotation) as GameObject;
-			
-			patrolScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, selectedMovementPattern, selectedTranslationPattern,  hashTime, hashDelay);
+        if(stopSpawns) return;
 
-			xTriggered++;
-		}
+        scanner = new GameObject();
 
-		if(selectedMovementPattern == MovementPattern.Patrol && xTriggered < 1 && selectedScannerType == ScannerType.BlueScanner)
-		{
-			patrolScanner = Instantiate (blueScanner, 
-				new Vector3(transform.position.x + 20, transform.position.y + 20, transform.position.z), 
-				transform.rotation) as GameObject;
-			
-			patrolScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, selectedMovementPattern, selectedTranslationPattern,
-				 hashTime, hashDelay);
+        var scannerSettings = new ScannerSettings
+        {
+            SpawnPoint = spawnPoint,
+            SelectedMovementPattern = selectedMovementPattern,
+            HashTime = hashTime,
+            HashDelay = hashDelay
+        };
 
-			xTriggered++;
-		}
+        var translationSettings = new TranslationSettings
+        {
+            SelectedTranslationPattern = selectedTranslationPattern,
+            IsOneWay = isOneWay
+        };
 
-		if (selectedMovementPattern == MovementPattern.Active && selectedScannerType == ScannerType.BlueScanner) 
-		{
-			activeScanner = Instantiate (blueScanner, 
-				new Vector3(transform.position.x + 20, transform.position.y + 6, transform.position.z), 
-				transform.rotation) as GameObject;
-			
-			activeScanner.GetComponent<ScannerPattern>().Initialize(spawnPoint, selectedMovementPattern, selectedTranslationPattern,
-				 hashTime, hashDelay);
-		}
+        switch (selectedScannerType)
+        {
+            case(ScannerType.RedScanner):
+                scanner = Instantiate(redScanner,
+                    new Vector3(transform.position.x, transform.position.y, transform.position.z),
+                    scanner.transform.rotation = transform.rotation);
+                break;
 
-		if (selectedMovementPattern == MovementPattern.Active && selectedScannerType == ScannerType.RedScanner) 
-		{
-			activeScanner = Instantiate (redScanner, 
-				new Vector3(transform.position.x + 20, transform.position.y + 6, transform.position.z), 
-				transform.rotation) as GameObject;
-			
-			activeScanner.GetComponent<ScannerPattern>().Initialize (spawnPoint, selectedMovementPattern, selectedTranslationPattern,
-                hashTime, hashDelay);
-		}
+            case(ScannerType.BlueScanner):
+                scanner = Instantiate(blueScanner,
+                    new Vector3(transform.position.x, transform.position.y, transform.position.z),
+                    scanner.transform.rotation = transform.rotation);
+                break;
+        }
+
+        switch (selectedMovementPattern)
+        {
+            case(MovementPattern.Active):
+                scanner.transform.position += ActivePositionOffSet;
+                break;
+
+            case(MovementPattern.Patrol):
+                scanner.transform.position += PatrolPositionOffSet;
+                stopSpawns = true;
+                break;
+        }
+
+        scanner.GetComponent<ScannerPattern>().Initialize(scannerSettings);
+		scanner.GetComponent<IntervalTranslate>().Initialize(translationSettings);
 	}
 
     #endregion FUNCTIONS

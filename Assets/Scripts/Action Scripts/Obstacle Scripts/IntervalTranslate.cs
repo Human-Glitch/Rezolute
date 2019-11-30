@@ -11,6 +11,7 @@ public class IntervalTranslate : MonoBehaviour
     public float intervalDistance = 0f;
     public float intervalDelay = 0f;
     public bool useStartDirection = true;
+    public bool isOneWay = false;
     public TranslationPattern selectedTranslationPattern;
 
     private bool readyToReverse = false;
@@ -54,9 +55,13 @@ public class IntervalTranslate : MonoBehaviour
         // Delay motion between intervals
         yield return new WaitForSecondsRealtime(intervalDelay);
         
+        if(isOneWay) yield break;
+        
         // Set the bit to indicate to reverse direction at during the next internval.
         readyToReverse = readyToReverse ? false : true;
         StartCoroutine(Translate());
+        
+        
     }
     #endregion COROUTINES
 
@@ -89,9 +94,10 @@ public class IntervalTranslate : MonoBehaviour
     /// <param name="intervalDistance"></param>
     /// <param name="intervalTime"></param>
     /// <param name="intervalDelay"></param>
-	public void InitializeScannerTranslationPattern(TranslationPattern selectedTranslationPattern)
+	public void Initialize(TranslationSettings translationSettings)
 	{
-		this.selectedTranslationPattern = selectedTranslationPattern;
+		selectedTranslationPattern = translationSettings.SelectedTranslationPattern;
+        isOneWay = translationSettings.IsOneWay;
 	}
     #endregion FUNCTIONS
 }

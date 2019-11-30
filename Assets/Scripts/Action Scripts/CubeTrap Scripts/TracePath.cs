@@ -44,8 +44,7 @@ public class TracePath : MonoBehaviour
 						"y", checkpoint [counter].transform.position.y, 
 						"time", hashTime,
 						"delay", hashDelay, 
-						"onupdate", " myUpdateFunction"//, 
-						//"looptype", iTween.LoopType.loop
+						"onupdate", "myUpdateFunction"
 					)
 				);	
 			}

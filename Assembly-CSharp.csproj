@@ -86,6 +86,8 @@
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\wordCloudFade.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\movingBackground.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" />
+    <Compile Include="Assets\Scripts\Models\ScannerSettings.cs" />
+    <Compile Include="Assets\Scripts\Models\TranslationSettings.cs" />
     <Compile Include="Assets\Scripts\NPCs\EnemyScripts\EnemyPatrol.cs" />
     <Compile Include="Assets\Scripts\NPCs\EnemyScripts\FauxGravityAttractor.cs" />
     <Compile Include="Assets\Scripts\NPCs\EnemyScripts\FauxGravityBody.cs" />

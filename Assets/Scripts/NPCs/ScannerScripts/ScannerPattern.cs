@@ -26,8 +26,7 @@ public class ScannerPattern : MonoBehaviour
 					"y", spawnPoint.y + 2.5, 
 					"time", hashTime,
 					"delay", hashDelay, 
-					"onupdate", " myUpdateFunction"
-					//"looptype", iTween.LoopType.loop
+					"onupdate", "myUpdateFunction"
 				)
 			);	
 			CompleteITweenCo ();
@@ -40,8 +39,7 @@ public class ScannerPattern : MonoBehaviour
 					"y", spawnPoint.y + 6, 
 					"time", hashTime,
 					"delay", hashDelay, 
-					"onupdate", " myUpdateFunction"
-					//"looptype", iTween.LoopType.loop
+					"onupdate", "myUpdateFunction"
 				)
 			);
 			TimedDeathCo ();
@@ -49,44 +47,39 @@ public class ScannerPattern : MonoBehaviour
 	}
 
     #region FUNCTIONS
-    public void Initialize(Vector3 spawnPoint, MovementPattern selectedMovementPattern, TranslationPattern selectedTranslationPattern, 
-        float hashTime, float hashDelay)
+    public void Initialize(ScannerSettings scannerSettings)
 	{
-		this.spawnPoint = spawnPoint;
-        this.selectedMovementPattern = selectedMovementPattern;
-		this.hashTime = hashTime;
-		this.hashDelay = hashDelay;
-
-		//initialize translation variables in Interval translate
-		gameObject.GetComponent<IntervalTranslate>().InitializeScannerTranslationPattern (selectedTranslationPattern);
+		spawnPoint = scannerSettings.SpawnPoint;
+        selectedMovementPattern = scannerSettings.SelectedMovementPattern;
+		hashTime = scannerSettings.HashTime;
+		hashDelay = scannerSettings.HashDelay;
 	}
 
-	private void stopITween(){ reachedTarget = true; }
+	private void StopITween(){ reachedTarget = true; }
     #endregion FUNCTIONS
 
     #region COROUTINES
     private void TimedDeathCo ()
 	{
-		StartCoroutine ("timedDeath");
+		StartCoroutine (TimedDeath());
 	}
 
 	private IEnumerator TimedDeath()
 	{
 		Destroy (this.gameObject, 5);
 		yield return new WaitForSecondsRealtime(4f);
-		Debug.Log ("Destroyed scanner");
-		gameObject.GetComponent<Fade> ().enabled = true;
+		gameObject.GetComponent<Fade>().enabled = true;
 	}
 
 	private void CompleteITweenCo ()
 	{
-		StartCoroutine ("completeITween");
+		StartCoroutine(CompleteITween());
 	}
 
 	private IEnumerator CompleteITween()
 	{
 		yield return new WaitForSecondsRealtime(hashTime - .5f);
-		stopITween ();
+		StopITween();
 	}
     #endregion COROUTINES
 }
