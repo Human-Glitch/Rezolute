@@ -25,6 +25,7 @@ public class CreateScannerType : MonoBehaviour
     public bool isOneWay = false;
 
 	[Header("Initialize Movement Attributes")]
+    public float hashDistance;
 	public float hashTime;
 	public float hashDelay;
 
@@ -80,8 +81,9 @@ public class CreateScannerType : MonoBehaviour
         {
             SpawnPoint = spawnPoint,
             SelectedMovementPattern = selectedMovementPattern,
-            HashTime = hashTime,
-            HashDelay = hashDelay
+            Distance = hashDistance,
+            Time = hashTime,
+            Delay = hashDelay
         };
 
         var translationSettings = new TranslationSettings

@@ -6,9 +6,9 @@ using static Enums;
 public class TranslationSettings
 {
     public TranslationPattern SelectedTranslationPattern { get; set; }
-    public float IntervalTime { get; set; }
-    public float IntervalDistance { get; set; }
-    public float IntervalDelay { get; set; }
+    public float Time { get; set; }
+    public float Distance { get; set; }
+    public float Delay { get; set; }
     public bool IsOneWay { get; set; }
     public bool UseStartDirection { get; set; }
 }
