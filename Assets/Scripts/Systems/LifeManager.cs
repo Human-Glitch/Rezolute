@@ -50,7 +50,7 @@ public class LifeManager : MonoBehaviour {
 		}
 	}
 
-	public void gainLife()
+	public void GainLife()
 	{
 		if (lifeCounter <= maxLives ) //max life
 		{

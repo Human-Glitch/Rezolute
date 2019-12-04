@@ -7,7 +7,7 @@ using static Enums;
 public class CreateScannerType : MonoBehaviour 
 {
 	private float time;
-	private bool stopSpawns = false;
+	private bool stopSpawning = false;
 	private bool timeStarted = false;
     private readonly Vector3 ActivePositionOffSet = new Vector3(20f, 6f, 0);
     private readonly Vector3 PatrolPositionOffSet = new Vector3(20f, 20f, 0);
@@ -25,6 +25,7 @@ public class CreateScannerType : MonoBehaviour
     public bool isOneWay = false;
 
 	[Header("Initialize Movement Attributes")]
+    public float hashDistance;
 	public float hashTime;
 	public float hashDelay;
 
@@ -72,7 +73,7 @@ public class CreateScannerType : MonoBehaviour
 
     private void SpawnScannerWithSettings()
 	{
-        if(stopSpawns) return;
+        if(stopSpawning) return;
 
         scanner = new GameObject();
 
@@ -80,8 +81,9 @@ public class CreateScannerType : MonoBehaviour
         {
             SpawnPoint = spawnPoint,
             SelectedMovementPattern = selectedMovementPattern,
-            HashTime = hashTime,
-            HashDelay = hashDelay
+            Distance = hashDistance,
+            Time = hashTime,
+            Delay = hashDelay
         };
 
         var translationSettings = new TranslationSettings
@@ -113,7 +115,7 @@ public class CreateScannerType : MonoBehaviour
 
             case(MovementPattern.Patrol):
                 scanner.transform.position += PatrolPositionOffSet;
-                stopSpawns = true;
+                stopSpawning = true;
                 break;
         }
 
