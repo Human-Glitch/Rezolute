@@ -25,7 +25,7 @@ public class ScannerPattern : MonoBehaviour
 
             case(MovementPattern.Patrol):
                 fromPosition = scannerSettings.SpawnPoint + new Vector3(15f, 4f, 0f);
-                toPosition = fromPosition + new Vector3(scannerSettings.Distance, 0, 0);
+                toPosition = fromPosition + new Vector3(scannerSettings.Distance, 0f, 0f);
                 break;
 
             default:
@@ -96,7 +96,7 @@ public class ScannerPattern : MonoBehaviour
                 break;
 
             case(MovementPattern.Patrol):
-                //yield return new WaitForSecondsRealtime(scannerSettings.Delay);
+                yield return new WaitForSecondsRealtime(scannerSettings.Delay);
 
                 Vector3 tempPosition = new Vector3(toPosition.x, toPosition.y, toPosition.z);
                 toPosition = fromPosition;
@@ -110,7 +110,7 @@ public class ScannerPattern : MonoBehaviour
 	{
 		Destroy(this.gameObject, scannerSettings.Delay + 1f);
 		yield return new WaitForSecondsRealtime(scannerSettings.Delay);
-		//gameObject.GetComponent<Fade>().enabled = true;
+		gameObject.GetComponent<Fade>().enabled = true;
 	}
 
 	//private IEnumerator CompleteITween()
