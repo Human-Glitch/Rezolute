@@ -1,106 +1,122 @@
-﻿/// <summary>
+﻿using System.Collections;
+using UnityEngine;
+using static Enums;
+
+/// <summary>
 /// This script determines the behavior of the spawned scanner 
 /// based off the settings initialized from <CreateScanner>.
 /// </summary>
-
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class ScannerPattern : MonoBehaviour 
 {
-	private bool isPatrolPattern;
-	private bool isActivePattern;
-	private bool isRedScanner;
-	private bool isBlueScanner;
-	private bool goUpFirst;
-	private bool goSidewaysFirst;
+	//private bool reachedTarget = false;
+    public ScannerSettings scannerSettings;
+    
+    public Vector3 fromPosition;
+    public Vector3 toPosition;
 
-	public bool reachedTarget = false;
+    void Start()
+    {
+        switch (scannerSettings.SelectedMovementPattern)
+        {
+            case(MovementPattern.Active):
+                fromPosition = scannerSettings.SpawnPoint + new Vector3(30f, 6f, 0f);
+                toPosition = fromPosition - new Vector3(scannerSettings.Distance, 0f, 0f);
+                break;
 
-	private float hashTime;
-	private float hashDelay;
-	private Vector3 spawnPoint;
-	//=======================================================
-	
-	// Update is called once per frame
-	void Update () {
+            case(MovementPattern.Patrol):
+                fromPosition = scannerSettings.SpawnPoint + new Vector3(15f, 4f, 0f);
+                toPosition = fromPosition + new Vector3(scannerSettings.Distance, 0f, 0f);
+                break;
 
-		if (isPatrolPattern == true && !reachedTarget) 
-		{
-			iTween.MoveUpdate (gameObject, 
-				iTween.Hash ("x", (spawnPoint.x + 20), 
-					"y", spawnPoint.y + 2.5, 
-					"time", hashTime,
-					"delay", hashDelay, 
-					"onupdate", " myUpdateFunction"
-					//"looptype", iTween.LoopType.loop
-				)
-			);	
-			completeITweenCo ();
-		}// end plantedType
+            default:
+                fromPosition = new Vector3();
+                toPosition = new Vector3();
+                break;
+        }
 
-		if (isActivePattern == true) 
-		{
-			iTween.MoveUpdate (gameObject, 
-				iTween.Hash ("x", (spawnPoint.x - 40), 
-					"y", spawnPoint.y + 6, 
-					"time", hashTime,
-					"delay", hashDelay, 
-					"onupdate", " myUpdateFunction"
-					//"looptype", iTween.LoopType.loop
-				)
-			);	//end iTween
-			timedDeathCo ();
-		}//end activetype
-	}
+        StartCoroutine(ActivateMovementPattern());
+    }
 
-	//Functions
-	//=======================================================
-	public void Initialize(Vector3 spawnPoint, bool isPatrolPattern, bool isActivePattern, bool goUpFirst,  bool goSidewaysFirst,
-		float targetTranslation, float translationSpeed, float translationDelay, float hashTime, float hashDelay)
+ //   void Update () {
+
+	//	if (scannerSettings.SelectedMovementPattern == MovementPattern.Patrol && reachedTarget == false) 
+	//	{
+	//		iTween.MoveUpdate(gameObject, 
+	//			iTween.Hash("x", (scannerSettings.SpawnPoint.x + 20), 
+	//				"y", scannerSettings.SpawnPoint.y + 2.5, 
+	//				"time", scannerSettings.HashTime,
+	//				"delay", scannerSettings.HashDelay, 
+	//				"onupdate", "myUpdateFunction"
+	//			)
+	//		);	
+	//		StartCoroutine(CompleteITween());
+	//	}
+
+	//	if (scannerSettings.SelectedMovementPattern == MovementPattern.Active) 
+	//	{
+	//		iTween.MoveUpdate(gameObject, 
+	//			iTween.Hash("x", (scannerSettings.SpawnPoint.x - 40), 
+	//				"y", scannerSettings.SpawnPoint.y + 6, 
+	//				"time", scannerSettings.HashTime,
+	//				"delay", scannerSettings.HashDelay, 
+	//				"onupdate", "myUpdateFunction"
+	//			)
+	//		);
+	//		StartCoroutine(TimedDeath());
+	//	}
+	//}
+
+    #region FUNCTIONS
+    public void Initialize(ScannerSettings scannerSettings)
 	{
-		this.spawnPoint = spawnPoint;
-		this.isPatrolPattern = isPatrolPattern;
-		this.isActivePattern = isActivePattern;
-		this.hashTime = hashTime;
-		this.hashDelay = hashDelay;
-
-		//initialize translation variables in Interval translate
-		gameObject.GetComponent<IntervalTranslate> ().initScannerTranslationPattern (goUpFirst, 
-			goSidewaysFirst, targetTranslation, translationSpeed, translationDelay);
+		this.scannerSettings = scannerSettings;
 	}
 
-	private void Destroy()
+	//private void StopITween(){ reachedTarget = true; }
+    #endregion FUNCTIONS
+
+    #region COROUTINES
+
+    private IEnumerator ActivateMovementPattern()
+    {
+        float time = 0f;
+        while (time != 1)
+        {
+            time += Time.deltaTime / scannerSettings.Time;
+            time = Mathf.Clamp(time, 0, 1);
+
+            transform.position = Vector3.Lerp(fromPosition, toPosition, time);
+            yield return null;
+        }
+
+        switch (scannerSettings.SelectedMovementPattern)
+        {
+            case(MovementPattern.Active):
+                StartCoroutine(TimedDeath());
+                break;
+
+            case(MovementPattern.Patrol):
+                yield return new WaitForSecondsRealtime(scannerSettings.Delay);
+
+                Vector3 tempPosition = new Vector3(toPosition.x, toPosition.y, toPosition.z);
+                toPosition = fromPosition;
+                fromPosition = tempPosition;
+
+                StartCoroutine(ActivateMovementPattern());
+                break;
+        }
+    }
+	private IEnumerator TimedDeath()
 	{
-		Destroy (this.gameObject);
+		Destroy(this.gameObject, scannerSettings.Delay + 1f);
+		yield return new WaitForSecondsRealtime(scannerSettings.Delay);
+		gameObject.GetComponent<Fade>().enabled = true;
 	}
 
-	private void stopITween(){ reachedTarget = true; }
-
-	//COROUTINES
-	//=======================================================
-	private void timedDeathCo ()
-	{
-		StartCoroutine ("timedDeath");
-	}
-
-	private IEnumerator timedDeath()
-	{
-		Destroy (this.gameObject, 5);
-		yield return new WaitForSecondsRealtime(4f);
-		Debug.Log ("Destroyed scanner");
-		gameObject.GetComponent<Fade> ().enabled = true;
-	}
-
-	private void completeITweenCo ()
-	{
-		StartCoroutine ("completeITween");
-	}
-
-	private IEnumerator completeITween()
-	{
-		yield return new WaitForSecondsRealtime(hashTime - .5f);
-		stopITween ();
-	}
+	//private IEnumerator CompleteITween()
+	//{
+	//	yield return new WaitForSecondsRealtime(scannerSettings.HashTime - .5f);
+	//	StopITween();
+	//}
+    #endregion COROUTINES
 }

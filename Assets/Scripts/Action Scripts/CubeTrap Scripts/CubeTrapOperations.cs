@@ -106,19 +106,17 @@ public class CubeTrapOperations : MonoBehaviour
 				bugList [activeQueue].SetActive (true);
 
 				//Create a spawn beam where an enemy is created
-				var newEnemyBeam = Instantiate (enemySpawnBeam, new Vector3 
-					(bugList [activeQueue].transform.position.x,
-					bugList [activeQueue].transform.position.y, 
-					bugList [activeQueue].transform.position.z), 
-					bugList [activeQueue].transform.rotation) as GameObject;
+				GameObject newEnemyBeam = Instantiate (enemySpawnBeam, 
+                    bugList [activeQueue].transform.position + new Vector3(0f, 0f, -2f), 
+					bugList [activeQueue].transform.rotation);
+
 				newEnemyBeam.transform.SetParent (bugList [activeQueue].transform);
-				//gameObject.transform.SetParent (newEnemyBeam.transform);
 
 				newestSpawnOffset += initialSpawnOffset;
 				activeQueue++;
-			}//end if
-		}//end if
-	}//end function
+			}
+		}
+	}
 
 //TRIGGERS
 //==============================================================
