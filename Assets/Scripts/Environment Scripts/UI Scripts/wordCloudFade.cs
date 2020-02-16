@@ -37,7 +37,6 @@ public class wordCloudFade : MonoBehaviour
 			color = meshRenderer.material.color;
 			originalColor = color;
 		}
-			
 	}
 
 	void Update ()
