@@ -1,5 +1,6 @@
 ﻿//This script is a container for the container for prefab 3D text objects that have TextMeshes
 
+using Assets.Scripts.Systems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,7 +28,7 @@ public class WordCloud : MonoBehaviour
 
     void Start()
 	{
-		if (gameObject.CompareTag("PlayerCloud")) 
+		if (gameObject.CompareTag(Consts.WordCloudTags.PLAYER_CLOUD)) 
 		{
 			//clearCloud ();
 		}

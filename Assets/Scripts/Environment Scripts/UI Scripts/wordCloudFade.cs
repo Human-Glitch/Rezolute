@@ -1,81 +1,82 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Systems;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class wordCloudFade : MonoBehaviour 
 {
-	public float fadeSpeed;
+    #region Members
+
+    public float fadeSpeed;
 	public float fadePeriod;
 	public float timeActive;
 
-	public bool transparencyGoingUp ;
+	public bool transparencyGoingUp;
 	public bool transparencyGoingDown;
 
 	private bool startedDelay;
 
 	private GameObject wordCloud;
-	//private GameObject mainCamera;
 	private MeshRenderer meshRenderer;
-	private Color col;
-	private Color originalCol;
-	//==============================================================
+	private Color color;
+	private Color originalColor;
 
-	// INITIALIZATION
-	void Start () 
+    #endregion Members
+
+    void Start () 
 	{
-		//mainCamera = GameObject.FindWithTag ("MainCamera");
-
-		if (this.transform.parent != null && this.transform.parent.tag == "PlayerCloud")
+		if (this.transform.parent != null && transform.parent.tag == Consts.WordCloudTags.PLAYER_CLOUD)
+		{
 			wordCloud = this.transform.parent.gameObject;
-			//wordCloud = GameObject.FindWithTag ("PlayerCloud");
-		else if(this.transform.parent != null && this.transform.parent.tag == "EnemyCloud")
+		}
+		else if(this.transform.parent != null && transform.parent.tag == Consts.WordCloudTags.ENEMY_CLOUD)
+		{
 			wordCloud = this.transform.parent.gameObject;
-			//wordCloud = GameObject.FindWithTag ("EnemyCloud");
-		//transform = transform;
-		timeActive = 0;
-		meshRenderer = GetComponent<MeshRenderer> ();
-		col = meshRenderer.material.color;
-		originalCol = col;
+			timeActive = 0;
+			meshRenderer = GetComponent<MeshRenderer> ();
+			color = meshRenderer.material.color;
+			originalColor = color;
+		}
+			
 	}
 
-	// Update is called once per frame
 	void Update ()
 	{
 		if (GetComponent<Renderer>().IsVisibleFrom(Camera.main)) 
 		{
-			if (transparencyGoingUp) {
+			if (transparencyGoingUp) 
+			{
 				timeActive += Time.deltaTime;
-				col = meshRenderer.material.color;
-				col.a = Mathf.Lerp (col.a, 0f, fadeSpeed * timeActive);
-				meshRenderer.material.color = col;
+				color = meshRenderer.material.color;
+				color.a = Mathf.Lerp (color.a, 0f, fadeSpeed * timeActive);
+				meshRenderer.material.color = color;
 
-				if (timeActive > fadePeriod && !startedDelay) {
+				if (timeActive > fadePeriod && !startedDelay) 
+				{
 					wordCloud.GetComponent<WordCloud> ().HasFaded = false;
-					delayFadeCo ();
+					StartCoroutine(DelayFade());
 				}
 
-			} else if (transparencyGoingDown) {
+			} 
+			else if (transparencyGoingDown) 
+			{
 				timeActive += Time.deltaTime;
-				col = meshRenderer.material.color;
-				col.a = Mathf.Lerp (originalCol.a, 1f, fadeSpeed * timeActive);
-				meshRenderer.material.color = col;
+				color = meshRenderer.material.color;
+				color.a = Mathf.Lerp(originalColor.a, 1f, fadeSpeed * timeActive);
+				meshRenderer.material.color = color;
 
-				if (timeActive > fadePeriod && !startedDelay) {
+				if (timeActive > fadePeriod && !startedDelay) 
+				{
 					wordCloud.GetComponent<WordCloud>().HasFaded = true;
-					delayFadeCo ();
+					StartCoroutine(DelayFade());
 				}
-			}//end else
-		}//end renderer
-	}//end update
-
-	//COROUTINES
-	//=======================================================
-	private void delayFadeCo ()
-	{
-		StartCoroutine (delayFade());
+			}
+		}
 	}
 
-	private IEnumerator delayFade()
+    #region Coroutines
+	
+	private IEnumerator DelayFade()
 	{
 		startedDelay = true;
 		yield return new WaitForSecondsRealtime (1f);
@@ -94,5 +95,7 @@ public class wordCloudFade : MonoBehaviour
 		timeActive = 0;
 		startedDelay = false;
 	}
+
+    #endregion Coroutines
 }
 
