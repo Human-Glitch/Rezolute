@@ -50,7 +50,7 @@ public class wordCloudFade : MonoBehaviour
 				meshRenderer.material.color = col;
 
 				if (timeActive > fadePeriod && !startedDelay) {
-					wordCloud.GetComponent<WordCloud> ().setHasFaded (false);
+					wordCloud.GetComponent<WordCloud> ().HasFaded = false;
 					delayFadeCo ();
 				}
 
@@ -61,7 +61,7 @@ public class wordCloudFade : MonoBehaviour
 				meshRenderer.material.color = col;
 
 				if (timeActive > fadePeriod && !startedDelay) {
-					wordCloud.GetComponent<WordCloud> ().setHasFaded (true);
+					wordCloud.GetComponent<WordCloud>().HasFaded = true;
 					delayFadeCo ();
 				}
 			}//end else

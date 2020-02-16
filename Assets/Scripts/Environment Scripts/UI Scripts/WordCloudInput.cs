@@ -20,7 +20,7 @@ public class WordCloudInput : MonoBehaviour
 		{
 			messageCloud = transform.Find("messageCloud").gameObject; //cbecks from parent object to find the message cloud
 		
-			messageCloud.GetComponent<WordCloud> ().generateWordInCloudCo (getMessages ());
+			messageCloud.GetComponent<WordCloud> ().GenerateWordInCloudCo (getMessages ());
 			doneOnce = true;
 
 		}else{ 
@@ -38,9 +38,9 @@ public class WordCloudInput : MonoBehaviour
 		if (other.tag == "Player" && !doneOnce && messages.Count != 0) //safety checks
 		{
 			if (shouldClearCloud)
-				messageCloud.GetComponent<WordCloud> ().clearCloud ();
+				messageCloud.GetComponent<WordCloud> ().ClearCloud ();
 		
-			messageCloud.GetComponent<WordCloud> ().generateWordInCloudCo (getMessages ());
+			messageCloud.GetComponent<WordCloud> ().GenerateWordInCloudCo (getMessages ());
 			doneOnce = true;
 		}else{ 
 			Debug.Log ("No need to send new messages to the cloud");
