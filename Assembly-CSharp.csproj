@@ -84,7 +84,7 @@
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\RendererExtensions.cs.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloud.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloudInput.cs" />
-    <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\wordCloudFade.cs" />
+    <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloudFade.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\movingBackground.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" />
     <Compile Include="Assets\Scripts\Models\ScannerSettings.cs" />

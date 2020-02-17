@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wordCloudFade : MonoBehaviour 
+public class WordCloudFade : MonoBehaviour 
 {
     #region Members
 
