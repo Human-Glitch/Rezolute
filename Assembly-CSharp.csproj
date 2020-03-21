@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{F11D336D-2A93-3241-058E-7AE8BB2B525B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -83,8 +82,8 @@
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\PlayerStatManager.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\RendererExtensions.cs.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloud.cs" />
-    <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloudInput.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloudFade.cs" />
+    <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloudInput.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\movingBackground.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" />
     <Compile Include="Assets\Scripts\Models\ScannerSettings.cs" />

@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Systems;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class WordCloudInput : MonoBehaviour
 
     #region Properties
 
-	public List<string> Messages { get; set;}
+	public List<string> Messages { get; set;} = new List<string>();
 
     #endregion Properties
 
@@ -48,20 +49,28 @@ public class WordCloudInput : MonoBehaviour
 	/// <param name="other"></param>
     void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag(Consts.ObjectTags.PLAYER) && !doneOnce && Messages.Count != 0)
+		try
 		{
-			if (shouldClearCloud)
+			if (other.CompareTag(Consts.ObjectTags.PLAYER) && !doneOnce && Messages.Count != 0)
 			{
-				messageCloud.GetComponent<WordCloud>().ClearCloud();
-			}
+				if (shouldClearCloud)
+				{
+					messageCloud.GetComponent<WordCloud>().ClearCloud();
+				}
 
-			messageCloud.GetComponent<WordCloud>().GenerateWordInCloudCo(Messages);
-			doneOnce = true;
+				messageCloud.GetComponent<WordCloud>().GenerateWordInCloudCo(Messages);
+				doneOnce = true;
+			}
+			else
+			{ 
+				Debug.Log ("No need to send new messages to the cloud");
+			}
 		}
-		else
-		{ 
-			Debug.Log ("No need to send new messages to the cloud");
+		catch(Exception ex)
+		{
+			Debug.Log(ex.Message);
 		}
+		
 	}
 
 	#endregion Triggers
