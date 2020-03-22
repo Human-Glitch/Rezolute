@@ -1,0 +1,170 @@
+{
+    "messageTrigger-1a": 
+    {
+        "messages": 
+        [
+            { "0" : "Jump (Space)" },
+            { "1" : "Move (<) or (>)" },
+            { "2" : "Gotta Escape" }
+        ]
+    },
+    "messageTrigger-1b":
+    {
+        "messages": 
+        [
+            { "0" : "(O_O) Data Corruptors!" },
+            { "1" : "Best Watch My Step..." }
+        ]
+    },
+    "messageTrigger-1c":
+    {
+        "messages": 
+        [
+            { "0" : "(o.o) I feel stronger" },
+            { "1" : "Somehow..." }
+        ]
+    },
+    "messageTrigger-1d":
+    {
+        "messages": 
+        [
+            { "0" : "JUMP" },
+            { "1" : "DODGE" },
+            { "2" : "('O.O)" }
+        ]
+    },
+    "messageTrigger-1e":
+    {
+        "messages": 
+        [
+            { "0" : "Seems Inactive..." },
+            { "1" : "A Collector" },
+            { "2" : "But Still..." }
+        ]
+    },
+    "messageTrigger-1f":
+    {
+        "messages": 
+        [
+            { "0" : "So Far So Good" }
+        ]
+    },
+    "messageTrigger-1g":
+    {
+        "messages": 
+        [
+            { "0" : "Saved" },
+            { "1" : "If Something Happens" }
+        ]
+    },
+    "messageTrigger-1h":
+    {
+        "messages": 
+        []
+    },
+    "messageTrigger-1i":
+    {
+        "messages": 
+        [
+            { "0" : "YAAASSSS" }
+        ]
+    },
+    "messageTrigger-1j":
+    {
+        "messages": 
+        [
+            { "0" : "Who Keeps Laying These Out For Me?" },
+            { "1" : "What the..." }
+        ]
+    },
+    "messageTrigger-1k":
+    {
+        "messages": 
+        [
+            { "0" : "(>.>) Too Easy " },
+            { "1" : "Hmm..." } 
+        ]
+    },
+    "messageTrigger-1l":
+    {
+        "messages": 
+        [
+            { "0" : "That Scanner Must've..." },
+            { "1" : "(T_O) IT'S A TRAP" },
+            { "2" : "...Transporting Me!" }
+        ]
+    },
+    "messageTrigger-1m":
+    {
+        "messages": 
+        [
+            { "0" : "Force TOO STRONG" },
+            { "1" : "CAN'T Push Forward" }
+        ]
+    },
+    "messageTrigger-1n":
+    {
+        "messages": 
+        [
+            { "0" : "Saved" },
+            { "1" : "Gotta Get Out of Here" }
+        ]
+    },
+    "messageTrigger-1o":
+    {
+        "messages": 
+        []
+    },
+    "messageTrigger-1p":
+    {
+        "messages": 
+        [
+            { "0" : "A Data Bus" },
+            { "1" : "Make for the Exit" }
+        ]
+    },
+    "messageTrigger-1q":
+    {
+        "messages": 
+        [
+            { "0" : "Who Keeps Leaving Out All These Data Fragments?" },
+            { "1" : "(o_o)" }
+        ]
+    },
+    "messageTrigger-1r":
+    {
+        "messages": 
+        []
+    },
+    "messageTrigger-2a":
+    {
+        "messages": 
+        [
+            { "0" : "OH HELL NO" },
+            { "1" : "RUNNNN" },
+            { "2" : "THE MEMORY COLLECTOR!!!" }
+        ]
+    },
+    "messageTrigger-2b":
+    {
+        "messages": 
+        []
+    },
+    "messageTrigger-2c":
+    {
+        "messages": 
+        [
+            { "0" : "What's All This About?" },
+            { "1" : "I Guess I'll Find Out" },
+            { "2" : "In the Sequel!" }
+        ]
+    },
+    "messageTrigger-2d":
+    {
+        "messages": 
+        [
+            { "0" : "MY EXISTENCE IS MINE" },
+            { "1" : "NO ONE CAN TAKE THAT AWAY" }
+        ]
+    }
+}
