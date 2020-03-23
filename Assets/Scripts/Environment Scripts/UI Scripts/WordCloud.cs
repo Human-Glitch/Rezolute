@@ -1,98 +1,59 @@
 ﻿//This script is a container for the container for prefab 3D text objects that have TextMeshes
 
+using Assets.Scripts.Systems;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WordCloud : MonoBehaviour 
 {
-	public List <GameObject> messageCloud;
+    #region Members
+
+    public List <GameObject> messageCloud;
 	public GameObject nextMessage;
 	public float cloudRadius;
 
 	private bool startedDelay = false;
+	private bool stopEverything = false;
 	private int counter = 0;
-
 	private const int max = 3;
 
-	private bool hasFaded = false;
-	private bool stopEverything = false;
-	//==============================================================
+    #endregion Members
 
-	void Start()
+    #region Properties
+
+    public bool HasFaded { get; set;} = false;
+
+    #endregion Properties
+
+    void Start()
 	{
-		if (gameObject.tag == "PlayerCloud") 
+		if (gameObject.CompareTag(Consts.WordCloudTags.PLAYER_CLOUD)) 
 		{
 			//clearCloud ();
 		}
 	}
 	
-//UPDATE
 	void Update ()
 	{
 		if(GetComponent<Renderer>().IsVisibleFrom(Camera.main) && messageCloud.Count != 0)
 		{
-			calculateMessageMovement ();
-		}
-	}//end update
-
-//COROUTINES
-//=======================================================
-	//Creates the word in the cloud using info from <WordCloudInput>
-	public void generateWordInCloudCo(List<string> messages)
-	{
-		StartCoroutine (generateWordInCloud (messages));
-	}//end function
-		
-	private IEnumerator generateWordInCloud(List<string> messages)
-	{
-		for(int i = messages.Count -1; i >= 0; --i )
-		{
-			var text = messages [i]; //What's does the text in a message say?
-
-			GameObject messageObj = Instantiate (this.nextMessage, Random.insideUnitSphere * cloudRadius
-				+ transform.position, transform.rotation) as GameObject;
-
-			messageObj.GetComponent<TextMesh> ().text = text;
-
-			messageCloud.Add (messageObj);
-			messageObj.transform.parent = gameObject.transform;
-
-			counter++;
-
-			yield return new WaitForSecondsRealtime (.5f);
+			CalculateMessageMovement();
 		}
 	}
 
-	//Delays the new coordinates of the words after <WordCloudFade>().transparencyGoingDown
-	//is completed
-	private void delayNewDirectionCo (){ StartCoroutine ("delayNewDirection"); }
+    #region Public Methods
 
-	private IEnumerator delayNewDirection()
+	/// <summary>
+	/// Creates the word in the cloud using info from <WordCloudInput>
+	/// </summary>
+	/// <param name="messages"></param>
+	public void GenerateWordInCloudCo(List<string> messages)
 	{
-		startedDelay = true;
-
-		if (stopEverything == true) 
-		{
-			startedDelay = false;
-			yield break;
-		}
-
-		for(int i = messageCloud.Count -1; i >= 0; --i )
-		{
-			Debug.Log ("New Delay");
-			var message = messageCloud [i];
-			message.transform.position = Vector3.MoveTowards (message.transform.position, Random.insideUnitSphere * cloudRadius
-				+ transform.position, cloudRadius);
-
-			//Transform position of each item after x seconds
-			yield return new WaitForSecondsRealtime(.15f);
-		}
-		startedDelay = false;
+		StartCoroutine(GenerateWordInCloud(messages));
 	}
 
-//FUNCTIONS
-	public void calculateMessageMovement()
+    public void CalculateMessageMovement()
 	{
 		if (messageCloud.Count > 0 && messageCloud.Count <= max && stopEverything == false) 
 		{
@@ -100,16 +61,18 @@ public class WordCloud : MonoBehaviour
 				gameObject.transform.position) > cloudRadius)
 			{
 				messageCloud [counter - 1].transform.localPosition += messageCloud [counter - 1].transform.position * Time.deltaTime;
-			} else 
+			} 
+			else if (startedDelay == false && stopEverything == false && HasFaded)
 			{
-				if (startedDelay == false && stopEverything == false && hasFaded)
-					delayNewDirectionCo ();
-			}//end if else
-		}//end null check
-	}//end void
+				StartCoroutine(DelayNewDirection());
+			}
+		}
+	}
 
-	//Empty Cloud of messages
-	public void clearCloud()
+	/// <summary>
+	/// Empty Cloud of messages
+	/// </summary>
+	public void ClearCloud()
 	{
 		stopEverything = true;
 		if (messageCloud.Count > 0) 
@@ -126,9 +89,68 @@ public class WordCloud : MonoBehaviour
 			Debug.Log ("Messages Destroyed.");
 
 			stopEverything = false;
-		}//end if
+		}
 	}
 
-	//Accessor Function
-	public void setHasFaded(bool hasFaded){ this.hasFaded = hasFaded; }
+    #endregion Public Methods
+
+	#region Coroutines
+
+    private IEnumerator GenerateWordInCloud(List<string> messages)
+	{
+		for(int i = messages.Count - 1; i >= 0; --i )
+		{
+			var text = messages[i];
+
+			GameObject messageObj = 
+				Instantiate
+				(
+					this.nextMessage, 
+					Random.insideUnitSphere * cloudRadius + transform.position, 
+					transform.rotation
+				) as GameObject;
+
+			messageObj.GetComponent<TextMesh>().text = text;
+
+			messageCloud.Add(messageObj);
+			messageObj.transform.parent = gameObject.transform;
+
+			counter++;
+
+			yield return new WaitForSecondsRealtime(.5f);
+		}
+	}
+
+    /// <summary>
+    /// Delays the new coordinates of the words after <WordCloudFade>().transparencyGoingDown is completed
+    /// </summary>
+    private IEnumerator DelayNewDirection()
+	{
+		startedDelay = true;
+
+		if (stopEverything == true) 
+		{
+			startedDelay = false;
+			yield break;
+		}
+
+		for(int i = messageCloud.Count - 1; i >= 0; --i )
+		{
+			Debug.Log ("New Delay");
+			var message = messageCloud[i];
+			message.transform.position = 
+				Vector3.MoveTowards
+				(
+					message.transform.position, 
+					Random.insideUnitSphere * cloudRadius + transform.position, 
+					cloudRadius
+				);
+
+			//Transform position of each item after x seconds
+			yield return new WaitForSecondsRealtime(.15f);
+		}
+		startedDelay = false;
+	}
+
+    #endregion Coroutines
 }
