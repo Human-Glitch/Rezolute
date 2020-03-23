@@ -1,4 +1,3 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
@@ -8,7 +7,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace />
     <ProjectGuid>{F11D336D-2A93-3241-058E-7AE8BB2B525B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -83,7 +82,7 @@
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\RendererExtensions.cs.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloud.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloudInput.cs" />
-    <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\wordCloudFade.cs" />
+    <Compile Include="Assets\Scripts\Environment Scripts\UI Scripts\WordCloudFade.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\movingBackground.cs" />
     <Compile Include="Assets\Scripts\Environment Scripts\movingBackgroundVertical.cs" />
     <Compile Include="Assets\Scripts\Models\ScannerSettings.cs" />
@@ -99,6 +98,7 @@
     <Compile Include="Assets\Scripts\Systems\AnimatedGifDrawer.cs" />
     <Compile Include="Assets\Scripts\Systems\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Systems\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\Systems\Consts.cs" />
     <Compile Include="Assets\Scripts\Systems\Enums.cs" />
     <Compile Include="Assets\Scripts\Systems\ExposeLayerOrder.cs" />
     <Compile Include="Assets\Scripts\Systems\LevelManager.cs" />
@@ -109,7 +109,7 @@
     <Compile Include="Assets\Scripts\Systems\Timer.cs" />
     <Compile Include="Assets\Scripts\Systems\TriggerLevelTransition.cs" />
     <Compile Include="Assets\Scripts\Systems\handleMusic.cs" />
-    <None Include="Assets\Art&amp;Materials\Scifi Art Demo Pack\Demo Readme.txt" />
+    <None Include="Assets\Art&Materials\Scifi Art Demo Pack\Demo Readme.txt" />
     <Reference Include="Unity.XR.Management">
       <HintPath>C:/Projects/Rezolute/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
     </Reference>
