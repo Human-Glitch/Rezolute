@@ -109,7 +109,6 @@
     <Compile Include="Assets\Scripts\Systems\Timer.cs" />
     <Compile Include="Assets\Scripts\Systems\TriggerLevelTransition.cs" />
     <Compile Include="Assets\Scripts\Systems\handleMusic.cs" />
-    <None Include="Assets\Art&Materials\Scifi Art Demo Pack\Demo Readme.txt" />
     <Reference Include="Unity.XR.Management">
       <HintPath>C:/Projects/Rezolute/Library/ScriptAssemblies/Unity.XR.Management.dll</HintPath>
     </Reference>
